@@ -22,6 +22,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!-- Add these activity declarations -->
+        <activity
+            android:name=".activities.about.AboutActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".activities.lobbies.LobbiesActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".activities.playerprofile.PlayerProfileActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

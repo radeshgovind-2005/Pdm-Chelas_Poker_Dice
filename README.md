@@ -7,10 +7,10 @@ This repository contains the implementation of the Chelas Multi-Player Poker Dic
 
 The application is a multi-player Poker Dice game where players use their own devices to join lobbies, configure matches, and compete in rounds based on dice combinations. It integrates with an HTTP API developed in the DAW course for real-time synchronization. The project follows a milestone-based development approach, with tags for each delivery (e.g., `chepd_c_1` for Milestone 1).
 
-## Group Members
+## Group 28 Members
 
 - [51618] : Francisco Duarte Tavares
-- [51619] : Martim Seriz Monteiro
+- [51619] : Martim Silva Seriz Monteiro
 - [51620] : Radesh Ilesh Gamanbhai Govind
 
 ## Demo Video
