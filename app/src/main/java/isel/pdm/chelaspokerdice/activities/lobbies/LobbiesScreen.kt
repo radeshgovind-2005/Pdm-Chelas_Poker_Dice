@@ -12,7 +12,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import isel.pdm.chelaspokerdice.R
+import isel.pdm.chelaspokerdice.components.MainButton
 
 @Preview(showSystemUi = true)
 @Composable
@@ -24,16 +27,10 @@ fun LobbiesScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding)
-                .background(Color.Red)
-            ,
+                .background(Color.Red),
             contentAlignment = Alignment.Center
-        ){
-            Button(
-                modifier = Modifier.fillMaxWidth(),
-                onClick = {navToProfile()},
-            ) {
-                Text("TitleScreen")
-            }
+        ) {
+            MainButton(navToProfile, stringResource(R.string.title_screen))
         }
     }
 }

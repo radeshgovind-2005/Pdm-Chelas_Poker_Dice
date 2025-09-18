@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">ChelasPokerDice</string>
+    <string name="profile">Player Profile</string>
+    <string name="lobbies">Lobbies</string>
+    <string name="about">About</string>
+    <string name="title_screen">Title Screen</string>
+
 </resources>

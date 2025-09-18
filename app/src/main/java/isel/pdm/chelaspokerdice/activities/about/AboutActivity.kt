@@ -18,5 +18,4 @@ class AboutActivity : ComponentActivity() {
     }
     @Composable
     private fun navToTitle(): () -> Unit = { NavigationManager.navigate(this, Route.TitleScreen) }
-
 }
