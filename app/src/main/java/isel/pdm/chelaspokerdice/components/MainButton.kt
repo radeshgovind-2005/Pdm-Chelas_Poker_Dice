@@ -17,7 +17,7 @@ fun MainButton(
 ) {
     Button(
         modifier = Modifier.fillMaxWidth(),
-        onClick = {onClick()},
+        onClick = { onClick() },
         colors = ButtonDefaults.buttonColors(
             containerColor = Color.Black,
             contentColor = Color.White

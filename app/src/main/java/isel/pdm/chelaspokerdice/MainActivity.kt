@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
+import isel.pdm.chelaspokerdice.activities.title.TitleScreen
 
 class MainActivity : ComponentActivity() {
 
@@ -13,7 +14,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            TitleScreen(navToProfile(),navToLobbies(),navToAbout())
+            TitleScreen(navToProfile(), navToLobbies(), navToAbout())
         }
     }
 

@@ -1,5 +1,4 @@
-package isel.pdm.chelaspokerdice
-
+package isel.pdm.chelaspokerdice.activities.title
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -14,10 +13,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewScreenSizes
+import isel.pdm.chelaspokerdice.R
 import isel.pdm.chelaspokerdice.components.MainButton
 
 @Composable
-fun TitleScreen(
+fun TitlePortraitView(
     navToProfile: () -> Unit,
     navToLobbies: () -> Unit,
     navToAbout: () -> Unit,
@@ -30,7 +31,6 @@ fun TitleScreen(
                 .background(Color.Red),
             contentAlignment = Alignment.Center
         ) {
-
             Column(
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
@@ -43,14 +43,10 @@ fun TitleScreen(
             }
         }
     }
-
 }
-
-
-@Preview(showSystemUi = true)
+@PreviewScreenSizes()
+@Preview(showSystemUi = true)//preview
 @Composable
-fun titleScreenPreview() {
-    TitleScreen(
-        { }, { }, { }
-    )
+fun TitlePortraitPreview() {
+    TitleScreen({ }, { }, { })
 }
