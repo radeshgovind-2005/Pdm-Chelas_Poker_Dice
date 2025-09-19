@@ -1,52 +1,54 @@
 package isel.pdm.chelaspokerdice.activities.title
 
 
-import android.content.res.Configuration
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.*
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewScreenSizes
+import androidx.compose.ui.unit.dp
 import isel.pdm.chelaspokerdice.R
-import isel.pdm.chelaspokerdice.components.MainButton
+import isel.pdm.chelaspokerdice.components.button.LandscapeButton
+import isel.pdm.chelaspokerdice.components.button.PortraitButton
+import isel.pdm.chelaspokerdice.components.screen.Screen
 
-/***
- * Screen:
- *   - Portrait ( vertical)
- *   - Landscape ( horizontal )
- *   cada screen tem navbar + mainContent
- *    - PRreview
- *    Nota otimizar os 3 mainButton
- */
 
-@Composable
-fun TitleScreen(
-    navToProfile: () -> Unit,
-    navToLobbies: () -> Unit,
-    navToAbout: () -> Unit,
-) {
-    val viewType = LocalConfiguration.current.orientation
-    if(viewType == Configuration.ORIENTATION_LANDSCAPE){
-        TitleLandscapeView({navToProfile()},{navToLobbies()},{navToAbout()})
-    }else{// Configuration.ORIENTATION_PORTRAIT
-        TitleLandscapeView({navToProfile()},{navToLobbies()},{navToAbout()})
+class TitleScreen(
+    private val navMap: Map<(() -> Unit), Int>,
+) : Screen {
+
+    @Composable
+    override fun PortraitScreen(modifier: Modifier) {
+        Structure(alignment = Alignment.CenterHorizontally) {
+            navMap.forEach {
+                PortraitButton(it.key, stringResource(it.value))
+            }
+        }
     }
 
-
+    @Composable
+    override fun LandscapeScreen(modifier: Modifier) {
+        Structure(Modifier.padding(75.dp), Alignment.End) {
+            navMap.forEach {
+                LandscapeButton(it.key, stringResource(it.value))
+            }
+        }
+    }
 }
 
 
-@Preview(showSystemUi = true)
+@PreviewScreenSizes()
 @Composable
-fun TitleScreenLandscapePreview() {
-    TitleLandscapeView ({ }, { }, { })
+fun TitlePortraitPreview() {
+    val map = mapOf({} to  R.string.profile, {} to R.string.lobbies, {} to R.string.lobbies)
+    TitleScreen( map).Render(Modifier)
 }
+
+
+

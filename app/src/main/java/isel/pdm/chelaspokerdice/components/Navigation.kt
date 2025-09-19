@@ -1,12 +1,10 @@
-package isel.pdm.chelaspokerdice
+package isel.pdm.chelaspokerdice.components
 
 import android.content.Context
 import android.content.Intent
-import androidx.compose.runtime.Composable
+import isel.pdm.chelaspokerdice.MainActivity
 import isel.pdm.chelaspokerdice.activities.about.AboutActivity
-import isel.pdm.chelaspokerdice.activities.about.AboutScreen
 import isel.pdm.chelaspokerdice.activities.lobbies.LobbiesActivity
-import isel.pdm.chelaspokerdice.activities.lobbies.LobbiesScreen
 import isel.pdm.chelaspokerdice.activities.playerprofile.PlayerProfileActivity
 
 enum class Route { TitleScreen, About, PlayerProfile, Lobbies }

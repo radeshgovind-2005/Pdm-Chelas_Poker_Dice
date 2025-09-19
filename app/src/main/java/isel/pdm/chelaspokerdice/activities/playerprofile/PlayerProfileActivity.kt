@@ -5,8 +5,8 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
-import isel.pdm.chelaspokerdice.NavigationManager
-import isel.pdm.chelaspokerdice.Route
+import isel.pdm.chelaspokerdice.components.NavigationManager
+import isel.pdm.chelaspokerdice.components.Route
 
 class PlayerProfileActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,22 +1,23 @@
-package isel.pdm.chelaspokerdice.components
+package isel.pdm.chelaspokerdice.components.button
 
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewScreenSizes
+import androidx.compose.ui.unit.dp
 
-@Preview(showSystemUi = true)
+
 @Composable
-fun MainButton(
+fun PortraitButton(
     onClick: () -> Unit,
     stringRes: String
 ) {
     Button(
-        modifier = Modifier.fillMaxWidth(),
+        modifier =  Modifier.width(200.dp),
         onClick = { onClick() },
         colors = ButtonDefaults.buttonColors(
             containerColor = Color.Black,
@@ -25,4 +26,10 @@ fun MainButton(
     ) {
         Text(stringRes)
     }
+}
+
+@PreviewScreenSizes
+@Composable
+fun PortraitButtonPreview(){
+    PortraitButton({}, "Chelas Poker DiCeEeEeEe")
 }
