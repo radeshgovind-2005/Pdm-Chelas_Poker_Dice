@@ -1,4 +1,4 @@
-package isel.pdm.chelaspokerdice.components
+package isel.pdm.chelaspokerdice.components.navigation
 
 import android.content.Context
 import android.content.Intent
@@ -36,7 +36,6 @@ object NavigationManager {
         getScreen(route).let { screen ->
             val intent = screen.createIntent(context)
             context.startActivity(intent)
-
         }
     }
 

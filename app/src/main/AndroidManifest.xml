@@ -34,6 +34,8 @@
         <activity
             android:name=".activities.playerprofile.PlayerProfileActivity"
             android:exported="false" />
+
+
     </application>
 
 </manifest>

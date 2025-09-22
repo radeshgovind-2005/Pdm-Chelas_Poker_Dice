@@ -4,5 +4,6 @@
     <string name="lobbies">Lobbies</string>
     <string name="about">About</string>
     <string name="title_screen">Title Screen</string>
+    <string name="configuration">Configuration</string>
 
 </resources>

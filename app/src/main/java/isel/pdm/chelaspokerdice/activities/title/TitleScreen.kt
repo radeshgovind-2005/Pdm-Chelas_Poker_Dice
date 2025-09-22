@@ -1,6 +1,8 @@
 package isel.pdm.chelaspokerdice.activities.title
 
 
+import android.content.Context
+import androidx.activity.ComponentActivity
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
@@ -21,11 +23,12 @@ import isel.pdm.chelaspokerdice.components.screen.Screen
 
 class TitleScreen(
     private val navMap: Map<(() -> Unit), Int>,
+    private val context: Context
 ) : Screen {
 
     @Composable
     override fun PortraitScreen(modifier: Modifier) {
-        Structure(alignment = Alignment.CenterHorizontally) {
+        Structure(alignment = Alignment.CenterHorizontally,context =  context ) {
             navMap.forEach {
                 PortraitButton(it.key, stringResource(it.value))
             }
@@ -34,7 +37,7 @@ class TitleScreen(
 
     @Composable
     override fun LandscapeScreen(modifier: Modifier) {
-        Structure(Modifier.padding(75.dp), Alignment.End) {
+        Structure(Modifier.padding(75.dp), Alignment.End, context =  context ) {
             navMap.forEach {
                 LandscapeButton(it.key, stringResource(it.value))
             }
@@ -45,9 +48,9 @@ class TitleScreen(
 
 @PreviewScreenSizes()
 @Composable
-fun TitlePortraitPreview() {
+private fun Preview() {
     val map = mapOf({} to  R.string.profile, {} to R.string.lobbies, {} to R.string.lobbies)
-    TitleScreen( map).Render(Modifier)
+    TitleScreen( map, ComponentActivity()).Render(Modifier)
 }
 
 
