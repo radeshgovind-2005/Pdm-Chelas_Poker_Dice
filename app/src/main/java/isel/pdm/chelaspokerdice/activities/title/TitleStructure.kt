@@ -27,8 +27,6 @@ import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import isel.pdm.chelaspokerdice.R
-import isel.pdm.chelaspokerdice.components.navigation.NavigationManager
-import isel.pdm.chelaspokerdice.components.navigation.Route
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -137,7 +135,7 @@ fun TitleScreen.Structure(
                 contentAlignment = Alignment.Center
             ) {
                 Image(
-                    painter = painterResource(R.drawable.opa),
+                    painter = painterResource(R.drawable.simple_background),
                     contentDescription = "Logo Chelas Poker Dice",
                     modifier = Modifier
                         .fillMaxHeight(),

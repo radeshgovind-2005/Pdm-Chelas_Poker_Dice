@@ -3,7 +3,6 @@ package isel.pdm.chelaspokerdice.activities.about
 import android.content.Intent
 import android.net.Uri
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -19,7 +18,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.AccountCircle
 import androidx.compose.material.icons.rounded.Home
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -96,7 +94,7 @@ fun AboutStructure(
             contentAlignment = Alignment.Center
         ){
             Image(
-                painter = painterResource(R.drawable.opa),
+                painter = painterResource(R.drawable.simple_background),
                 contentDescription = "Background",
                 modifier = Modifier
                     .fillMaxHeight(),

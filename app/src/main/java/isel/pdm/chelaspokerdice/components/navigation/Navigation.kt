@@ -9,6 +9,7 @@ import isel.pdm.chelaspokerdice.activities.playerprofile.PlayerProfileActivity
 
 enum class Route { TitleScreen, About, PlayerProfile, Lobbies }
 
+
 sealed class NavigationScreen(
     val route: Route,
     val destination: Class<*>
@@ -18,6 +19,8 @@ sealed class NavigationScreen(
     object About : NavigationScreen(Route.About, AboutActivity::class.java)
     object PlayerProfile : NavigationScreen(Route.PlayerProfile, PlayerProfileActivity::class.java)
     object Lobbies : NavigationScreen(Route.Lobbies, LobbiesActivity::class.java)
+
+
 
     fun createIntent(context: Context): Intent = Intent(context, destination)
 }

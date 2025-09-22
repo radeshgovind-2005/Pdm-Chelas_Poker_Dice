@@ -76,7 +76,7 @@ fun PlayerProfileScreen.PlayerProfileStructure(
         )
         {
             Image(
-                painter = painterResource(R.drawable.opa),
+                painter = painterResource(R.drawable.simple_background),
                 contentDescription = "Logo Chelas Poker Dice",
                 modifier = Modifier.fillMaxHeight(),
                 contentScale = ContentScale.Crop

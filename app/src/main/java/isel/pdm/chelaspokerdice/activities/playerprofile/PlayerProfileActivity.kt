@@ -12,7 +12,6 @@ import isel.pdm.chelaspokerdice.components.navigation.Route
 import isel.pdm.chelaspokerdice.ui.theme.ChelasPokerDiceTheme
 
 class PlayerProfileActivity : ComponentActivity() {
-
     private val navMap: Map<() -> Unit, Int>
         @Composable
         get() = mapOf(

@@ -1,10 +1,13 @@
 package isel.pdm.chelaspokerdice.activities.playerprofile
 
+import androidx.compose.material3.Button
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import isel.pdm.chelaspokerdice.R
+import isel.pdm.chelaspokerdice.activities.playerprofile.compose.PortraitPlayerProfileCompose
 import isel.pdm.chelaspokerdice.components.button.LandscapeButton
 import isel.pdm.chelaspokerdice.components.button.PortraitButton
 import isel.pdm.chelaspokerdice.components.screen.Screen
@@ -15,7 +18,7 @@ class PlayerProfileScreen(
 
     @Composable
     override fun PortraitScreen(modifier: Modifier) {
-        PlayerProfileStructure {
+        PortraitPlayerProfileCompose {
             navMap.forEach {
                 PortraitButton(it.key, stringResource(it.value))
             }
