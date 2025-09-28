@@ -1,35 +1,42 @@
 package isel.pdm.chelaspokerdice
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import isel.pdm.chelaspokerdice.navigation.TitleNavigation
+import isel.pdm.chelaspokerdice.activities.about.AboutActivity
+import isel.pdm.chelaspokerdice.activities.lobbies.LobbiesActivity
+import isel.pdm.chelaspokerdice.activities.playerprofile.PlayerProfileActivity
 import isel.pdm.chelaspokerdice.activities.title.TitleScreen
-import isel.pdm.chelaspokerdice.components.navigation.NavigationManager
-import isel.pdm.chelaspokerdice.components.navigation.Route
+import isel.pdm.chelaspokerdice.navigation.ActivityNavigator
 import isel.pdm.chelaspokerdice.ui.theme.ChelasPokerDiceTheme
 
-class MainActivity : ComponentActivity() {
+class MainActivity : ActivityNavigator() {
 
     private val tag = this::class.java.simpleName
-
-    private val navMap: Map<()->Unit,Int>
-        @Composable
-        get() = mapOf(
-            { NavigationManager.navigate(this, Route.PlayerProfile) } to R.string.profile,
-            { NavigationManager.navigate(this, Route.Lobbies) } to R.string.lobbies,
-            { NavigationManager.navigate(this, Route.About) } to R.string.about
-        )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             ChelasPokerDiceTheme {
-                TitleScreen(navMap, this).Render(Modifier)
+                TitleScreen(
+                    onNavigateToAbout = { navigate(TitleNavigation.ToAbout) },
+                    onNavigateToPlayerProfile = { navigate(TitleNavigation.ToPlayerProfile) },
+                    onNavigateToLobbies = { navigate(TitleNavigation.ToLobbies) },
+                ).Render(Modifier)
             }
         }
     }
+
+    private fun navigate(nav: TitleNavigation) {
+         when (nav) {
+            TitleNavigation.ToAbout -> navigation(AboutActivity::class.java, Anim.Forward)
+            TitleNavigation.ToLobbies ->navigation(LobbiesActivity::class.java, Anim.Forward)
+            TitleNavigation.ToPlayerProfile ->navigation(PlayerProfileActivity::class.java, Anim.Forward)
+        }
+    }
 }
+
+

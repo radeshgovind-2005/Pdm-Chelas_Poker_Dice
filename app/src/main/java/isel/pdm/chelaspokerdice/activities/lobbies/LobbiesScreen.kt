@@ -2,32 +2,30 @@ package isel.pdm.chelaspokerdice.activities.lobbies
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewScreenSizes
-import isel.pdm.chelaspokerdice.R
-import isel.pdm.chelaspokerdice.components.button.LandscapeButton
-import isel.pdm.chelaspokerdice.components.button.PortraitButton
-import isel.pdm.chelaspokerdice.components.screen.Screen
+import isel.pdm.chelaspokerdice.activities.lobbies.struct.LobbiesScaffold
+import isel.pdm.chelaspokerdice.components.contentDisplay.ContentColunmDisplay
+import isel.pdm.chelaspokerdice.components.Screen
 
 
 class LobbiesScreen(
-    private val navMap: Map<(() -> Unit), Int>,
+    private val onNavigateToTitleScreen: () -> Unit = {}
 ) : Screen {
 
     @Composable
     override fun PortraitScreen(modifier: Modifier) {
-        LobbiesStructure {
-            navMap.forEach {
-                PortraitButton(it.key, stringResource(it.value))
+        LobbiesScaffold(onNavigateToTitleScreen) { innerPadding ->
+            ContentColunmDisplay(innerPadding) {
+
             }
         }
     }
 
     @Composable
     override fun LandscapeScreen(modifier: Modifier) {
-        LobbiesStructure {
-            navMap.forEach {
-                LandscapeButton(it.key, stringResource(it.value))
+        LobbiesScaffold(onNavigateToTitleScreen) { innerPadding ->
+            ContentColunmDisplay(innerPadding) {
+
             }
         }
     }
@@ -36,10 +34,7 @@ class LobbiesScreen(
 @PreviewScreenSizes
 @Composable
 private fun Preview() {
-    val map = mapOf(
-        { } to R.string.title_screen,
-    )
-    LobbiesScreen(map).Render(Modifier)
+    LobbiesScreen().Render(Modifier)
 }
 
 

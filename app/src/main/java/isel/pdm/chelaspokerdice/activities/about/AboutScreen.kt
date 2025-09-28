@@ -1,32 +1,45 @@
 package isel.pdm.chelaspokerdice.activities.about
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewScreenSizes
-import isel.pdm.chelaspokerdice.R
-import isel.pdm.chelaspokerdice.components.button.LandscapeButton
-import isel.pdm.chelaspokerdice.components.button.PortraitButton
-import isel.pdm.chelaspokerdice.components.screen.Screen
+import isel.pdm.chelaspokerdice.activities.about.content.AboutThisProject
+import isel.pdm.chelaspokerdice.activities.about.content.GamePlayOverview
+import isel.pdm.chelaspokerdice.activities.about.struct.AboutScaffold
+import isel.pdm.chelaspokerdice.components.Screen
+import isel.pdm.chelaspokerdice.components.contentDisplay.ContentColunmDisplay
+import isel.pdm.chelaspokerdice.components.struct.tabs.SimpleTabs
 
 class AboutScreen(
-    private val navMap: Map<(() -> Unit), Int>,
+    private val onNavigateToTitleScreen: () -> Unit = {},
+    private val onNavigateToGameRules: (String) -> Unit = {}
 ) : Screen {
 
     @Composable
     override fun PortraitScreen(modifier: Modifier) {
-        AboutStructure {
-            navMap.forEach {
-                PortraitButton(it.key, stringResource(it.value))
+        AboutScaffold(onNavigateToTitleScreen) { innerPadding ->
+            ContentColunmDisplay(innerPadding, Arrangement.Top) {
+                SimpleTabs(
+                    mapOf(
+                        "Gameplay Overview" to { GamePlayOverview(onNavigateToGameRules) },
+                        "About this Project" to { AboutThisProject() }
+                    )
+                )
             }
         }
     }
 
     @Composable
     override fun LandscapeScreen(modifier: Modifier) {
-        AboutStructure {
-            navMap.forEach {
-                LandscapeButton(it.key, stringResource(it.value))
+        AboutScaffold(onNavigateToTitleScreen) { innerPadding ->
+            ContentColunmDisplay(innerPadding) {
+                SimpleTabs(
+                    mapOf(
+                        "Gameplay Overview" to { GamePlayOverview(onNavigateToGameRules) },
+                        "About this Project" to { AboutThisProject() }
+                    )
+                )
             }
         }
     }
@@ -35,10 +48,7 @@ class AboutScreen(
 @PreviewScreenSizes
 @Composable
 private fun Preview() {
-    val map = mapOf(
-        { } to R.string.title_screen,
-    )
-    AboutScreen(map).Render(Modifier)
+    AboutScreen().Render(Modifier)
 }
 
 
