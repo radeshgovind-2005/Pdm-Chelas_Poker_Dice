@@ -1,10 +1,10 @@
 package isel.pdm.chelaspokerdice.screens.playerprofile
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.ui.Modifier
-import isel.pdm.chelaspokerdice.MainActivity
 import isel.pdm.chelaspokerdice.ui.navigation.ActivityNavigator
 import isel.pdm.chelaspokerdice.ui.navigation.PlayerProfileNavigation
 import isel.pdm.chelaspokerdice.ui.theme.ChelasPokerDiceTheme
@@ -15,6 +15,7 @@ class PlayerProfileActivity : ActivityNavigator() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.v(tag, "PlayerProfileActivity.onCreate.")
         enableEdgeToEdge()
         setContent {
             ChelasPokerDiceTheme {

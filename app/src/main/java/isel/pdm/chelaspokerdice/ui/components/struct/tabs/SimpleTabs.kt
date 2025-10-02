@@ -1,10 +1,8 @@
 package isel.pdm.chelaspokerdice.ui.components.struct.tabs
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -12,10 +10,6 @@ import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -23,10 +17,12 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun SimpleTabs(
-    tabTitles: Map<String, (@Composable () -> Unit)>,
+    tabItems: Map<String, (@Composable () -> Unit)>,
+    selectedTabIndex: Int,
+    onTabSelected: (Int) -> Unit
     ) {
-    var selectedTabIndex by rememberSaveable { mutableStateOf(0) }
-    val tabKeys = tabTitles.keys.toList()
+    //var selectedTabIndex by rememberSaveable { mutableIntStateOf(0) }
+    val tabKeys = tabItems.keys.toList()
 
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -43,7 +39,7 @@ fun SimpleTabs(
             tabKeys.forEachIndexed { index, title ->
                 Tab(
                     selected = selectedTabIndex == index,
-                    onClick = { selectedTabIndex = index },
+                    onClick = { onTabSelected(index) },
                     text = { Text(title) }
                 )
             }
@@ -51,6 +47,6 @@ fun SimpleTabs(
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        tabTitles[tabKeys[selectedTabIndex]]?.invoke()
+        tabItems[tabKeys[selectedTabIndex]]?.invoke()
     }
 }
