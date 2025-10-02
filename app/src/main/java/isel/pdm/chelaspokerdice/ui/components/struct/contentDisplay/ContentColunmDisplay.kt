@@ -15,7 +15,7 @@ import isel.pdm.chelaspokerdice.ui.components.figures.BackgroundImage
 @Composable
 fun ContentColunmDisplay(
     innerPadding: PaddingValues,
-    vArrangement: Arrangement.Vertical = Arrangement.Center,
+    vArrangement: Arrangement.Vertical,
     composableCode: @Composable () -> Unit
 ) {
     BackgroundImage()

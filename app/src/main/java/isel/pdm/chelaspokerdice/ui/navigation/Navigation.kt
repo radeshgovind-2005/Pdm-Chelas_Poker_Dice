@@ -4,21 +4,20 @@ package isel.pdm.chelaspokerdice.ui.navigation
 sealed class Navigation
 
 sealed class TitleNavigation: Navigation(){
-    object ToPlayerProfile: TitleNavigation()
-    object ToLobbies: TitleNavigation()
-    object ToAbout: TitleNavigation()
+    data object ToPlayerProfile: TitleNavigation()
+    data object ToLobbies: TitleNavigation()
+    data object ToAbout: TitleNavigation()
 }
 sealed class PlayerProfileNavigation: Navigation(){
-    object ToTitleScreen: PlayerProfileNavigation()
+    data object ToTitleScreen: PlayerProfileNavigation()
 }
 
 sealed class LobbiesNavigation: Navigation(){
-    object ToTitleScreen: LobbiesNavigation()
+    data object ToTitleScreen: LobbiesNavigation()
 }
 
 sealed class AboutNavigation: Navigation(){
-    object ToTitleScreen: AboutNavigation()
+    data object ToTitleScreen: AboutNavigation()
     data class ToUri(val uri: String): AboutNavigation()
-
-    class ToMail(val emails: Array<String>, val subject: String): AboutNavigation()
+    data class ToMail(val emails: List<String>, val subject: String): AboutNavigation()
 }

@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.ui.Modifier
-import isel.pdm.chelaspokerdice.MainActivity
 import isel.pdm.chelaspokerdice.ui.navigation.AboutNavigation
 import isel.pdm.chelaspokerdice.ui.navigation.ActivityNavigator
 import isel.pdm.chelaspokerdice.ui.theme.ChelasPokerDiceTheme

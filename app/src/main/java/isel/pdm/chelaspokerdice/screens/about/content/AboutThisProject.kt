@@ -22,7 +22,7 @@ const val ABOUT_THIS_PROJECT = "This application was developed as part of the Mo
         "Computers degree (LEIC).\n\n" +
         "Developed during the 2025/2026 Winter Semester by Group 28, class 52D:"
 const val MAIL_SUBJECT = "Chelas Poker Dice App - Group 28"
-val EMAILS = arrayOf(
+val EMAILS = listOf(
     "A51620@alunos.isel.pt",
     "A51619@alunos.isel.pt",
     "A51618@alunos.isel.pt",
@@ -35,7 +35,7 @@ val GROUP_MEMBERS =
     )
 
 @Composable
-fun AboutThisProject(onNavigateToMail: (Array<String>, String) -> Unit) {
+fun AboutThisProject(onNavigateToMail: (List<String>, String) -> Unit) {
     SimpleCard {
         TitleText("About this Project")
         Spacer(modifier = Modifier.height(8.dp))
