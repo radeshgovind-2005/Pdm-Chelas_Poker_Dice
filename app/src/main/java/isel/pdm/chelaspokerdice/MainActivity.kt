@@ -4,12 +4,12 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.ui.Modifier
-import isel.pdm.chelaspokerdice.navigation.TitleNavigation
-import isel.pdm.chelaspokerdice.activities.about.AboutActivity
-import isel.pdm.chelaspokerdice.activities.lobbies.LobbiesActivity
-import isel.pdm.chelaspokerdice.activities.playerprofile.PlayerProfileActivity
-import isel.pdm.chelaspokerdice.activities.title.TitleScreen
-import isel.pdm.chelaspokerdice.navigation.ActivityNavigator
+import isel.pdm.chelaspokerdice.ui.navigation.TitleNavigation
+import isel.pdm.chelaspokerdice.screens.about.AboutActivity
+import isel.pdm.chelaspokerdice.screens.lobbies.LobbiesActivity
+import isel.pdm.chelaspokerdice.screens.playerprofile.PlayerProfileActivity
+import isel.pdm.chelaspokerdice.screens.title.TitleScreen
+import isel.pdm.chelaspokerdice.ui.navigation.ActivityNavigator
 import isel.pdm.chelaspokerdice.ui.theme.ChelasPokerDiceTheme
 
 class MainActivity : ActivityNavigator() {

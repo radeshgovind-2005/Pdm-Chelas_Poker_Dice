@@ -24,15 +24,15 @@
         </activity>
         <!-- Add these activity declarations -->
         <activity
-            android:name=".activities.about.AboutActivity"
+            android:name=".screens.about.AboutActivity"
             android:exported="false" />
 
         <activity
-            android:name=".activities.lobbies.LobbiesActivity"
+            android:name=".screens.lobbies.LobbiesActivity"
             android:exported="false" />
 
         <activity
-            android:name=".activities.playerprofile.PlayerProfileActivity"
+            android:name=".screens.playerprofile.PlayerProfileActivity"
             android:exported="false" />
 
 

@@ -1,0 +1,26 @@
+package isel.pdm.chelaspokerdice.ui.components.icons
+
+import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.unit.dp
+
+class SimpleIcon(
+    private val icon: ImageVector,
+    private val description: String
+){
+    @Composable
+    fun ShowIcon(
+        modifier: Modifier = Modifier.Companion.size(35.dp),
+        tint: Color = Color.Companion.White,
+        onClick: () -> Unit = {}
+    ){
+        IconButton(onClick) {
+            Icon(icon, description, modifier, tint)
+        }
+    }
+}
