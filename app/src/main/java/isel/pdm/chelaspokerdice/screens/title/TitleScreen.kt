@@ -7,14 +7,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import androidx.compose.ui.unit.dp
-import isel.pdm.chelaspokerdice.components.contentDisplay.ContentRowDisplay
-import isel.pdm.chelaspokerdice.components.contentDisplay.ContentColunmDisplay
-import isel.pdm.chelaspokerdice.components.contentDisplay.RowDivider
+import isel.pdm.chelaspokerdice.screens.Screen
 import isel.pdm.chelaspokerdice.screens.title.struct.TitleScreenDrawer
 import isel.pdm.chelaspokerdice.screens.title.struct.TitleScreenScaffold
-import isel.pdm.chelaspokerdice.components.elements.ButtonText
-import isel.pdm.chelaspokerdice.components.images.PokerDiceLogo
-import isel.pdm.chelaspokerdice.screens.Screen
+import isel.pdm.chelaspokerdice.ui.components.contentDisplay.ContentColunmDisplay
+import isel.pdm.chelaspokerdice.ui.components.contentDisplay.ContentRowDisplay
+import isel.pdm.chelaspokerdice.ui.components.contentDisplay.RowDivider
+import isel.pdm.chelaspokerdice.ui.components.elements.ButtonText
+import isel.pdm.chelaspokerdice.ui.components.images.PokerDiceLogo
 
 class TitleScreen(
     private val onNavigateToAbout: () -> Unit = {},

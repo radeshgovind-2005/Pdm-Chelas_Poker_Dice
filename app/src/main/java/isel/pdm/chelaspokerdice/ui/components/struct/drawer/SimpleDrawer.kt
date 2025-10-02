@@ -21,9 +21,7 @@ fun SimpleDrawer(
     val drawerState = rememberDrawerState(DrawerValue.Closed)
     val scope = rememberCoroutineScope()
     var selectedItemId by remember {
-        mutableStateOf(
-            menuItems.firstOrNull()?.id ?: ""
-        )
+        mutableStateOf("")
     }
     ModalNavigationDrawer(
         drawerState = drawerState,

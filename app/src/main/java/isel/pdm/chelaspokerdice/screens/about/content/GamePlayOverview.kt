@@ -5,10 +5,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import isel.pdm.chelaspokerdice.components.elements.LinkText
-import isel.pdm.chelaspokerdice.components.elements.SimpleText
-import isel.pdm.chelaspokerdice.components.elements.TitleText
-import isel.pdm.chelaspokerdice.components.struct.tabs.SimpleCard
+import isel.pdm.chelaspokerdice.ui.components.elements.LinkText
+import isel.pdm.chelaspokerdice.ui.components.elements.SimpleText
+import isel.pdm.chelaspokerdice.ui.components.elements.TitleText
+import isel.pdm.chelaspokerdice.ui.components.struct.tabs.SimpleCard
 
 const val GAMEPLAY_OVERVIEW =  "Poker Dice is played with 5 special dice featuring playing card suits (9, 10, Jack, Queen, King, Ace) instead of numbers. " +
         "Players roll the dice and try to form the best poker hand possible. Each player typically gets up to 3 rolls per turn, " +

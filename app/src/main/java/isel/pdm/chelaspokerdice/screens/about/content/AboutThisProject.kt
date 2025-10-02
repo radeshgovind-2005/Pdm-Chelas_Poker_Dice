@@ -9,11 +9,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import isel.pdm.chelaspokerdice.components.elements.BulletPoints
-import isel.pdm.chelaspokerdice.components.elements.ButtonText
-import isel.pdm.chelaspokerdice.components.elements.SimpleText
-import isel.pdm.chelaspokerdice.components.elements.TitleText
-import isel.pdm.chelaspokerdice.components.struct.tabs.SimpleCard
+import isel.pdm.chelaspokerdice.screens.about.struct.openEmailClient
+import isel.pdm.chelaspokerdice.ui.components.elements.BulletPoints
+import isel.pdm.chelaspokerdice.ui.components.elements.ButtonText
+import isel.pdm.chelaspokerdice.ui.components.elements.SimpleText
+import isel.pdm.chelaspokerdice.ui.components.elements.TitleText
+import isel.pdm.chelaspokerdice.ui.components.struct.tabs.SimpleCard
 
 
 const val GAME_RULES_LINK = "https://en.wikipedia.org/wiki/Poker_dice"
@@ -49,7 +50,7 @@ fun AboutThisProject() {
             iconDescrition = "Contact via E-mail",
             modifier = Modifier.fillMaxWidth()
         ) {
-            _root_ide_package_.isel.pdm.chelaspokerdice.activities.about.struct.openEmailClient(
+            openEmailClient(
                 context,
                 EMAILS,
                 MAIL_SUBJECT

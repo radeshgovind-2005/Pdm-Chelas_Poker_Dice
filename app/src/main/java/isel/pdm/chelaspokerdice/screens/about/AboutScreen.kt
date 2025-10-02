@@ -8,8 +8,8 @@ import isel.pdm.chelaspokerdice.screens.about.content.AboutThisProject
 import isel.pdm.chelaspokerdice.screens.about.content.GamePlayOverview
 import isel.pdm.chelaspokerdice.screens.about.struct.AboutScaffold
 import isel.pdm.chelaspokerdice.screens.Screen
-import isel.pdm.chelaspokerdice.components.contentDisplay.ContentColunmDisplay
-import isel.pdm.chelaspokerdice.components.struct.tabs.SimpleTabs
+import isel.pdm.chelaspokerdice.ui.components.contentDisplay.ContentColunmDisplay
+import isel.pdm.chelaspokerdice.ui.components.struct.tabs.SimpleTabs
 
 class AboutScreen(
     private val onNavigateToTitleScreen: () -> Unit = {},

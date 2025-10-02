@@ -4,7 +4,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
-import isel.pdm.chelaspokerdice.components.icons.SimpleIcon
+import isel.pdm.chelaspokerdice.ui.components.icons.SimpleIcon
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

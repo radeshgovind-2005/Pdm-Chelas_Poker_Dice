@@ -3,8 +3,8 @@ package isel.pdm.chelaspokerdice.screens.title.struct
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import isel.pdm.chelaspokerdice.R
-import isel.pdm.chelaspokerdice.components.struct.drawer.DrawerMenuItem
-import isel.pdm.chelaspokerdice.components.struct.drawer.SimpleDrawer
+import isel.pdm.chelaspokerdice.ui.components.struct.drawer.DrawerMenuItem
+import isel.pdm.chelaspokerdice.ui.components.struct.drawer.SimpleDrawer
 
 
 @Composable
@@ -14,7 +14,7 @@ fun TitleScreenDrawer(
     code: @Composable (onOpenDrawer: () -> Unit) -> Unit,
 ) {
     val menuItems = arrayOf(
-        DrawerMenuItem(
+            DrawerMenuItem(
             "Profile",
             stringResource(R.string.profile),
             onNavigateToPlayerProfile

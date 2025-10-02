@@ -12,8 +12,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import isel.pdm.chelaspokerdice.components.images.BackgroundImage
+import isel.pdm.chelaspokerdice.ui.components.images.BackgroundImage
 
 @Composable
 fun ContentColunmDisplay(
