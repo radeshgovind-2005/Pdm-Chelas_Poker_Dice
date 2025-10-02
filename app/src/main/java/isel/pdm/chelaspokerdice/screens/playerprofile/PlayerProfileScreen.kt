@@ -5,7 +5,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import isel.pdm.chelaspokerdice.screens.playerprofile.struct.PlayerProfileScaffold
 import isel.pdm.chelaspokerdice.screens.Screen
-import isel.pdm.chelaspokerdice.ui.components.contentDisplay.ContentColunmDisplay
+import isel.pdm.chelaspokerdice.ui.components.struct.contentDisplay.ContentColunmDisplay
 
 class PlayerProfileScreen(
     private val onNavigateToTitleScreen: () -> Unit = {},

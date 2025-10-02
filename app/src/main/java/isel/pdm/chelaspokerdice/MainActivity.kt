@@ -32,9 +32,9 @@ class MainActivity : ActivityNavigator() {
 
     private fun navigate(nav: TitleNavigation) {
          when (nav) {
-            TitleNavigation.ToAbout -> navigation(AboutActivity::class.java, Anim.Forward)
-            TitleNavigation.ToLobbies ->navigation(LobbiesActivity::class.java, Anim.Forward)
-            TitleNavigation.ToPlayerProfile ->navigation(PlayerProfileActivity::class.java, Anim.Forward)
+            TitleNavigation.ToAbout -> navigationToScreen(AboutActivity::class.java, Anim.Forward)
+            TitleNavigation.ToLobbies ->navigationToScreen(LobbiesActivity::class.java, Anim.Forward)
+            TitleNavigation.ToPlayerProfile ->navigationToScreen(PlayerProfileActivity::class.java, Anim.Forward)
         }
     }
 }

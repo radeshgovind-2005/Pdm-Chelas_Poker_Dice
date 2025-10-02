@@ -1,4 +1,4 @@
-package isel.pdm.chelaspokerdice.ui.components.images
+package isel.pdm.chelaspokerdice.ui.components.figures
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.padding

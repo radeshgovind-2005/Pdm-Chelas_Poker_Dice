@@ -20,7 +20,8 @@ class AboutActivity : ActivityNavigator() {
             ChelasPokerDiceTheme {
                 AboutScreen(
                     onNavigateToTitleScreen = { navigate(AboutNavigation.ToTitleScreen)},
-                    onNavigateToGameRules = { uri -> navigate(AboutNavigation.ToUri(uri)) }
+                    onNavigateToGameRules = { uri -> navigate(AboutNavigation.ToUri(uri)) },
+                    onNavigateToMail = { emails, subject -> navigate(AboutNavigation.ToMail(emails,subject))}
                 ).Render(Modifier)
             }
         }
@@ -28,8 +29,9 @@ class AboutActivity : ActivityNavigator() {
 
     private fun navigate(nav: AboutNavigation) {
         when (nav) {
-            AboutNavigation.ToTitleScreen -> navigation(MainActivity::class.java, Anim.Backwards)
-            is AboutNavigation.ToUri -> navigation(nav.uri)
+            AboutNavigation.ToTitleScreen -> finish()
+            is AboutNavigation.ToUri -> navigationToWeb(nav.uri)
+            is AboutNavigation.ToMail -> navigationToMail(nav.emails, nav.subject)
         }
     }
 }

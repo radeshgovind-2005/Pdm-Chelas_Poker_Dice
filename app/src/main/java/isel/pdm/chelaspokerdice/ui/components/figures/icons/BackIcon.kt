@@ -1,8 +1,7 @@
-package isel.pdm.chelaspokerdice.ui.components.icons
+package isel.pdm.chelaspokerdice.ui.components.figures.icons
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 

@@ -1,4 +1,4 @@
-package isel.pdm.chelaspokerdice.ui.components.icons
+package isel.pdm.chelaspokerdice.ui.components.figures.icons
 
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons

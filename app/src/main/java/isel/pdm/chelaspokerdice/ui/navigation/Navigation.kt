@@ -19,4 +19,6 @@ sealed class LobbiesNavigation: Navigation(){
 sealed class AboutNavigation: Navigation(){
     object ToTitleScreen: AboutNavigation()
     data class ToUri(val uri: String): AboutNavigation()
+
+    class ToMail(val emails: Array<String>, val subject: String): AboutNavigation()
 }

@@ -8,12 +8,13 @@ import isel.pdm.chelaspokerdice.screens.about.content.AboutThisProject
 import isel.pdm.chelaspokerdice.screens.about.content.GamePlayOverview
 import isel.pdm.chelaspokerdice.screens.about.struct.AboutScaffold
 import isel.pdm.chelaspokerdice.screens.Screen
-import isel.pdm.chelaspokerdice.ui.components.contentDisplay.ContentColunmDisplay
+import isel.pdm.chelaspokerdice.ui.components.struct.contentDisplay.ContentColunmDisplay
 import isel.pdm.chelaspokerdice.ui.components.struct.tabs.SimpleTabs
 
 class AboutScreen(
     private val onNavigateToTitleScreen: () -> Unit = {},
-    private val onNavigateToGameRules: (String) -> Unit = {}
+    private val onNavigateToGameRules: (String) -> Unit = {},
+    private val onNavigateToMail: (Array<String>, String) -> Unit = { _ , _ -> }
 ) : Screen {
 
     @Composable
@@ -23,7 +24,7 @@ class AboutScreen(
                 SimpleTabs(
                     mapOf(
                         "Gameplay Overview" to { GamePlayOverview(onNavigateToGameRules) },
-                        "About this Project" to { AboutThisProject() }
+                        "About this Project" to { AboutThisProject(onNavigateToMail) }
                     )
                 )
             }
@@ -37,7 +38,7 @@ class AboutScreen(
                 SimpleTabs(
                     mapOf(
                         "Gameplay Overview" to { GamePlayOverview(onNavigateToGameRules) },
-                        "About this Project" to { AboutThisProject() }
+                        "About this Project" to { AboutThisProject(onNavigateToMail) }
                     )
                 )
             }

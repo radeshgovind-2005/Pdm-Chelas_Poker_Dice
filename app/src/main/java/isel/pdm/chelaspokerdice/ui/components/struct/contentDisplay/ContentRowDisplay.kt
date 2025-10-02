@@ -1,4 +1,4 @@
-package isel.pdm.chelaspokerdice.ui.components.contentDisplay
+package isel.pdm.chelaspokerdice.ui.components.struct.contentDisplay
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -6,7 +6,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import isel.pdm.chelaspokerdice.ui.components.images.BackgroundImage
+import isel.pdm.chelaspokerdice.ui.components.figures.BackgroundImage
 
 
 @Composable

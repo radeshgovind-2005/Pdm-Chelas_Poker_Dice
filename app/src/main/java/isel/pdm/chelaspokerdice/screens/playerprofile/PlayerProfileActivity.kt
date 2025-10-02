@@ -27,7 +27,7 @@ class PlayerProfileActivity : ActivityNavigator() {
 
     private fun navigate(nav: PlayerProfileNavigation) {
         when (nav) {
-            PlayerProfileNavigation.ToTitleScreen -> navigation(MainActivity::class.java, Anim.Backwards)
+            PlayerProfileNavigation.ToTitleScreen -> finish()
         }
     }
 

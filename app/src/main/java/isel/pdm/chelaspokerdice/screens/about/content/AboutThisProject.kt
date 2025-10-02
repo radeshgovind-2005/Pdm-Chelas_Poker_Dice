@@ -9,7 +9,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import isel.pdm.chelaspokerdice.screens.about.struct.openEmailClient
 import isel.pdm.chelaspokerdice.ui.components.elements.BulletPoints
 import isel.pdm.chelaspokerdice.ui.components.elements.ButtonText
 import isel.pdm.chelaspokerdice.ui.components.elements.SimpleText
@@ -36,7 +35,7 @@ val GROUP_MEMBERS =
     )
 
 @Composable
-fun AboutThisProject() {
+fun AboutThisProject(onNavigateToMail: (Array<String>, String) -> Unit) {
     SimpleCard {
         TitleText("About this Project")
         Spacer(modifier = Modifier.height(8.dp))
@@ -50,11 +49,7 @@ fun AboutThisProject() {
             iconDescrition = "Contact via E-mail",
             modifier = Modifier.fillMaxWidth()
         ) {
-            openEmailClient(
-                context,
-                EMAILS,
-                MAIL_SUBJECT
-            )
+            onNavigateToMail(EMAILS,MAIL_SUBJECT)
         }
     }
 }

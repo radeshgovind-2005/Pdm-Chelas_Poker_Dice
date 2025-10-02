@@ -1,4 +1,4 @@
-package isel.pdm.chelaspokerdice.ui.components.icons
+package isel.pdm.chelaspokerdice.ui.components.figures.icons
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Menu

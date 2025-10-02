@@ -28,7 +28,7 @@ class LobbiesActivity : ActivityNavigator() {
 
     private fun navigate(nav: LobbiesNavigation) {
         when (nav) {
-            LobbiesNavigation.ToTitleScreen -> navigation(MainActivity::class.java, Anim.Backwards)
+            LobbiesNavigation.ToTitleScreen -> finish()
         }
     }
 }

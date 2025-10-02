@@ -1,4 +1,4 @@
-package isel.pdm.chelaspokerdice.ui.components.contentDisplay
+package isel.pdm.chelaspokerdice.ui.components.struct.contentDisplay
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxHeight
