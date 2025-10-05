@@ -16,7 +16,7 @@ fun TitleScreenDrawer(
     val menuItems = arrayOf(
             DrawerMenuItem(
             "Profile",
-            stringResource(R.string.profile),
+            stringResource(R.string.player_profile),
             onNavigateToPlayerProfile
         ),
         DrawerMenuItem(

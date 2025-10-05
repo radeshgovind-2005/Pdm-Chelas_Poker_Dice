@@ -7,7 +7,9 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewScreenSizes
+import isel.pdm.chelaspokerdice.R
 import isel.pdm.chelaspokerdice.screens.about.content.AboutThisProject
 import isel.pdm.chelaspokerdice.screens.about.content.GamePlayOverview
 import isel.pdm.chelaspokerdice.screens.about.struct.AboutScaffold
@@ -36,9 +38,12 @@ class AboutScreen(
     @Composable
     private fun AboutScreenContent(arrangement: Arrangement.Vertical,content: @Composable () -> Unit) {
 
+        val tab1 = stringResource(R.string.tab_gameplayOverview)
+        val tab2 = stringResource(R.string.tab_aboutProject)
+
         val tabItems = mapOf(
-            "Gameplay Overview" to @Composable { GamePlayOverview(onNavigateToGameRules) },
-            "About this Project" to @Composable { AboutThisProject(onNavigateToMail) }
+            tab1 to @Composable { GamePlayOverview(onNavigateToGameRules) },
+            tab2 to @Composable { AboutThisProject(onNavigateToMail) }
         )
 
         AboutScaffold(onNavigateToTitleScreen) { innerPadding ->

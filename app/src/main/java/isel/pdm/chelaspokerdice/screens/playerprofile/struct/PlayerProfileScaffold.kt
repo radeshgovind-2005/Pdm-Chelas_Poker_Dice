@@ -5,6 +5,8 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
+import isel.pdm.chelaspokerdice.R
 import isel.pdm.chelaspokerdice.ui.components.figures.icons.BackIcon
 import isel.pdm.chelaspokerdice.ui.components.struct.SimpleScaffold
 import isel.pdm.chelaspokerdice.ui.components.struct.topbar.TopbarColorsConfiguration
@@ -15,7 +17,7 @@ import isel.pdm.chelaspokerdice.ui.components.struct.topbar.TopbarTitle
 fun PlayerProfileScaffold(onClickMenu: () -> Unit,content: @Composable (PaddingValues) -> Unit) {
     val topbar = @Composable {
         TopAppBar(
-            title = { TopbarTitle("PlayerProfile") },
+            title = { TopbarTitle(stringResource(R.string.player_profile)) },
             navigationIcon = { BackIcon{ onClickMenu() } },
             actions = { BackIcon(Color.Transparent) },
             colors = TopbarColorsConfiguration()

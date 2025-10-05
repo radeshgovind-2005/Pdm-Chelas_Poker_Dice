@@ -5,6 +5,8 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
+import isel.pdm.chelaspokerdice.R
 import isel.pdm.chelaspokerdice.ui.components.figures.icons.MenuIcon
 import isel.pdm.chelaspokerdice.ui.components.struct.SimpleScaffold
 import isel.pdm.chelaspokerdice.ui.components.struct.topbar.TopbarColorsConfiguration
@@ -17,7 +19,7 @@ fun TitleScreenScaffold(onClickMenu: () -> Unit, content: @Composable (PaddingVa
 
     val topbar = @Composable {
         TopAppBar(
-            title = { TopbarTitle("Chelas Poker Dice") },
+            title = { TopbarTitle(stringResource(R.string.game_name)) },
             navigationIcon = { MenuIcon { onClickMenu() } },
             actions = { MenuIcon(Color.Transparent) },
             colors = TopbarColorsConfiguration()
