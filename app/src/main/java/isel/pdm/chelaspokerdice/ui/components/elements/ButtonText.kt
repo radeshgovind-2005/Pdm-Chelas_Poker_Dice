@@ -21,7 +21,7 @@ fun ButtonText(
     icon: ImageVector? = null,
     iconDescrition: String? = null,
     modifier: Modifier = Modifier,
-    onClick:  () -> Unit
+    onClick: () -> Unit
 ) {
     Button(
         modifier = modifier.width(200.dp),

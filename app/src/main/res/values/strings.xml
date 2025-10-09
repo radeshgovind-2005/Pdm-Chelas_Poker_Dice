@@ -11,5 +11,17 @@
     <string name="tab_gameplayOverview">Gameplay Overview</string>
     <string name="tab_aboutProject">About this Project</string>
 
+    <!--Game Play Overview-->
+    <string name="game_play_overview">Poker Dice is played with 5 special dice featuring playing card suits (9, 10, Jack, Queen, King, Ace) instead of numbers.
+        Players roll the dice and try to form the best poker hand possible. Each player typically gets up to 3 rolls per turn,
+        choosing which dice to keep and which to re-roll. After the final roll, the player with the highest-ranking poker hand wins the round.
+        Common hands include pairs, three/four of a kind, full house, and five of a kind.</string>
+
+    <!--About this project-->
+    <string name="about_this_project"> This application was developed as part of the Mobile Devices Programming (PDM) course
+        at Instituto Superior de Engenharia de Lisboa (ISEL), for the Computer Engineering and Computers degree (LEIC).
+        Developed during the 2025/2026 Winter Semester by Group 28, class 52D:</string>
+    <string name="mail_subject">Chelas Poker Dice App - Group 28</string>
+
 
 </resources>

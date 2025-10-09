@@ -2,18 +2,14 @@ package isel.pdm.chelaspokerdice.screens.about
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import isel.pdm.chelaspokerdice.R
+import isel.pdm.chelaspokerdice.screens.Screen
 import isel.pdm.chelaspokerdice.screens.about.content.AboutThisProject
 import isel.pdm.chelaspokerdice.screens.about.content.GamePlayOverview
 import isel.pdm.chelaspokerdice.screens.about.struct.AboutScaffold
-import isel.pdm.chelaspokerdice.screens.Screen
 import isel.pdm.chelaspokerdice.ui.components.struct.contentDisplay.ContentColunmDisplay
 import isel.pdm.chelaspokerdice.ui.components.struct.tabs.SimpleTabs
 
@@ -61,7 +57,7 @@ class AboutScreen(
 @PreviewScreenSizes
 @Composable
 private fun Preview() {
-    //AboutScreen().Render(Modifier)
+    //  AboutScreen().Render(Modifier)
 }
 
 
