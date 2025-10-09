@@ -8,12 +8,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
+import isel.pdm.chelaspokerdice.screens.playerprofile.BACK_BUTTON
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopbarIcon(icon: ImageVector, description: String, color: Color, onClick: () -> Unit) {
-    IconButton(onClick = { onClick() }) {
+    IconButton(onClick = { onClick() }, modifier = Modifier.testTag(BACK_BUTTON)) {
         Icon(
             imageVector = icon,
             contentDescription = description,

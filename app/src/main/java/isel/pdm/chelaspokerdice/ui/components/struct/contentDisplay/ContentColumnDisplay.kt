@@ -13,7 +13,7 @@ import androidx.compose.ui.Modifier
 import isel.pdm.chelaspokerdice.ui.components.figures.BackgroundImage
 
 @Composable
-fun ContentColunmDisplay(
+fun ContentColumnDisplay(
     innerPadding: PaddingValues,
     vArrangement: Arrangement.Vertical,
     composableCode: @Composable () -> Unit

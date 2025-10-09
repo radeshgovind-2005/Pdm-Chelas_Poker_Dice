@@ -6,8 +6,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import isel.pdm.chelaspokerdice.screens.Screen
 import isel.pdm.chelaspokerdice.screens.lobbies.struct.LobbiesScaffold
-import isel.pdm.chelaspokerdice.ui.components.struct.contentDisplay.ContentColunmDisplay
+import isel.pdm.chelaspokerdice.ui.components.struct.contentDisplay.ContentColumnDisplay
 
+
+const val ADD_BUTTON_VIEW = "add button"
 
 class LobbiesScreen(
     private val onNavigateToTitleScreen: () -> Unit = {}
@@ -29,7 +31,7 @@ class LobbiesScreen(
     @Composable
     private fun LobbiesScreenContent(content: @Composable () -> Unit) {
         LobbiesScaffold(onNavigateToTitleScreen) { innerPadding ->
-            ContentColunmDisplay(innerPadding, Arrangement.Center) {
+            ContentColumnDisplay(innerPadding, Arrangement.Center) {
                 content()
             }
         }

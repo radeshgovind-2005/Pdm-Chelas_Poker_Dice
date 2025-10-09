@@ -10,7 +10,7 @@ import isel.pdm.chelaspokerdice.screens.Screen
 import isel.pdm.chelaspokerdice.screens.about.content.AboutThisProject
 import isel.pdm.chelaspokerdice.screens.about.content.GamePlayOverview
 import isel.pdm.chelaspokerdice.screens.about.struct.AboutScaffold
-import isel.pdm.chelaspokerdice.ui.components.struct.contentDisplay.ContentColunmDisplay
+import isel.pdm.chelaspokerdice.ui.components.struct.contentDisplay.ContentColumnDisplay
 import isel.pdm.chelaspokerdice.ui.components.struct.tabs.SimpleTabs
 
 class AboutScreen(
@@ -32,7 +32,7 @@ class AboutScreen(
     }
 
     @Composable
-    private fun AboutScreenContent(arrangement: Arrangement.Vertical,content: @Composable () -> Unit) {
+    private fun AboutScreenContent(arrangement: Arrangement.Vertical, content: @Composable () -> Unit) {
 
         val tab1 = stringResource(R.string.tab_gameplayOverview)
         val tab2 = stringResource(R.string.tab_aboutProject)
@@ -43,7 +43,7 @@ class AboutScreen(
         )
 
         AboutScaffold(onNavigateToTitleScreen) { innerPadding ->
-            ContentColunmDisplay(innerPadding,arrangement) {
+            ContentColumnDisplay(innerPadding,arrangement) {
                 SimpleTabs(
                     tabItems = tabItems,
                     selectedTabIndex = selectedTabIndex,
