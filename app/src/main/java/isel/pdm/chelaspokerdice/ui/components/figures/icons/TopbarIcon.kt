@@ -15,7 +15,7 @@ import isel.pdm.chelaspokerdice.screens.playerprofile.BACK_BUTTON
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopbarIcon(icon: ImageVector, description: String, color: Color, onClick: () -> Unit) {
-    IconButton(onClick = { onClick() }, modifier = Modifier.testTag(BACK_BUTTON)) {
+    IconButton( onClick = { onClick() }, modifier = Modifier.testTag(BACK_BUTTON) ) {
         Icon(
             imageVector = icon,
             contentDescription = description,

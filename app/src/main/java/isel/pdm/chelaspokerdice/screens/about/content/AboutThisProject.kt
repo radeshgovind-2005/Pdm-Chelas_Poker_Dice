@@ -8,6 +8,7 @@ import androidx.compose.material.icons.filled.Email
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import isel.pdm.chelaspokerdice.ui.components.elements.BulletPoints
@@ -31,9 +32,13 @@ val GROUP_MEMBERS =
         "Martim Monteiro",
     )
 
+const val ABOUT_CONTENT_TAG = "ABOUT_CONTENT"
+
 @Composable
 fun AboutThisProject(onNavigateToMail: (List<String>, String) -> Unit) {
-    SimpleCard {
+    SimpleCard(
+        modifier = Modifier.testTag(ABOUT_CONTENT_TAG)
+    ) {
         TitleText("About this Project")
         Spacer(modifier = Modifier.height(8.dp))
         SimpleText(stringResource(R.string.about_this_project))
@@ -46,7 +51,7 @@ fun AboutThisProject(onNavigateToMail: (List<String>, String) -> Unit) {
             iconDescrition = "Contact via E-mail",
             modifier = Modifier.fillMaxWidth()
         ) {
-            onNavigateToMail(EMAILS,MAIL_SUBJECT) // trocar para stringResource
+            onNavigateToMail(EMAILS,MAIL_SUBJECT)
         }
     }
 }

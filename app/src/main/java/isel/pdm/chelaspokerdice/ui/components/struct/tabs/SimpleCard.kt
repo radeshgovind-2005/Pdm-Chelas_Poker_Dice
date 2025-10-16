@@ -14,10 +14,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun SimpleCard(content: @Composable () -> Unit){
+fun SimpleCard( modifier: Modifier, content: @Composable () -> Unit){
     Card(
         shape = RoundedCornerShape(12.dp),
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth(0.9f)
             .fillMaxHeight(0.9f)
             .padding(vertical = 8.dp),

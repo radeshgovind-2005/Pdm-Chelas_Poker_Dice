@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -38,6 +39,7 @@ fun SimpleTabs(
         ) {
             tabKeys.forEachIndexed { index, title ->
                 Tab(
+                    modifier = Modifier.testTag("TAB_$index"),
                     selected = selectedTabIndex == index,
                     onClick = { onTabSelected(index) },
                     text = { Text(title) }
