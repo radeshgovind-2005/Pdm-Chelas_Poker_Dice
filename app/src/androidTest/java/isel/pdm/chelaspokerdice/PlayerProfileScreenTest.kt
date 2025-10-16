@@ -1,5 +1,6 @@
 package isel.pdm.chelaspokerdice
 
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -21,11 +22,11 @@ class PlayerProfileScreenTest {
     val composeTestRule = createComposeRule()
 
     @Test
-    fun add_button_is_displayed() {
+    fun back_button_is_displayed() {
         composeTestRule.setContent {
-            PlayerProfileScreen()
+            PlayerProfileScreen().PortraitScreen(Modifier)
         }
         composeTestRule.onNodeWithTag(BACK_BUTTON).assertExists()
-
     }
+
 }

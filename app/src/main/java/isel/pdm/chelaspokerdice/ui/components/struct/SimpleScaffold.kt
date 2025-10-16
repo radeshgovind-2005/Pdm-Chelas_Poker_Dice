@@ -8,12 +8,13 @@ import androidx.compose.ui.Modifier
 
 @Composable
 fun SimpleScaffold(
+    modifier: Modifier,
     topbar: @Composable () -> Unit = {},
     floatingActionButton: @Composable () -> Unit = {},
     content: @Composable (PaddingValues) -> Unit,
     ) {
     Scaffold(
-        modifier = Modifier.fillMaxSize(),
+        modifier = modifier.fillMaxSize(),
         topBar = { topbar() },
         floatingActionButton = { floatingActionButton() }
     ) { innerPadding ->

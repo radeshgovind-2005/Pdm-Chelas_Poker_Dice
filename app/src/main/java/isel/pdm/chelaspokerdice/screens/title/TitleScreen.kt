@@ -32,7 +32,7 @@ class TitleScreen(
     @Composable
     override fun PortraitScreen(modifier: Modifier) {
         TitleScreenContent { innerPadding ->
-            ContentColumnDisplay(innerPadding, Arrangement.Center) {
+            ContentColumnDisplay(modifier,innerPadding, Arrangement.Center) {
                 PokerDiceLogo()
                 Spacer(modifier.padding(100.dp))
                 ButtonText(buttonName) { onNavigateToLobbies() }
@@ -55,7 +55,7 @@ class TitleScreen(
     @Composable
     private fun TitleScreenContent(content: @Composable (PaddingValues) -> Unit) {
         TitleScreenDrawer(onNavigateToPlayerProfile, onNavigateToAbout) { onOpenDrawer ->
-            TitleScreenScaffold(onOpenDrawer) { innerPadding ->
+            TitleScreenScaffold(Modifier,onOpenDrawer) { innerPadding ->
                 content(innerPadding)
             }
         }

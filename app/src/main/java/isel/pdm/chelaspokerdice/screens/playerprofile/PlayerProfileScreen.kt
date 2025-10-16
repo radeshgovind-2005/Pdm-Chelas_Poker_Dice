@@ -29,7 +29,7 @@ class PlayerProfileScreen(
     @Composable
     fun PlayerProfileScreenContent(content: @Composable () -> Unit) {
         PlayerProfileScaffold(onNavigateToTitleScreen){ innerPadding ->
-            ContentColumnDisplay(innerPadding, Arrangement.Center) {
+            ContentColumnDisplay(Modifier,innerPadding, Arrangement.Center) {
                 content()
             }
         }

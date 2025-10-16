@@ -26,6 +26,7 @@ fun AboutScaffold(onClickMenu: () -> Unit,content: @Composable (PaddingValues) -
         )
     }
     SimpleScaffold(
+        Modifier,
         topbar = topbar
     ) { innerPadding ->
         content(innerPadding)

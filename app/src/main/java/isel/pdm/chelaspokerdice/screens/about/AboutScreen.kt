@@ -43,7 +43,7 @@ class AboutScreen(
         )
 
         AboutScaffold(onNavigateToTitleScreen) { innerPadding ->
-            ContentColumnDisplay(innerPadding,arrangement) {
+            ContentColumnDisplay(Modifier,innerPadding,arrangement) {
                 SimpleTabs(
                     tabItems = tabItems,
                     selectedTabIndex = selectedTabIndex,

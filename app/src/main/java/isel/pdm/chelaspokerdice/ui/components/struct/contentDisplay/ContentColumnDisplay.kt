@@ -14,13 +14,14 @@ import isel.pdm.chelaspokerdice.ui.components.figures.BackgroundImage
 
 @Composable
 fun ContentColumnDisplay(
+    modifier: Modifier,
     innerPadding: PaddingValues,
     vArrangement: Arrangement.Vertical,
     composableCode: @Composable () -> Unit
 ) {
     BackgroundImage()
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .padding(innerPadding)
             .verticalScroll(rememberScrollState())
