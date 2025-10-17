@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.compose.ui.Modifier
 import isel.pdm.chelaspokerdice.screens.about.AboutActivity
 import isel.pdm.chelaspokerdice.screens.lobbies.LobbiesActivity
