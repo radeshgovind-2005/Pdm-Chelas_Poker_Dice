@@ -1,4 +1,4 @@
-package isel.pdm.chelaspokerdice.services.model.types
+package isel.pdm.chelaspokerdice.services.dto.types
 
 @JvmInline
 value class ExpectedPlayers private constructor(val value: Int) {

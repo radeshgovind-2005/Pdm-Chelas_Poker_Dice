@@ -1,10 +1,9 @@
-package isel.pdm.chelaspokerdice.services.model
+package isel.pdm.chelaspokerdice.services.dto
 
-import isel.pdm.chelaspokerdice.services.model.types.Description
-import isel.pdm.chelaspokerdice.services.model.types.ExpectedPlayers
-import isel.pdm.chelaspokerdice.services.model.types.Name
-import isel.pdm.chelaspokerdice.services.model.types.NumberOfRounds
-import kotlinx.coroutines.flow.MutableStateFlow
+import isel.pdm.chelaspokerdice.services.dto.types.Description
+import isel.pdm.chelaspokerdice.services.dto.types.ExpectedPlayers
+import isel.pdm.chelaspokerdice.services.dto.types.Name
+import isel.pdm.chelaspokerdice.services.dto.types.NumberOfRounds
 import java.util.UUID
 
 data class Lobby(
@@ -12,7 +11,9 @@ data class Lobby(
     val name: Name,
     val description: Description,
     val expectedPlayers: ExpectedPlayers,
-    val nOfRounds: NumberOfRounds
+    val nOfRounds: NumberOfRounds,
+    val hostName: String = "Radesh",
+    val lobbyPlayers: MutableList<String> = mutableListOf<String>()
 ) {
     companion object {
         fun create(

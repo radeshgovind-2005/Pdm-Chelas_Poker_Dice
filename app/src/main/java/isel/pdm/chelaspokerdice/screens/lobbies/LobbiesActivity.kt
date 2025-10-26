@@ -18,10 +18,8 @@ import kotlin.getValue
 
 class LobbiesActivity : ActivityNavigator() {
 
-    private val lobbyVm: LobbyViewModel by viewModels {
-        LobbyViewModel.getFactory(
-            service = (application as HostApplication).lobbyService
-        )
+    private val lobbyVm: LobbyViewModel by lazy {
+        (application as HostApplication).lobbyViewModel
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

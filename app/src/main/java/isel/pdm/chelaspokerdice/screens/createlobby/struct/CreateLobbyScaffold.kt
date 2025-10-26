@@ -30,6 +30,7 @@ fun CreateLobbyScaffold(
     modifier: Modifier ,
     onClickMenu: () -> Unit,
     onClickCreate: () -> Unit = {},
+    enabled: Boolean = true,
     content: @Composable (PaddingValues) -> Unit
 ) {
     val topbar = @Composable {
@@ -51,6 +52,7 @@ fun CreateLobbyScaffold(
                     containerColor = Color.Black,
                     contentColor = Color.White
                 ),
+                enabled = enabled
             ){ onClickCreate() } },
         fabPosition = FabPosition.Center
     ) { innerPadding ->

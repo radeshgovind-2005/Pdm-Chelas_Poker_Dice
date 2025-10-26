@@ -1,5 +1,7 @@
 package isel.pdm.chelaspokerdice.ui.components.struct
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
@@ -20,7 +22,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import isel.pdm.chelaspokerdice.services.model.Lobby
 import isel.pdm.chelaspokerdice.vm.LobbyViewModel
 
 
@@ -29,7 +30,7 @@ import isel.pdm.chelaspokerdice.vm.LobbyViewModel
 fun SimpleSearchBar(lobbyViewModel: LobbyViewModel) {
     var text by remember { mutableStateOf("") }
     var active by remember { mutableStateOf(false) }
-    var searchedItems = remember { mutableStateListOf<String>() }
+    val searchedItems = remember { mutableStateListOf<String>() }
 
     SearchBar(
         modifier = Modifier.padding(horizontal = 16.dp),
@@ -37,7 +38,7 @@ fun SimpleSearchBar(lobbyViewModel: LobbyViewModel) {
         onQueryChange = { text = it },
         onSearch = {
             lobbyViewModel.searchLobbies(text)
-            searchedItems.addFirst(text)
+            searchedItems.add(text)
             active = false
             text = ""
         },

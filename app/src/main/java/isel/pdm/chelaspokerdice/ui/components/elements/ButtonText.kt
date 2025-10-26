@@ -27,13 +27,15 @@ fun ButtonText(
         containerColor = Color.Black,
         contentColor = Color.White
     ),
+    enabled: Boolean = true,
     textSize: TextUnit = TextUnit.Unspecified,
     onClick: () -> Unit
 ) {
     Button(
         modifier = modifier.width(200.dp),
         onClick = { onClick() },
-        colors = buttonColor
+        colors = buttonColor,
+        enabled = enabled
     ) {
         icon?.let{
             Icon(icon, contentDescription = iconDescrition)

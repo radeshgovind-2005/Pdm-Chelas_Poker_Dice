@@ -1,4 +1,4 @@
-package isel.pdm.chelaspokerdice.services.model.types
+package isel.pdm.chelaspokerdice.services.dto.types
 
 import kotlin.math.min
 
