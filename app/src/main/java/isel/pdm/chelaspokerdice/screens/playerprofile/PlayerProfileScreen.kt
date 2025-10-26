@@ -6,12 +6,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import isel.pdm.chelaspokerdice.screens.Screen
 import isel.pdm.chelaspokerdice.screens.playerprofile.struct.PlayerProfileScaffold
-import isel.pdm.chelaspokerdice.ui.components.struct.contentDisplay.ContentColumnDisplay
+import isel.pdm.chelaspokerdice.ui.components.struct.contentDisplay.ScrollableContentColumnDisplay
 
 const val BACK_BUTTON = "back button"
 
 class PlayerProfileScreen(
     private val onNavigateToTitleScreen: () -> Unit = {},
+    private val onNavigateToLoginScreen: () -> Unit = {},
 ) : Screen {
 
     @Composable
@@ -28,8 +29,8 @@ class PlayerProfileScreen(
 
     @Composable
     fun PlayerProfileScreenContent(content: @Composable () -> Unit) {
-        PlayerProfileScaffold(onNavigateToTitleScreen){ innerPadding ->
-            ContentColumnDisplay(Modifier,innerPadding, Arrangement.Center) {
+        PlayerProfileScaffold(onNavigateToTitleScreen,onNavigateToLoginScreen){ innerPadding ->
+            ScrollableContentColumnDisplay(Modifier,innerPadding, Arrangement.Center) {
                 content()
             }
         }

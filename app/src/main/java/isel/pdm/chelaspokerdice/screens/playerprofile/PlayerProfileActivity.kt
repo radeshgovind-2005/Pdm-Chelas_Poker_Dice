@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.ui.Modifier
+import isel.pdm.chelaspokerdice.screens.login.LoginActivity
 import isel.pdm.chelaspokerdice.ui.navigation.ActivityNavigator
 import isel.pdm.chelaspokerdice.ui.navigation.PlayerProfileNavigation
 import isel.pdm.chelaspokerdice.ui.theme.ChelasPokerDiceTheme
@@ -20,7 +21,8 @@ class PlayerProfileActivity : ActivityNavigator() {
         setContent {
             ChelasPokerDiceTheme {
                 PlayerProfileScreen(
-                    onNavigateToTitleScreen = { navigate(PlayerProfileNavigation.ToTitleScreen) }
+                    onNavigateToTitleScreen = { navigate(PlayerProfileNavigation.ToTitleScreen) },
+                    onNavigateToLoginScreen = { navigate(PlayerProfileNavigation.ToLoginScreen) }
                 ).Render(Modifier)
             }
         }
@@ -29,6 +31,7 @@ class PlayerProfileActivity : ActivityNavigator() {
     private fun navigate(nav: PlayerProfileNavigation) {
         when (nav) {
             PlayerProfileNavigation.ToTitleScreen -> finish()
+            PlayerProfileNavigation.ToLoginScreen -> navigationToScreen(LoginActivity::class.java, Anim.Backwards)
         }
     }
 

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
+        android:name=".HostApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -33,6 +34,22 @@
 
         <activity
             android:name=".screens.playerprofile.PlayerProfileActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".screens.createlobby.CreateLobbyActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".screens.lobby.LobbyActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".screens.login.LoginActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".screens.game.GameActivity"
             android:exported="false" />
 
 

@@ -16,7 +16,7 @@ import isel.pdm.chelaspokerdice.screens.title.struct.TitleScreenDrawer
 import isel.pdm.chelaspokerdice.screens.title.struct.TitleScreenScaffold
 import isel.pdm.chelaspokerdice.ui.components.elements.ButtonText
 import isel.pdm.chelaspokerdice.ui.components.figures.PokerDiceLogo
-import isel.pdm.chelaspokerdice.ui.components.struct.contentDisplay.ContentColumnDisplay
+import isel.pdm.chelaspokerdice.ui.components.struct.contentDisplay.ScrollableContentColumnDisplay
 import isel.pdm.chelaspokerdice.ui.components.struct.contentDisplay.ContentRowDisplay
 import isel.pdm.chelaspokerdice.ui.components.struct.contentDisplay.RowDivider
 
@@ -32,7 +32,7 @@ class TitleScreen(
     @Composable
     override fun PortraitScreen(modifier: Modifier) {
         TitleScreenContent { innerPadding ->
-            ContentColumnDisplay(modifier,innerPadding, Arrangement.Center) {
+            ScrollableContentColumnDisplay(modifier,innerPadding, Arrangement.Center) {
                 PokerDiceLogo()
                 Spacer(modifier.padding(100.dp))
                 ButtonText(buttonName) { onNavigateToLobbies() }

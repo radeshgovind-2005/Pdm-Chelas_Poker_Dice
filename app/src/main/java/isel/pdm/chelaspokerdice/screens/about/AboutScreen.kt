@@ -10,7 +10,7 @@ import isel.pdm.chelaspokerdice.screens.Screen
 import isel.pdm.chelaspokerdice.screens.about.content.AboutThisProject
 import isel.pdm.chelaspokerdice.screens.about.content.GamePlayOverview
 import isel.pdm.chelaspokerdice.screens.about.struct.AboutScaffold
-import isel.pdm.chelaspokerdice.ui.components.struct.contentDisplay.ContentColumnDisplay
+import isel.pdm.chelaspokerdice.ui.components.struct.contentDisplay.ScrollableContentColumnDisplay
 import isel.pdm.chelaspokerdice.ui.components.struct.tabs.SimpleTabs
 
 class AboutScreen(
@@ -43,7 +43,7 @@ class AboutScreen(
         )
 
         AboutScaffold(onNavigateToTitleScreen) { innerPadding ->
-            ContentColumnDisplay(Modifier,innerPadding,arrangement) {
+            ScrollableContentColumnDisplay(Modifier,innerPadding,arrangement) {
                 SimpleTabs(
                     tabItems = tabItems,
                     selectedTabIndex = selectedTabIndex,

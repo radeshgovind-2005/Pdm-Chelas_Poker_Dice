@@ -6,6 +6,9 @@
     <string name="about">About</string>
     <string name="lobbies">Lobbies</string>
     <string name="game_name">Chelas Poker Dice</string>
+    <string name="create_lobby">Create Lobby</string>
+    <string name="lobby">Lobby</string>
+    <string name="login">Login</string>
 
     <!--About Activity Content-->
     <string name="tab_gameplayOverview">Gameplay Overview</string>

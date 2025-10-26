@@ -1,36 +1,42 @@
-package isel.pdm.chelaspokerdice.screens.playerprofile.struct
+package isel.pdm.chelaspokerdice.screens.lobby.struct
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FabPosition
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import isel.pdm.chelaspokerdice.R
-import isel.pdm.chelaspokerdice.ui.components.figures.icons.BackIcon
-import isel.pdm.chelaspokerdice.ui.components.figures.icons.LogoutIcon
+import isel.pdm.chelaspokerdice.ui.components.figures.icons.HomeIcon
 import isel.pdm.chelaspokerdice.ui.components.struct.SimpleScaffold
 import isel.pdm.chelaspokerdice.ui.components.struct.topbar.TopbarColorsConfiguration
 import isel.pdm.chelaspokerdice.ui.components.struct.topbar.TopbarTitle
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PlayerProfileScaffold(onClickMenu: () -> Unit,onClickButton: () -> Unit,content: @Composable (PaddingValues) -> Unit) {
+fun LobbyScaffold(
+    modifier: Modifier ,
+    onClickMenu: () -> Unit,
+    onClickGame: () -> Unit = {},
+    content: @Composable (PaddingValues) -> Unit
+) {
     val topbar = @Composable {
         TopAppBar(
-            title = { TopbarTitle(stringResource(R.string.player_profile)) },
-            navigationIcon = { BackIcon{ onClickMenu() } },
+            title = { TopbarTitle(stringResource(R.string.lobby)) },
+            navigationIcon = { HomeIcon{ onClickMenu() } },
             actions = { Spacer(modifier = Modifier.width(48.dp) )},
             colors = TopbarColorsConfiguration()
         )
     }
     SimpleScaffold(
-        Modifier,
+        modifier = modifier,
         topbar = topbar,
-        floatingActionButton = { LogoutIcon({onClickButton()}) }
+        floatingActionButton = {},
+        fabPosition = FabPosition.Center
     ) { innerPadding ->
         content(innerPadding)
     }

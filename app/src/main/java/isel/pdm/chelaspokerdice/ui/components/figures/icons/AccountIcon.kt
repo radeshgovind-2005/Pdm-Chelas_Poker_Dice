@@ -2,26 +2,24 @@ package isel.pdm.chelaspokerdice.ui.components.figures.icons
 
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.automirrored.filled.ExitToApp
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
-import isel.pdm.chelaspokerdice.screens.lobbies.ADD_BUTTON_VIEW
 
 @Composable
-fun AddIcon(onClick: () -> Unit) {
+fun LogoutIcon(onClick: () -> Unit) {
     FloatingActionButton(
-        onClick = { onClick()},
-        modifier = Modifier.testTag(ADD_BUTTON_VIEW),
-        containerColor = Color.Green
+        onClick = { onClick() },
+        modifier = Modifier,
+        containerColor = Color.Black
     ) {
         Icon(
-            Icons.Filled.Add,
-            contentDescription = "Create Lobbies",
+            Icons.AutoMirrored.Filled.ExitToApp,
+            contentDescription = "Log out",
             tint = Color.White,
             modifier = Modifier.size(35.dp)
         )

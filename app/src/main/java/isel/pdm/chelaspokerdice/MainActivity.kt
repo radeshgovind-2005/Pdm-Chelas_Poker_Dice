@@ -5,7 +5,9 @@ import android.util.Log
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import isel.pdm.chelaspokerdice.screens.about.AboutActivity
 import isel.pdm.chelaspokerdice.screens.lobbies.LobbiesActivity
 import isel.pdm.chelaspokerdice.screens.playerprofile.PlayerProfileActivity
@@ -41,5 +43,6 @@ class MainActivity : ActivityNavigator() {
         }
     }
 }
+
 
 
