@@ -3,8 +3,12 @@ package isel.pdm.chelaspokerdice.services.fakeservice
 import isel.pdm.chelaspokerdice.services.Lobbies
 import isel.pdm.chelaspokerdice.services.LobbyService
 import isel.pdm.chelaspokerdice.services.dto.Lobby
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 
 class FakeLobbyService : LobbyService {
@@ -14,9 +18,14 @@ class FakeLobbyService : LobbyService {
 
     init{
         generateFakeLobbies()
+        println("FakeLobbyService initialized - instance: ${this.hashCode()}")
     }
 
-    override fun getLobbies(): Flow<Lobbies> = allLobbies
+    override fun getLobbies(): Flow<Lobbies> = flow {
+        // Simulate network delay but don't block
+        delay(1000) // Small delay for realism
+        emit(allLobbies.value)
+    }.flowOn(Dispatchers.IO)
 
     override fun searchLobbies(search: String): Flow<Lobbies> =
         allLobbies.map { l ->
@@ -25,8 +34,12 @@ class FakeLobbyService : LobbyService {
 
     override fun addLobby(newLobby: Lobby) {
         val currentLobbies = allLobbies.value.toMutableList()
+        println("BEFORE addLobby - Total lobbies: ${currentLobbies.size}")
+        println("Adding lobby: ${newLobby.id} - ${newLobby.name.value}")
         currentLobbies.add(newLobby)
         allLobbies.value = currentLobbies
+
+        println("AFTER addLobby - Total lobbies: ${allLobbies.value.size}")
     }
 
     private fun generateFakeLobbies(){
@@ -86,4 +99,3 @@ class FakeLobbyService : LobbyService {
     }
 
 }
-

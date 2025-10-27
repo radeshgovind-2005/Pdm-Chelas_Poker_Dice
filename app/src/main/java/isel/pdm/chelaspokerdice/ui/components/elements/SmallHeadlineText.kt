@@ -11,6 +11,6 @@ fun SmallHeadlineText(text: String) {
         text = text,
         style = MaterialTheme.typography.headlineSmall,
         fontWeight = FontWeight.Bold,
-        color = MaterialTheme.colorScheme.onSurfaceVariant
+        color = MaterialTheme.colorScheme.inverseOnSurface
     )
 }

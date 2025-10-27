@@ -1,6 +1,9 @@
 package isel.pdm.chelaspokerdice.screens.lobbies
 
+import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -18,8 +21,8 @@ import kotlin.getValue
 
 class LobbiesActivity : ActivityNavigator() {
 
-    private val lobbyVm: LobbyViewModel by lazy {
-        (application as HostApplication).lobbyViewModel
+    private val lobbyVm: LobbyViewModel by viewModels {
+        LobbyViewModel.getFactory((application as HostApplication).lobbyService)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,18 +33,35 @@ class LobbiesActivity : ActivityNavigator() {
                 LobbiesScreen(
                     onNavigateToTitleScreen = { navigate(LobbiesNavigation.ToTitleScreen) },
                     onNavigateToCreateLobby = { navigate(LobbiesNavigation.ToCreateLobby) },
-                    onNavigateToLobby = { navigate(LobbiesNavigation.ToLobby) },
+                    onNavigateToLobby = { lobbyId -> navigate(LobbiesNavigation.ToLobby, lobbyId) },
                     lobbyViewModel = lobbyVm
                 ).Render(Modifier)
             }
         }
     }
+    override fun onResume() {
+        super.onResume()
+        // Add delay to prevent rapid retries during configuration changes
+        Handler(Looper.getMainLooper()).postDelayed({
+            lobbyVm.loadLobbies()
+        }, 500) // 500ms delay
+    }
 
-    private fun navigate(nav: LobbiesNavigation) {
+    override fun onPause() {
+        super.onPause()
+        lobbyVm.cancelOperations()
+    }
+
+    private fun navigate(nav: LobbiesNavigation, lobbyId: String? = null) {
         when (nav) {
             LobbiesNavigation.ToTitleScreen -> finish()
             LobbiesNavigation.ToCreateLobby -> navigationToScreen(CreateLobbyActivity::class.java, Anim.Forward)
-            LobbiesNavigation.ToLobby -> navigationToScreen(LobbyActivity::class.java, Anim.Forward)
+            LobbiesNavigation.ToLobby -> {
+                val intent = Intent(this, LobbyActivity::class.java).apply {
+                    lobbyId?.let { putExtra("LOBBY_ID", it) }
+                }
+                startActivity(intent)
+            }
         }
     }
 }

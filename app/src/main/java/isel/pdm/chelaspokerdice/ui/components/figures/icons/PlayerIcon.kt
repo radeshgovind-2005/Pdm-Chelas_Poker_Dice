@@ -21,7 +21,7 @@ fun PlayerIcon(player: String) {
             .size(40.dp)
             .clip(CircleShape)
             .padding(8.dp),
-        tint = if (player == "Radesh") MaterialTheme.colorScheme.primary
-        else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
+        tint = if (player == "Radesh") MaterialTheme.colorScheme.inverseSurface
+        else MaterialTheme.colorScheme.inverseOnSurface.copy(alpha = 0.6f)
     )
 }

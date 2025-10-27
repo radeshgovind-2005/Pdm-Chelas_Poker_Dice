@@ -13,7 +13,7 @@ data class Lobby(
     val expectedPlayers: ExpectedPlayers,
     val nOfRounds: NumberOfRounds,
     val hostName: String = "Radesh",
-    val lobbyPlayers: MutableList<String> = mutableListOf<String>()
+    val lobbyPlayers: MutableList<String> = mutableListOf<String>("Joao", "Martim", "Chico", "Radesh")
 ) {
     companion object {
         fun create(

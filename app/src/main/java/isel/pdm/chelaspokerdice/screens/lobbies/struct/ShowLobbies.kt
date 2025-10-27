@@ -22,7 +22,7 @@ import isel.pdm.chelaspokerdice.ui.components.struct.tabs.SimpleCard
 import isel.pdm.chelaspokerdice.vm.LobbyViewModel
 
 @Composable
-fun ShowLobbies(state: LobbyViewModel.State.LobbiesLoaded, onNavigateToLobby: () -> Unit) {
+fun ShowLobbies(state: LobbyViewModel.State.LobbiesLoaded, onNavigateToLobby:(Lobby) -> Unit) {
     val lobbies = state.lobbies
     if (lobbies.isEmpty()) {
         Text("No lobbies available. Create one!", Modifier.padding(16.dp))
@@ -31,7 +31,7 @@ fun ShowLobbies(state: LobbyViewModel.State.LobbiesLoaded, onNavigateToLobby: ()
             items(lobbies) { lobby ->
                 LobbyItem(
                     lobby = lobby,
-                    onLobbyClick = { onNavigateToLobby() },
+                    onLobbyClick = { onNavigateToLobby(lobby) },
                     modifier = Modifier.padding(8.dp).fillMaxWidth()
                 )
             }

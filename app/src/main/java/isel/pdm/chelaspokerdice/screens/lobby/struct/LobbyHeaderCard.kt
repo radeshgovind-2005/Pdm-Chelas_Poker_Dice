@@ -21,7 +21,8 @@ fun LobbyHeaderCard(lobby: Lobby?) {
     val lobbyName: String = lobby?.name?.value ?: "Null"
     val hostName: String = lobby?.hostName ?: "Null"
     val playerCount: String = lobby?.lobbyPlayers?.size.toString()
-    val rounds: String = (playerCount + "/" + lobby?.nOfRounds)
+    val maxPlayers: String = lobby?.expectedPlayers.toString()
+    val rounds: String =lobby?.nOfRounds.toString()
     SimpleCard(
         modifier = Modifier
             .fillMaxWidth()
@@ -39,7 +40,7 @@ fun LobbyHeaderCard(lobby: Lobby?) {
                 horizontalArrangement = Arrangement.SpaceEvenly
             ) {
                 LobbyInfoItem("Host", hostName)
-                LobbyInfoItem("Players", playerCount)
+                LobbyInfoItem("Players", "$playerCount/$maxPlayers")
                 LobbyInfoItem("Rounds", rounds)
             }
         }

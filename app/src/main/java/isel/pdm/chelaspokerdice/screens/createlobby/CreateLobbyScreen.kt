@@ -40,7 +40,7 @@ const val CREATE_LOBBY_CONTENT_TAG = "create_lobby_content"
 
 class CreateLobbyScreen(
     private val onNavigateToLobbies: () -> Unit = {},
-    private val onNavigateToLobby: () -> Unit = {},
+    private val onNavigateToLobby: (lobbyId: String) -> Unit = {},
     private val lobbyViewModel: LobbyViewModel
 ) : Screen {
 
@@ -82,8 +82,8 @@ class CreateLobbyScreen(
         }
         LaunchedEffect(lobbyViewModel.state) {
             if (lobbyViewModel.state is LobbyViewModel.State.InLobby) {
-                // Navigate only when the lobby is successfully created and set
-                onNavigateToLobby()
+                val lobbyState = lobbyViewModel.state as LobbyViewModel.State.InLobby
+                onNavigateToLobby(lobbyState.lobby.id.toString())
             }
         }
         fun validateName(value: String): Boolean {
@@ -213,10 +213,6 @@ class CreateLobbyScreen(
                     expectedPlayers = expectedPlayers,
                     numberOfRounds = numberOfRounds
                 )
-                // Navigate to lobby if creation was successful
-                if (lobbyViewModel.state is LobbyViewModel.State.InLobby) {
-                    onNavigateToLobby()
-                }
             }
         }
 
@@ -229,15 +225,12 @@ class CreateLobbyScreen(
                 expectedPlayers.isNotBlank() &&
                 numberOfRounds.isNotBlank()
 
-        CreateLobbyScaffold(Modifier.testTag(CREATE_LOBBY_SCAFFOLD_TAG), onNavigateToLobbies, {
-            lobbyViewModel.createLobby(
-                name = lobbyName,
-                description = lobbyDescription,
-                expectedPlayers = expectedPlayers,
-                numberOfRounds = numberOfRounds
-            )
-            onNavigateToLobby()
-        }, isFormValid) { innerPadding ->
+        CreateLobbyScaffold(
+            Modifier.testTag(CREATE_LOBBY_SCAFFOLD_TAG),
+            onNavigateToLobbies,
+            { onCreateLobby() },
+            isFormValid
+        ) { innerPadding ->
             ScrollableContentColumnDisplay(
                 Modifier.testTag(CREATE_LOBBY_CONTENT_TAG),
                 innerPadding,
@@ -307,5 +300,3 @@ class CreateLobbyScreen(
         }
     }
 }
-
-

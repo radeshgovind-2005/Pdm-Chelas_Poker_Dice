@@ -8,5 +8,4 @@ import isel.pdm.chelaspokerdice.vm.LobbyViewModel
 class HostApplication : Application() {
 
     val lobbyService by lazy { FakeLobbyService() }
-    val lobbyViewModel by lazy { LobbyViewModel(lobbyService) }
 }

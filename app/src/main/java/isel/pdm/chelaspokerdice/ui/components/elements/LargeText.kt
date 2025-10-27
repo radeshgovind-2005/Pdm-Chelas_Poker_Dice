@@ -11,6 +11,6 @@ fun LargeText(text: String) {
         text = text,
         style = MaterialTheme.typography.bodyLarge,
         fontWeight = FontWeight.Medium,
-        color = MaterialTheme.colorScheme.onSurfaceVariant
+        color = MaterialTheme.colorScheme.inverseOnSurface
     )
 }
