@@ -4,7 +4,6 @@
 
     <application
         android:name=".HostApplication"
-        android:process=":background"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -12,47 +11,45 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ChelasPokerDice">
+        android:theme="@style/Theme.PokerDice">
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.activities.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.ChelasPokerDice">
+            android:theme="@style/Theme.PokerDice">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!-- Add these activity declarations -->
-        <activity
-            android:name=".screens.about.AboutActivity"
-            android:exported="false" />
 
         <activity
-            android:name=".screens.lobbies.LobbiesActivity"
-            android:exported="false" />
+            android:name=".ui.activities.AboutActivity"
+            android:exported="false"
+            />
+        <activity
+            android:name=".ui.activities.LobbiesActivity"
+            android:exported="false"
+            />
+        <activity
+            android:name=".ui.activities.LobbyActivity"
+            android:exported="false"
+            />
 
         <activity
-            android:name=".screens.playerprofile.PlayerProfileActivity"
-            android:exported="false" />
+            android:name=".ui.activities.CreateLobbyActivity"
+            android:exported="false"
+            />
 
         <activity
-            android:name=".screens.createlobby.CreateLobbyActivity"
-            android:exported="false" />
+            android:name=".ui.activities.PlayerProfileActivity"
+            android:exported="false"
+            />
 
         <activity
-            android:name=".screens.lobby.LobbyActivity"
-            android:exported="false" />
-
-        <activity
-            android:name=".screens.login.LoginActivity"
-            android:exported="false" />
-
-        <activity
-            android:name=".screens.game.GameActivity"
-            android:exported="false" />
-
+            android:name=".ui.activities.TitleActivity"
+            android:exported="false"
+            />
 
     </application>
 

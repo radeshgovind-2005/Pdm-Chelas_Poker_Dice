@@ -1,30 +1,84 @@
 <resources>
-    <string name="app_name">ChelasPokerDice</string>
-
-    <!--Names-->
-    <string name="player_profile">Player Profile</string>
-    <string name="about">About</string>
-    <string name="lobbies">Lobbies</string>
+    <string name="app_name">PokerDice</string>
     <string name="game_name">Chelas Poker Dice</string>
-    <string name="create_lobby">Create Lobby</string>
-    <string name="lobby">Lobby</string>
-    <string name="login">Login</string>
 
-    <!--About Activity Content-->
-    <string name="tab_gameplayOverview">Gameplay Overview</string>
-    <string name="tab_aboutProject">About this Project</string>
+    <!-- TitleScreen-->
+    <string name="drawer_menu_title">Menu</string>
+    <string name="drawer_player_profile">Player Profile</string>
+    <string name="drawer_about">About</string>
+    <string name="bt_lobbies">Lobbies</string>
 
-    <!--Game Play Overview-->
-    <string name="game_play_overview">Poker Dice is played with 5 special dice featuring playing card suits (9, 10, Jack, Queen, King, Ace) instead of numbers.
+    <!-- About Screen-->
+    <string name="about_title">About</string>
+    <string name="tab_gameplay"> Gameplay Overview</string>
+    <string name="tab_thisProject">About this Project</string>
+    <string name="tab_gameplay_text">Poker Dice is played with 5 special dice featuring playing card suits (9, 10, Jack, Queen, King, Ace) instead of numbers.
         Players roll the dice and try to form the best poker hand possible. Each player typically gets up to 3 rolls per turn,
         choosing which dice to keep and which to re-roll. After the final roll, the player with the highest-ranking poker hand wins the round.
         Common hands include pairs, three/four of a kind, full house, and five of a kind.</string>
-
-    <!--About this project-->
-    <string name="about_this_project"> This application was developed as part of the Mobile Devices Programming (PDM) course
+    <string name="tab_gameplay_linktext">Learn more on Wikipedia</string>
+    <string name="tab_gameplay_link">https://en.wikipedia.org/wiki/Poker_dice</string>
+    <string name="tab_thisproject_text"> This application was developed as part of the Mobile Devices Programming (PDM) course
         at Instituto Superior de Engenharia de Lisboa (ISEL), for the Computer Engineering and Computers degree (LEIC).
         Developed during the 2025/2026 Winter Semester by Group 28, class 52D:</string>
-    <string name="mail_subject">Chelas Poker Dice App - Group 28</string>
 
+    <string name="tab_thisproject_member1">Radesh Govind</string>
+    <string name="tab_thisproject_member2">Martim Monteiro</string>
+    <string name="tab_thisproject_member3">Francisco Tavares</string>
+    <string name="tab_thisproject_mail1">A51620@alunos.isel.pt</string>
+    <string name="tab_thisproject_mail2">A51619@alunos.isel.pt</string>
+    <string name="tab_thisproject_mail3">A51618@alunos.isel.pt</string>
+    <string name="tab_thisproject_button">Contact Us</string>
+    <string name="tab_thisproject_mail_subject">Chelas Poker Dice App - Group 28</string>
+
+    <!-- Lobbies Screen-->
+    <string name="lobbies_screen_title">Lobbies</string>
+    <string name="lobbies_content_players">Players</string>
+    <string name="lobbies_content_rounds">Rounds</string>
+
+    <!-- Lobby Screen-->
+    <string name="lobby_screen_title">Lobby</string>
+
+    <string name="start_game">Start Game</string>
+    <string name="lobby_item_host">Host</string>
+    <string name="lobby_item_players">Players</string>
+    <string name="lobby_item_rounds">Rounds</string>
+    <string name="players_section_players">Players</string>
+    <string name="players_section_ready">Ready</string>
+
+    <!-- Create Lobby Screen-->
+    <string name="create_lobby_title">Create Lobby</string>
+    <string name="create_lobby_label_name">Lobby Name</string>
+
+    <string name="create_lobby_label_description">Lobby Description</string>
+
+    <string name="create_lobby_label_rounds">Number Of Rounds</string>
+
+    <string name="create_lobby_label_players">Number Of Players</string>
+    <string name="create_lobby_btn">Create Lobby</string>
+
+
+    <!-- Player Profile Screen-->
+    <string name="player_profile_title">Create Lobby</string>
+
+    <!-- Auth Screen-->
+    <string name="auth_title">Login</string>
+    <string name="loginform_username">Username</string>
+    <string name="loginform_password">Password</string>
+    <string name="loginform_btn">Log In / Create User</string>
+
+
+
+
+    <!-- Other Things-->
+    <string name="search_placeholder">Search...</string>
+    <string name="loading_progresssindicator">Loading...</string>
+    <string name="retry_button">Retry Again</string>
+    <string name="invalid_state">!Invalid State!</string>
+    <string name="input_field_name">Name</string>
+    <string name="input_field_password">Password</string>
+    <string name="input_field_description">Description</string>
+    <string name="input_field_expectedPlayers">Expected Players</string>
+    <string name="input_field_nofrounds">Number Of Rounds</string>
 
 </resources>
