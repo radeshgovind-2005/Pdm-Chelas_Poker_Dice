@@ -95,6 +95,17 @@ class LobbyViewModel(
         }
     }
 
+    fun leaveLobby(user: User) {
+        if(state !is State.LobbyLoaded) return
+        launch(onError = { State.Error(it) }) {
+            val lobby = (state as State.LobbyLoaded).lobby
+            updateState(State.LeavingLobby)
+            services
+                .leaveLobby(user,lobby)
+                .collect { updateState(State.Idle) }
+        }
+    }
+
     sealed interface State {
         data object Idle : State
         data class Error(val e: Throwable) : State
@@ -106,7 +117,9 @@ class LobbyViewModel(
 
         // LOBBY
         data object LoadingLobby : State
+        data object LeavingLobby : State
         data class LobbyLoaded(val lobby: Lobby) : State
+
 
         // CREATE LOBBY
         data object CreatingLobby : State

@@ -6,7 +6,6 @@ import isel.pdm.pokerdice.ui.activities.screens.about.AboutScreen
 import isel.pdm.pokerdice.ui.activities.screens.lobbies.LobbiesScreen
 import isel.pdm.pokerdice.ui.activities.screens.lobby.LobbyScreen
 import isel.pdm.pokerdice.ui.activities.screens.title.TitleScreen
-import isel.pdm.pokerdice.ui.components.error.DefaultErrorContent
 import isel.pdm.pokerdice.ui.theme.PokerDiceTheme
 import isel.pdm.pokerdice.ui.viewmodels.LobbyViewModel
 
@@ -23,8 +22,9 @@ fun Previewer(){
             ScreensPreview.TitleScreen -> TitleScreen()
             ScreensPreview.AboutScreen -> AboutScreen()
             ScreensPreview.LobbiesScreen -> LobbiesScreen(viewModel =lvm)
-            ScreensPreview.LobbyScreen -> LobbyScreen(viewModel =lvm)
+            //ScreensPreview.LobbyScreen -> LobbyScreen(lvm =lvm)
             //ScreensPreview.Error -> DefaultErrorContent("error"){}
+            ScreensPreview.LobbyScreen -> TODO()
         }
     }
 }

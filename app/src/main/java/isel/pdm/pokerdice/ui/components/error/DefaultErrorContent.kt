@@ -1,5 +1,6 @@
 package isel.pdm.pokerdice.ui.components.error
 
+import android.util.Log
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height

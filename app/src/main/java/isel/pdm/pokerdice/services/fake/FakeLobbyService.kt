@@ -36,6 +36,16 @@ class FakeLobbyService(): LobbyServices{
                 .apply{emit(this)}
         }
 
+    override fun leaveLobby(user: User, lobby: Lobby): Flow<Unit> =
+        flow {
+            lobbies
+                .value
+                .find{ it.id == lobby.id }
+                ?.lobbyPlayers
+                ?.removeIf{ it.userCredentials.username == user.userCredentials.username }
+                .apply { emit(Unit) }
+        }
+
     @RequiresApi(Build.VERSION_CODES.VANILLA_ICE_CREAM)
     override fun getAndJoinOnLobby(id: String, user: User): Flow<Lobby?> =
         flow {

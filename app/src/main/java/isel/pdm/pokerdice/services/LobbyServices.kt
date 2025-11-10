@@ -12,4 +12,6 @@ interface LobbyServices {
     fun getAndJoinOnLobby(id: String, user: User): Flow<Lobby?>
     fun insertLobby(lobby: Lobby): Flow<Lobby?>
     fun getLobbies(serach: String): Flow<Lobbies>
+
+    fun leaveLobby(user: User,lobby: Lobby): Flow<Unit>
 }

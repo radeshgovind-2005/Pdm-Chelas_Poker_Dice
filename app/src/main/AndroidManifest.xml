@@ -51,6 +51,11 @@
             android:exported="false"
             />
 
+        <activity
+            android:name=".ui.activities.GameActivity"
+            android:exported="false"
+            />
+
     </application>
 
 </manifest>

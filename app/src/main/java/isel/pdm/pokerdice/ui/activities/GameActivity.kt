@@ -9,14 +9,17 @@ import isel.pdm.pokerdice.domain.AuthInfo
 import isel.pdm.pokerdice.domain.User
 import isel.pdm.pokerdice.domain.UserCredentials
 import isel.pdm.pokerdice.domain.values.Name
+import isel.pdm.pokerdice.ui.activities.screens.game.GameScreen
 import isel.pdm.pokerdice.ui.activities.screens.lobby.LobbyScreen
 import isel.pdm.pokerdice.ui.navigation.NavActivity
+import isel.pdm.pokerdice.ui.navigation.NavActivity.Anim
 import isel.pdm.pokerdice.ui.navigation.Navigation
 import isel.pdm.pokerdice.ui.theme.PokerDiceTheme
 import isel.pdm.pokerdice.ui.viewmodels.AuthViewModel
 import isel.pdm.pokerdice.ui.viewmodels.LobbyViewModel
+import kotlin.getValue
 
-class LobbyActivity: NavActivity() {
+class GameActivity: NavActivity() {
 
     private val lobbyViewModel: LobbyViewModel by viewModels {
         LobbyViewModel.getFactory((application as HostApplication).lobbyService)
@@ -29,23 +32,9 @@ class LobbyActivity: NavActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        authViewModel.getCurrentUser()
-        val user = (authViewModel.state as? AuthViewModel.State.LoggedIn)?.user
-            ?: User(
-                UserCredentials("Guess Invalid","Invalid"),
-                AuthInfo(Name.create("Invalid Guess").getOrThrow(),"fake-token")
-            )
-        intent
-            .getStringExtra("LOBBY_ID")
-            ?.let{lobbyViewModel.joinLobby(it,user)}
         setContent {
             PokerDiceTheme {
-                LobbyScreen(
-                    navBack = { navigate(Navigation.OnLobby.GoBack) },
-                    navToGame = { navigate(Navigation.OnLobby.ToGame) },
-                    lvm = lobbyViewModel,
-                    avm = authViewModel
-                )
+                GameScreen()
             }
         }
     }

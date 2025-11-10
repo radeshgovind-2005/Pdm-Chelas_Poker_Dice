@@ -1,5 +1,6 @@
 package isel.pdm.pokerdice.ui.activities.screens.lobby
 
+import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
@@ -11,21 +12,30 @@ import isel.pdm.pokerdice.ui.components.layout.DefaultLayout
 import isel.pdm.pokerdice.ui.components.progressindicator.DefaultCircularProgressIndicator
 import isel.pdm.pokerdice.ui.components.topbar.DefaultTopBar
 import isel.pdm.pokerdice.ui.remember.RememberString
+import isel.pdm.pokerdice.ui.viewmodels.AuthViewModel
 import isel.pdm.pokerdice.ui.viewmodels.LobbyViewModel
-import java.util.UUID
 
 
 @Composable
 fun LobbyScreen(
     navBack: () -> Unit = {},
     navToGame: () -> Unit = {},
-    viewModel: LobbyViewModel
+    lvm: LobbyViewModel,
+    avm: AuthViewModel
 ) {
-    CommonLayout(navBack){ padding ->
-        when(val state = viewModel.state){
+    CommonLayout({
+        val user = (avm.state as? AuthViewModel.State.LoggedIn)?.user
+        Log.d("LOBBY_SCREEN", "user: $user")
+        if (user != null)
+            lvm.leaveLobby(user)
+        navBack()
+    }){ padding ->
+        when(val state = lvm.state){
+            LobbyViewModel.State.LeavingLobby -> { DefaultCircularProgressIndicator()}
+            LobbyViewModel.State.Idle -> { DefaultCircularProgressIndicator()}
             LobbyViewModel.State.LoadingLobby -> { DefaultCircularProgressIndicator()}
             is LobbyViewModel.State.LobbyLoaded -> {LobbyContent(state.lobby, navToGame,padding = padding)}
-            is LobbyViewModel.State.Error -> {DefaultErrorContent(state.e.toString(),padding = padding) }
+            is LobbyViewModel.State.Error -> {DefaultErrorContent(state.e.toString(),padding = padding)}
             else -> {DefaultErrorContent(RememberString(R.string.invalid_state),padding = padding) }
         }
     }
