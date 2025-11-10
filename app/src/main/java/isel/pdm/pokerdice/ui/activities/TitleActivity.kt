@@ -1,14 +1,20 @@
 package isel.pdm.pokerdice.ui.activities
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
+import isel.pdm.pokerdice.HostApplication
 import isel.pdm.pokerdice.ui.activities.screens.title.TitleScreen
 import isel.pdm.pokerdice.ui.navigation.NavActivity
 import isel.pdm.pokerdice.ui.navigation.Navigation
 import isel.pdm.pokerdice.ui.theme.PokerDiceTheme
+import isel.pdm.pokerdice.ui.viewmodels.AuthViewModel
+import kotlin.getValue
 
 class TitleActivity : NavActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()

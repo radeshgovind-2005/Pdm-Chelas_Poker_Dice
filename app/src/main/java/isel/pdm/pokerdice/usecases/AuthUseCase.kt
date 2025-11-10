@@ -22,4 +22,13 @@ class AuthUseCase(
         authRepo.saveAuthInfo(authInfo)
         return User(credentials,authInfo)
     }
+
+    suspend fun getLoggedUser(): User? {
+        val authInfo = authRepo.getAuthInfo() ?: return null
+        val credentials = UserCredentials(
+            username = authInfo.userName.value,
+            password =  "1Ola" // Password is not stored; forcing a default value
+        )
+        return User(credentials, authInfo)
+    }
 }

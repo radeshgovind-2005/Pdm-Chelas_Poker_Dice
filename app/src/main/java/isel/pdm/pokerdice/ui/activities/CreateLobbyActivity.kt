@@ -26,6 +26,7 @@ class CreateLobbyActivity: NavActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        authViewModel.getCurrentUser()
         setContent {
             PokerDiceTheme {
                 CreateLobbyScreen(

@@ -30,10 +30,12 @@ class LobbyActivity: NavActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-
-        Log.d("Auth","${authViewModel.state}")
-        val user = (authViewModel.state as? AuthViewModel.State.LoggedIn)?.user  ?: User(
-            UserCredentials("Buraco","1Ola"), AuthInfo(Name.create("Buraco").getOrThrow(),"token"))
+        authViewModel.getCurrentUser()
+        val user = (authViewModel.state as? AuthViewModel.State.LoggedIn)?.user
+            ?: User(
+                UserCredentials("Guess Invalid","Invalid"),
+                AuthInfo(Name.create("Invalid Guess").getOrThrow(),"fake-token")
+            )
         intent
             .getStringExtra("LOBBY_ID")
             ?.let{lobbyViewModel.joinLobby(it,user)}

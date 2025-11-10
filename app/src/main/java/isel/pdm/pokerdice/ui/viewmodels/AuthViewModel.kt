@@ -23,6 +23,14 @@ class AuthViewModel(
 
     override val initialState: State = State.Idle
 
+    fun getCurrentUser(): User? {
+        launch(onError = { State.Error(it) }) {
+            val user = authUseCase.getLoggedUser() ?: return@launch
+            val logged = State.LoggedIn(user)
+            updateState(newState=logged)
+        }
+        return if (state is State.LoggedIn) (state as State.LoggedIn).user else null
+    }
 
     fun login(username: String, password: String) {
         if (state is State.LoggingIn || state is State.LoggedIn) return
