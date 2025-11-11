@@ -1,6 +1,7 @@
 package isel.pdm.pokerdice.ui.activities
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -64,6 +65,8 @@ class LobbyActivity: NavActivity() {
     private fun navigate(nav: Navigation.OnLobby) =
         when(nav){
             Navigation.OnLobby.GoBack -> finish()
-            Navigation.OnLobby.ToGame -> toScreen(TitleActivity::class.java,Anim.Forward)
+            Navigation.OnLobby.ToGame -> {
+                toScreen(GameActivity::class.java,Anim.Forward)
+            }
         }
 }

@@ -1,28 +1,27 @@
 package isel.pdm.pokerdice.ui.activities
 
+import android.content.pm.ActivityInfo
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import isel.pdm.pokerdice.HostApplication
-import isel.pdm.pokerdice.domain.AuthInfo
-import isel.pdm.pokerdice.domain.User
-import isel.pdm.pokerdice.domain.UserCredentials
-import isel.pdm.pokerdice.domain.values.Name
-import isel.pdm.pokerdice.ui.activities.screens.game.GameScreen
-import isel.pdm.pokerdice.ui.activities.screens.lobby.LobbyScreen
+import isel.pdm.pokerdice.ui.activities.screens.game.PokerDiceScreen
+import isel.pdm.pokerdice.ui.activities.screens.pd.GameScreen
 import isel.pdm.pokerdice.ui.navigation.NavActivity
-import isel.pdm.pokerdice.ui.navigation.NavActivity.Anim
 import isel.pdm.pokerdice.ui.navigation.Navigation
 import isel.pdm.pokerdice.ui.theme.PokerDiceTheme
 import isel.pdm.pokerdice.ui.viewmodels.AuthViewModel
+import isel.pdm.pokerdice.ui.viewmodels.GameViewModel
 import isel.pdm.pokerdice.ui.viewmodels.LobbyViewModel
-import kotlin.getValue
 
 class GameActivity: NavActivity() {
-
     private val lobbyViewModel: LobbyViewModel by viewModels {
         LobbyViewModel.getFactory((application as HostApplication).lobbyService)
+    }
+    private val gameViewModel: GameViewModel by viewModels {
+        GameViewModel.getFactory((application as HostApplication).gameService)
     }
 
     private val authViewModel: AuthViewModel by viewModels {
@@ -32,9 +31,12 @@ class GameActivity: NavActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        Log.d("GameActivity","GameActivity: Created")
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+        gameViewModel.initializeMatch()
         setContent {
             PokerDiceTheme {
-                GameScreen()
+                PokerDiceScreen(gameViewModel)
             }
         }
     }
@@ -49,6 +51,9 @@ class GameActivity: NavActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+
+        Log.d("GameActivity","GameActivity: Destroyed")
     }
     private fun navigate(nav: Navigation.OnLobby) =
         when(nav){

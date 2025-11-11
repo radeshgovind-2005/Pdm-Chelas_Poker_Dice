@@ -45,7 +45,7 @@ fun LobbyContent(lobby: Lobby, navToGame: () -> Unit,padding: PaddingValues) {
                 Modifier.fillMaxWidth(),
                 Arrangement.Center
                 ){
-                ButtonText(RememberString(R.string.start_game), MyIcon.Start, onClick = navToGame)
+                ButtonText(RememberString(R.string.start_game), MyIcon.Start, onClick = navToGame, enabled = lobby.lobbyPlayers.size == lobby.expectedPlayers.value)
             }
         }
     }

@@ -21,6 +21,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 
@@ -46,11 +47,12 @@ fun SimpleIcon(
     horizontalPadding: Int = 0,
     modifier: Modifier = Modifier,
     size: Int = ICON_SIZE,
+    tint: Color =MaterialTheme.colorScheme.secondary
     ){
     Icon(
         imageVector = icon.value,
         contentDescription = icon.toString(),
-        tint = MaterialTheme.colorScheme.secondary,
+        tint = tint,
         modifier = modifier
             .size(size.dp)
             .padding(horizontalPadding.dp)

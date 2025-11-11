@@ -67,6 +67,8 @@
     <string name="loginform_password">Password</string>
     <string name="loginform_btn">Log In / Create User</string>
 
+    <!-- Game Screen-->
+    <string name="start_round_btn">Start Round</string>
 
 
 

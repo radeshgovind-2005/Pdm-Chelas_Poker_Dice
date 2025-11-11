@@ -53,7 +53,13 @@ class FakeLobbyService(): LobbyServices{
             lobbies
                 .value
                 .find { lobby -> lobby.id.toString() == id }
-                .apply{ this?.lobbyPlayers?.addFirst(user) ;emit(this)}
+                .apply{
+                    if (this?.lobbyPlayers?.none{
+                        it.userCredentials.username == user.userCredentials.username
+                    } ?: false)
+                        this?.lobbyPlayers?.addFirst(user)
+                    ;emit(this)
+                }
         }
 
     override fun insertLobby(lobby: Lobby): Flow<Lobby?> =
