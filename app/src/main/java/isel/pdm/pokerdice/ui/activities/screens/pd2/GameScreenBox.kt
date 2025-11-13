@@ -1,4 +1,4 @@
-package isel.pdm.pokerdice.ui.activities.screens.game
+package isel.pdm.pokerdice.ui.activities.screens.pd2
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box

@@ -21,6 +21,15 @@ object FakeDataGenerator {
             authInfo = AuthInfo(Name.create(name).getOrThrow(), "genarated-token")
         )
     }
+    private val opa = listOf("Julia","Joana","Sara","Sofia").map { name ->
+        User(
+            userCredentials = UserCredentials(
+                username = name.lowercase(),
+                password = "Password123"
+            ),
+            authInfo = AuthInfo(Name.create(name).getOrThrow(), "genarated-token")
+        )
+    }
 
     private val lobbyTemplates = listOf(
         Triple("Poker Masters", "Competitive poker tournament", 4 to 20),
@@ -42,13 +51,19 @@ object FakeDataGenerator {
 
         return lobbyTemplates.take(count).mapIndexed { index, (name, desc, playersRounds) ->
             val (expectedPlayers, nOfRounds) = playersRounds
-            Lobby.create(
+            val l = Lobby.create(
                 name = name,
                 description = desc,
                 expectedPlayers = expectedPlayers,
                 nOfRounds = nOfRounds,
                 host = fakeUsers[index]
             ).getOrThrow()
+            if(name == "Gamblers") {
+                opa.forEach{
+                    l.lobbyPlayers.add(it)
+                }
+            }
+            l
         }
     }
 

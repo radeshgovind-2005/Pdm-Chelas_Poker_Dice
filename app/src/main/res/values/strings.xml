@@ -69,6 +69,7 @@
 
     <!-- Game Screen-->
     <string name="start_round_btn">Start Round</string>
+    <string name="roll_all_btn">Roll All Dices</string>
 
 
 

@@ -1,4 +1,4 @@
-package isel.pdm.pokerdice.ui.activities.screens.game.states
+package isel.pdm.pokerdice.ui.activities.screens.pd2.states
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row

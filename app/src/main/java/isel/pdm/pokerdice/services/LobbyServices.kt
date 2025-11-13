@@ -14,4 +14,6 @@ interface LobbyServices {
     fun getLobbies(serach: String): Flow<Lobbies>
 
     fun leaveLobby(user: User,lobby: Lobby): Flow<Unit>
+
+    fun getUserLobby(user: User) : Flow<Lobby?>
 }

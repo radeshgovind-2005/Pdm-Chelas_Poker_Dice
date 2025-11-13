@@ -1,4 +1,4 @@
-package isel.pdm.pokerdice.ui.activities.screens.game.table
+package isel.pdm.pokerdice.ui.activities.screens.pd2.table
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth

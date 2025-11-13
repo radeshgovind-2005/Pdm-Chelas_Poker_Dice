@@ -274,7 +274,7 @@ fun PlayerContent(username: String,turn:Boolean=false){
 fun WhiteDiceSquare() {
     Box(
         modifier = Modifier
-            .size(45.dp)
+            .size(40.dp)
             .background(
                 color = Color.White,
                 shape = RoundedCornerShape(8.dp)

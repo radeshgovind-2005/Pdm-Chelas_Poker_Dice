@@ -1,4 +1,4 @@
-package isel.pdm.pokerdice.ui.activities.screens.game.states
+package isel.pdm.pokerdice.ui.activities.screens.game.statescreen.match
 
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.tween
@@ -21,81 +21,52 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
+import isel.pdm.pokerdice.domain.Users
 import isel.pdm.pokerdice.ui.components.icons.MyIcon
 import isel.pdm.pokerdice.ui.components.icons.SimpleIcon
 import isel.pdm.pokerdice.ui.theme.DarkWhite
 
+const val PLAYER_SIZE_DP = 60
 @Composable
-fun AnimatedPlayersRow(
-    players: List<String> = listOf("Player6", "Player5", "Player4", "Player3", "Player2", "Player1"),
-    modifier: Modifier = Modifier
-) {
+fun PlayersEntrance(players: Users) {
     var animationStarted by remember { mutableStateOf(false) }
+    val screenHeight = LocalConfiguration.current.screenHeightDp
 
     LaunchedEffect(Unit) {
         animationStarted = true
     }
-
     Box(
-        modifier = modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize()
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .offset(y = 150.dp),
+                .offset(y = (screenHeight/3).dp),
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            // Left group (first 3 players)
-            players.take(3).forEachIndexed { index, player ->
+            players.forEachIndexed { idx, player ->
                 val offsetX by animateDpAsState(
-                    targetValue = if (animationStarted) 0.dp else (-500 - index * 50).dp,
-                    animationSpec = tween(durationMillis = 1000, delayMillis = index * 150),
-                    label = "player_left_$index"
+                    targetValue = if (animationStarted) 0.dp else (-500 - idx * 50).dp,
+                    animationSpec = tween(durationMillis = 1000, delayMillis = idx * 150),
                 )
 
-                PlayerIcon(
-                    playerName = player,
+                Player(
+                    name = player.userCredentials.username,
                     modifier = Modifier.offset(x = offsetX)
                 )
 
-                if (index < 2) {
-                    Box(modifier = Modifier.size(16.dp))
-                }
-            }
-
-            Box(modifier = Modifier.size(32.dp))
-
-            // Right group (last 3 players)
-            players.drop(3).take(3).forEachIndexed { index, player ->
-                val offsetX by animateDpAsState(
-                    targetValue = if (animationStarted) 0.dp else (500 + index * 50).dp,
-                    animationSpec = tween(durationMillis = 1000, delayMillis = index * 150),
-                    label = "player_right_$index"
-                )
-
-                PlayerIcon(
-                    playerName = player,
-                    modifier = Modifier.offset(x = offsetX)
-                )
-
-                if (index < 2) {
-                    Box(modifier = Modifier.size(16.dp))
-                }
             }
         }
-
     }
 }
 
 @Composable
-fun PlayerIcon(
-    playerName: String,
-    modifier: Modifier = Modifier
-) {
+private fun Player(name: String,modifier: Modifier){
     Box(
-        modifier = modifier.size(60.dp),
+        modifier = modifier.size(PLAYER_SIZE_DP.dp),
         contentAlignment = Alignment.Center
     ) {
         Column(
@@ -103,7 +74,7 @@ fun PlayerIcon(
         ) {
             SimpleIcon(MyIcon.Player, tint = DarkWhite)
             Spacer(modifier = Modifier.height(6.dp))
-            Text(playerName, color = DarkWhite)
+            Text(name, color = DarkWhite)
         }
     }
 }

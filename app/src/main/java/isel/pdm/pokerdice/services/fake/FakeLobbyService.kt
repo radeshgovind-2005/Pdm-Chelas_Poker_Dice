@@ -46,6 +46,14 @@ class FakeLobbyService(): LobbyServices{
                 .apply { emit(Unit) }
         }
 
+    override fun getUserLobby(user: User): Flow<Lobby?> =
+        flow {
+            lobbies
+                .value
+                .find{ it.lobbyPlayers.contains(user) }
+                .apply { emit(this) }
+        }
+
     @RequiresApi(Build.VERSION_CODES.VANILLA_ICE_CREAM)
     override fun getAndJoinOnLobby(id: String, user: User): Flow<Lobby?> =
         flow {

@@ -106,6 +106,18 @@ class LobbyViewModel(
         }
     }
 
+    fun getCurrentLobby(user: User): Lobby? {
+        var lobby: Lobby? = null
+        launch(onError = { LobbyViewModel.State.Error(it) }) {
+            services
+                .getUserLobby(user)
+                .collect { currLobby ->
+                    lobby = currLobby
+                }
+        }
+        return lobby
+    }
+
     sealed interface State {
         data object Idle : State
         data class Error(val e: Throwable) : State
