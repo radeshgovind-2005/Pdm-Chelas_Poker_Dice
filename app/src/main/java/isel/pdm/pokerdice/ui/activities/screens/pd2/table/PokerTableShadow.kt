@@ -17,7 +17,7 @@ fun PokerTableShadow(width: Float=1f, height: Dp) {
         modifier = Modifier
             .fillMaxWidth(width)
             .height(height)
-            .clip(TableShape)
+            .clip(TableShape3)
             .background(SemiTransparent)
     )
 }

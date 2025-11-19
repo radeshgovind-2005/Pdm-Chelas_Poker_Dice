@@ -1,4 +1,4 @@
-package isel.pdm.pokerdice.ui.activities.screens.game.transition
+package isel.pdm.pokerdice.ui.activities.screens.game.effects
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -9,7 +9,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush.Companion.verticalGradient
 import androidx.compose.ui.graphics.Color
 import isel.pdm.pokerdice.ui.components.animations.VerticalAnimation
-import isel.pdm.pokerdice.ui.viewmodels.GameViewModel
 
 
 val DarkBurgundy = Color(0xFF3B0000)
@@ -17,7 +16,7 @@ val DeepRed = Color(0xFF8B0000)
 val Maroon = Color(0xFF800000)
 
 @Composable
-fun Courtain(vFraction: Float){
+fun Curtain(vFraction: Float){
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -33,21 +32,18 @@ fun Courtain(vFraction: Float){
 }
 
 @Composable
-fun CloseCourtain(
+fun CloseCurtain(
     isCurtainClosed: Boolean,
-    gvm: GameViewModel
+    onComplete: () -> Unit,
 ) {
-    VerticalAnimation(
-        isCurtainClosed,
-        { gvm.initializeRound() }
-    ) { yProgress ->
-        Courtain(yProgress)
+    VerticalAnimation(isCurtainClosed, onComplete) { yProgress ->
+        Curtain(yProgress)
     }
 }
 
 @Composable
-fun OpenCourtain() {
+fun OpenCurtain() {
     VerticalAnimation { yProgress ->
-        Courtain(1f - yProgress)
+        Curtain(1f - yProgress)
     }
 }

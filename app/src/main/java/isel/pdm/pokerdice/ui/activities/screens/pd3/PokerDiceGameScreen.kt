@@ -1,11 +1,11 @@
-package isel.pdm.pokerdice.ui.activities.screens.game
+package isel.pdm.pokerdice.ui.activities.screens.pd3
 
 import android.util.Log
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import isel.pdm.pokerdice.ui.activities.screens.game.statescreen.match.MatchStartScreen
-import isel.pdm.pokerdice.ui.activities.screens.game.statescreen.round.RoundScreen
+import isel.pdm.pokerdice.ui.activities.screens.pd3.statescreen.match.MatchStartScreen
+import isel.pdm.pokerdice.ui.activities.screens.pd3.statescreen.round.RoundScreen
 import isel.pdm.pokerdice.ui.activities.screens.pd2.GameScreenBox
 import isel.pdm.pokerdice.ui.activities.screens.pd2.table.PokerDiceTable
 import isel.pdm.pokerdice.ui.viewmodels.AuthViewModel

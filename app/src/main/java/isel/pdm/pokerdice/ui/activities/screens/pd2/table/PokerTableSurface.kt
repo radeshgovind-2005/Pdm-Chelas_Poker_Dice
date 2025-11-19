@@ -15,7 +15,7 @@ import isel.pdm.pokerdice.ui.theme.DarkBurgundy
 import isel.pdm.pokerdice.ui.theme.MediumDarkRed
 import isel.pdm.pokerdice.ui.theme.PokerDarkRed
 
-private val RoundShape = RoundedCornerShape(
+private val RoundShapeS = RoundedCornerShape(
     bottomStart = 244.dp,
     bottomEnd = 244.dp
 )
@@ -25,7 +25,7 @@ fun PokerTableSurface(content: @Composable () -> Unit) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .clip(RoundShape)
+            .clip(RoundShapeS)
             .drawWithCache {
                 onDrawBehind {
                     drawRoundRect(

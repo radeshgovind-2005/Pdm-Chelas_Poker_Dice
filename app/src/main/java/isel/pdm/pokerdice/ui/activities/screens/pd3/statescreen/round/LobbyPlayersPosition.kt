@@ -1,4 +1,4 @@
-package isel.pdm.pokerdice.ui.activities.screens.game.statescreen.round
+package isel.pdm.pokerdice.ui.activities.screens.pd3.statescreen.round
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -13,7 +13,7 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
 import isel.pdm.pokerdice.domain.User
 import isel.pdm.pokerdice.domain.Users
-import isel.pdm.pokerdice.ui.activities.screens.game.statescreen.match.PLAYER_SIZE_DP
+import isel.pdm.pokerdice.ui.activities.screens.game.elements.players.PLAYER_SIZE_DP
 import isel.pdm.pokerdice.ui.components.icons.MyIcon
 import isel.pdm.pokerdice.ui.components.icons.SimpleIcon
 import isel.pdm.pokerdice.ui.theme.DarkWhite

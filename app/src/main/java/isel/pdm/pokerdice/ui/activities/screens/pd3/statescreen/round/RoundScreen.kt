@@ -1,9 +1,11 @@
-package isel.pdm.pokerdice.ui.activities.screens.game.statescreen.round
+package isel.pdm.pokerdice.ui.activities.screens.pd3.statescreen.round
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
@@ -18,6 +20,7 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
@@ -26,9 +29,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import isel.pdm.pokerdice.R
 import isel.pdm.pokerdice.domain.Lobby
-import isel.pdm.pokerdice.ui.activities.screens.game.GameLayout
-import isel.pdm.pokerdice.ui.activities.screens.game.transition.OpenCourtain
+import isel.pdm.pokerdice.ui.activities.screens.pd3.GameLayout
+import isel.pdm.pokerdice.ui.activities.screens.game.effects.OpenCurtain
 import isel.pdm.pokerdice.ui.components.buttons.ButtonText
+import isel.pdm.pokerdice.ui.theme.DarkWhite
 import isel.pdm.pokerdice.ui.theme.MediumDarkRed
 import kotlinx.coroutines.delay
 
@@ -86,22 +90,24 @@ fun RoundScreen(lobby: Lobby) {
                         if (i == index) !selected else selected
                     }
                 },
-                isTurn = false
+                isTurn = true
             )
         },
         screenContent = {
             LobbyPlayersPosition(lobby.lobbyPlayers)
         }
     )
-    OpenCourtain()
+    OpenCurtain()
 }
 
 @Composable
 private fun BottomRow(enabled: Boolean=true,onClick: () -> Unit = {}){
     Row (
-        modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.Center
+        modifier = Modifier.fillMaxWidth(0.975f),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.Bottom
     ){
+        Text("Balance: 1000$", color = DarkWhite, )
         ButtonText(
             text=stringResource(R.string.roll_all_btn),
             modifier = Modifier.size(300.dp,50.dp),
@@ -117,6 +123,7 @@ private fun BottomRow(enabled: Boolean=true,onClick: () -> Unit = {}){
 @Composable
 private fun UpperRow(){
     var timerValue by remember { mutableIntStateOf(15) }
+    var selected by remember { mutableStateOf(false)}
     LaunchedEffect(key1 = timerValue) {
         if (timerValue > 0) {
             delay(1000L) // Delay de 1 segundo
@@ -126,11 +133,14 @@ private fun UpperRow(){
             timerValue = 15
         }
     }
-
     Row(
         modifier = Modifier.fillMaxWidth().height(60.dp),
-        horizontalArrangement = Arrangement.End
+        horizontalArrangement = Arrangement.SpaceBetween
     ) {
+
+        ButtonText("Info"){
+            selected = !selected
+        }
         Spacer(Modifier.height(16.dp).width(30.dp))
         Text(
             text = timerValue.toString(),
@@ -139,4 +149,11 @@ private fun UpperRow(){
             fontWeight = FontWeight.Bold
         )
     }
+
+    if(selected)
+        Box(
+            Modifier
+                .fillMaxSize()
+                .background(Color.White)
+        )
 }

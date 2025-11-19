@@ -1,4 +1,4 @@
-package isel.pdm.pokerdice.ui.activities.screens.game.statescreen.match
+package isel.pdm.pokerdice.ui.activities.screens.pd3.statescreen.match
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -16,8 +16,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import isel.pdm.pokerdice.R
 import isel.pdm.pokerdice.domain.Lobby
-import isel.pdm.pokerdice.ui.activities.screens.game.GameLayout
-import isel.pdm.pokerdice.ui.activities.screens.game.transition.CloseCourtain
+import isel.pdm.pokerdice.ui.activities.screens.pd3.GameLayout
+import isel.pdm.pokerdice.ui.activities.screens.game.effects.CloseCurtain
 import isel.pdm.pokerdice.ui.components.buttons.ButtonText
 import isel.pdm.pokerdice.ui.theme.MediumDarkRed
 import isel.pdm.pokerdice.ui.viewmodels.GameViewModel
@@ -28,7 +28,7 @@ fun MatchStartScreen(gvm: GameViewModel, lobby: Lobby) {
     GameLayout(
         {BottomRow({ isCurtainClosed = true })}
     ){ PlayersEntrance(lobby.lobbyPlayers)}
-    CloseCourtain(isCurtainClosed, gvm)
+    CloseCurtain(isCurtainClosed, {})
 }
 
 @Composable

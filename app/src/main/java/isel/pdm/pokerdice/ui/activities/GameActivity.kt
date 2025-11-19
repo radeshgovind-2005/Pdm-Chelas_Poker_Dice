@@ -7,8 +7,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import isel.pdm.pokerdice.HostApplication
-import isel.pdm.pokerdice.ui.activities.screens.game.PokerDiceGameScreen
-import isel.pdm.pokerdice.ui.activities.screens.pd2.PokerDiceScreen
+import isel.pdm.pokerdice.ui.activities.screens.game.PokerScreen
 import isel.pdm.pokerdice.ui.navigation.NavActivity
 import isel.pdm.pokerdice.ui.navigation.Navigation
 import isel.pdm.pokerdice.ui.theme.PokerDiceTheme
@@ -37,7 +36,7 @@ class GameActivity: NavActivity() {
         gameViewModel.initializeMatch()
         setContent {
             PokerDiceTheme {
-                PokerDiceGameScreen(gameViewModel,lobbyViewModel,authViewModel)
+                PokerScreen(gameViewModel,lobbyViewModel,authViewModel)
             }
         }
     }

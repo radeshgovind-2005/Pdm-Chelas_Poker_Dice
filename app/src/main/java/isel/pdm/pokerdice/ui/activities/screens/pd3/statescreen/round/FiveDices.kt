@@ -1,4 +1,4 @@
-package isel.pdm.pokerdice.ui.activities.screens.game.statescreen.round
+package isel.pdm.pokerdice.ui.activities.screens.pd3.statescreen.round
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border

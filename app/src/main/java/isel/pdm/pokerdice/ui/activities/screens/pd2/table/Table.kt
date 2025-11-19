@@ -16,7 +16,7 @@ import isel.pdm.pokerdice.ui.theme.DarkChocoBrown
 import isel.pdm.pokerdice.ui.theme.PureBlack
 import isel.pdm.pokerdice.ui.theme.RedishBrown
 
-val TableShape = RoundedCornerShape(
+val TableShape3 = RoundedCornerShape(
     bottomStart = 250.dp,
     bottomEnd = 250.dp
 )
@@ -26,7 +26,7 @@ fun Table(height: Dp, content: @Composable () -> Unit) {
         modifier = Modifier
             .fillMaxWidth()
             .height(height)
-            .clip(TableShape)
+            .clip(TableShape3)
             .drawWithCache {
                 onDrawBehind {
                     drawRoundRect(

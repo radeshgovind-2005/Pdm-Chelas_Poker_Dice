@@ -20,6 +20,7 @@ const val GAMEPLAY_CONTENT_TAG = "GAMEPLAY_CONTENT"
 fun DefaultCard(
     modifier: Modifier = Modifier.testTag(GAMEPLAY_CONTENT_TAG),
     hca: Alignment.Horizontal = Alignment.Start,
+    sufVar: Float = 0.6f,
     content: @Composable () -> Unit
 ){
     Card(
@@ -28,7 +29,7 @@ fun DefaultCard(
             .fillMaxWidth(0.9f)
             .fillMaxHeight(0.9f),
         colors =  CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.6f),
+            containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = sufVar),
             contentColor = MaterialTheme.colorScheme.secondary
         )
     ) {

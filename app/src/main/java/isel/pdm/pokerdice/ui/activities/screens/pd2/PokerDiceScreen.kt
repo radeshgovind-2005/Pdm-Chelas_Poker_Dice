@@ -38,8 +38,8 @@ import isel.pdm.pokerdice.ui.activities.screens.pd2.composition.GameUpperBar
 import isel.pdm.pokerdice.ui.activities.screens.pd2.composition.RoundBottomRow
 import isel.pdm.pokerdice.ui.activities.screens.pd2.dices.RowDices
 import isel.pdm.pokerdice.ui.activities.screens.pd2.states.AnimatedPlayersRow
-import isel.pdm.pokerdice.ui.activities.screens.game.transition.CloseCourtain
-import isel.pdm.pokerdice.ui.activities.screens.game.transition.OpenCourtain
+import isel.pdm.pokerdice.ui.activities.screens.game.effects.CloseCurtain
+import isel.pdm.pokerdice.ui.activities.screens.game.effects.OpenCurtain
 import isel.pdm.pokerdice.ui.activities.screens.pd2.states.RoundInitBottomRow
 import isel.pdm.pokerdice.ui.activities.screens.pd2.table.PokerDiceTable
 import isel.pdm.pokerdice.ui.viewmodels.GameViewModel
@@ -59,7 +59,7 @@ fun PokerDiceScreen(gvm: GameViewModel) {
                     RoundInitBottomRow( { isCurtainClosed = true })
                 },
             ) { AnimatedPlayersRow() }
-            CloseCourtain(isCurtainClosed, gvm)
+            CloseCurtain(isCurtainClosed, { gvm })
         }
         is GameViewModel.State.PlayingInRound ->{
             // Track dice faces and selection state
@@ -133,7 +133,7 @@ fun PokerDiceScreen(gvm: GameViewModel) {
                     }
                 }
             )
-            OpenCourtain()
+            OpenCurtain()
         }
     }
 }
