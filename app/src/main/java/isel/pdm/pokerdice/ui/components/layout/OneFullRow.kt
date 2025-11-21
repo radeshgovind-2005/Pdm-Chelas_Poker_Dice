@@ -15,8 +15,6 @@ import androidx.compose.ui.unit.dp
 typealias ComposeContent = @Composable () -> Unit
 @Composable
 fun OneFullRow(vararg contents: ComposeContent, paddingValues: PaddingValues = PaddingValues(0.dp)) {
-
-    val fraction = 1f / contents.size
     Row(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -24,7 +22,7 @@ fun OneFullRow(vararg contents: ComposeContent, paddingValues: PaddingValues = P
             Box(
                 modifier = Modifier
                     .fillMaxHeight()
-                    .fillMaxWidth(fraction)
+                    .weight(1f)
                     .padding(paddingValues)
                 ,
                 contentAlignment = Alignment.Center

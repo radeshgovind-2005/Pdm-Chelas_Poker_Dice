@@ -8,6 +8,7 @@ import androidx.compose.ui.Alignment
 import isel.pdm.pokerdice.R
 import isel.pdm.pokerdice.ui.components.error.DefaultErrorContent
 import isel.pdm.pokerdice.ui.components.icons.MyIcon
+import isel.pdm.pokerdice.ui.components.layout.AdaptiveLayoutContent
 import isel.pdm.pokerdice.ui.components.layout.DefaultLayout
 import isel.pdm.pokerdice.ui.components.progressindicator.DefaultCircularProgressIndicator
 import isel.pdm.pokerdice.ui.components.topbar.DefaultTopBar
@@ -34,7 +35,13 @@ fun LobbyScreen(
             LobbyViewModel.State.LeavingLobby -> { DefaultCircularProgressIndicator()}
             LobbyViewModel.State.Idle -> { DefaultCircularProgressIndicator()}
             LobbyViewModel.State.LoadingLobby -> { DefaultCircularProgressIndicator()}
-            is LobbyViewModel.State.LobbyLoaded -> {LobbyContent(state.lobby, navToGame,padding = padding)}
+            is LobbyViewModel.State.LobbyLoaded -> {
+                AdaptiveLayoutContent(
+                    landscape = {LandscapeLobbyContent(state.lobby, navToGame,padding = padding)},
+                    portrait = {PortraitLobbyContent(state.lobby, navToGame,padding = padding)}
+                )
+
+            }
             is LobbyViewModel.State.Error -> {DefaultErrorContent(state.e.toString(),padding = padding)}
             else -> {DefaultErrorContent(RememberString(R.string.invalid_state),padding = padding) }
         }

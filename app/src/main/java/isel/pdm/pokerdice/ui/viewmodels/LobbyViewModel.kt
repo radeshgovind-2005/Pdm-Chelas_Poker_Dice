@@ -89,6 +89,7 @@ class LobbyViewModel(
             updateState(State.SearchingLobbies)
             services
                 .getLobbies(search)
+                .flowOn(Dispatchers.IO)
                 .collect { data ->
                     updateState(State.LobbiesLoaded(data))
                 }
@@ -108,7 +109,7 @@ class LobbyViewModel(
 
     fun getCurrentLobby(user: User): Lobby? {
         var lobby: Lobby? = null
-        launch(onError = { LobbyViewModel.State.Error(it) }) {
+        launch(onError = { State.Error(it) }) {
             services
                 .getUserLobby(user)
                 .collect { currLobby ->

@@ -3,6 +3,7 @@ package isel.pdm.pokerdice.ui.activities.screens.title
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -27,7 +28,7 @@ fun TitlePortraitContent(navToLobbies: () -> Unit){
 fun TitleLandscapeContent(padding: PaddingValues, navToLobbies: () -> Unit){
     OneFullRow (
         { PokerDiceLogo() },
-        { ButtonText(RememberString(R.string.bt_lobbies)){navToLobbies()} },
+        { ButtonText(RememberString(R.string.bt_lobbies), modifier = Modifier.size(300.dp,50.dp)){navToLobbies()} },
         paddingValues = padding
     )
 }

@@ -6,7 +6,7 @@ import isel.pdm.pokerdice.AppTag
 import isel.pdm.pokerdice.ui.activities.screens.game.states.PokerError
 import isel.pdm.pokerdice.ui.activities.screens.game.states.PokerIdle
 import isel.pdm.pokerdice.ui.activities.screens.game.states.PokerMatch
-import isel.pdm.pokerdice.ui.activities.screens.game.states.PokerRound
+import isel.pdm.pokerdice.ui.activities.screens.game.states.PokerGame
 import isel.pdm.pokerdice.ui.viewmodels.AuthViewModel
 import isel.pdm.pokerdice.ui.viewmodels.GameViewModel
 import isel.pdm.pokerdice.ui.viewmodels.LobbyViewModel
@@ -23,7 +23,7 @@ fun PokerScreen(
                 is GameViewModel.State.Error -> PokerError()
                 GameViewModel.State.Idle -> PokerIdle()
                 GameViewModel.State.MatchInit -> PokerMatch(gvm,currLobby)
-                is GameViewModel.State.PlayingInRound -> PokerRound()
+                is GameViewModel.State.PlayingInRound -> PokerGame(currLobby,currUser)
             }
         } ?:  Log.d(AppTag.Error.value, "Could not get current Lobby on Poker Screen")
     } ?: Log.d(AppTag.Error.value, "Could not get current user on Game Screen")

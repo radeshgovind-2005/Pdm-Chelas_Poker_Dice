@@ -10,13 +10,14 @@ fun GameMainLayout(
     upperRow: @Composable () -> Unit = {},
     bottomRow: @Composable () -> Unit = {},
     tableContent: @Composable (PaddingValues) -> Unit = {},
-    screenContent: @Composable (PaddingValues) -> Unit = {},
+    screenContent: @Composable () -> Unit = {},
 ) {
     Scaffold(
         topBar = {upperRow()},
-        floatingActionButton = {bottomRow()}
+        bottomBar = {bottomRow()}
     ) { paddingValues ->
         PokerTable{ tableContent(paddingValues)}
-        screenContent(paddingValues)
     }
+
+    screenContent()
 }

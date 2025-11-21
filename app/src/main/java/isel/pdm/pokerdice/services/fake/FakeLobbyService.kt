@@ -4,6 +4,7 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.snapshotFlow
 import isel.pdm.pokerdice.data.FakeDataGenerator
 import isel.pdm.pokerdice.domain.Lobbies
 import isel.pdm.pokerdice.domain.Lobby
@@ -12,29 +13,30 @@ import isel.pdm.pokerdice.services.LobbyServices
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onStart
 
 class FakeLobbyService(): LobbyServices{
+
+    private val delayTime: Long
+        get() = (2000..5000).random().toLong()
 
     override val lobbies: MutableState<Lobbies> =
         mutableStateOf(FakeDataGenerator.generateLobbies())
 
     override fun getWaitingLobbies(): Flow<Lobbies> =
-        flow {
-            delay(5000)
-            lobbies
-                .value
-                .filter { isLobbyWaiting(it) }
-                .apply{emit(this)}
-        }
+        snapshotFlow { lobbies.value }
+            .onStart { delay(delayTime) }
+            .map{ list ->
+                list.filter { isLobbyWaiting(it) }
+            }
 
     override fun getLobbies(search: String): Flow<Lobbies> =
-        flow {
-            delay(5000)
-            lobbies
-                .value
-                .filter { it.name.value.contains(search)}
-                .apply{emit(this)}
-        }
+        snapshotFlow { lobbies.value }
+            .onStart { delay(delayTime) }
+            .map{ list ->
+                list.filter { it.name.value.contains(search, ignoreCase = true)}
+            }
 
     override fun leaveLobby(user: User, lobby: Lobby): Flow<Unit> =
         flow {
@@ -47,17 +49,15 @@ class FakeLobbyService(): LobbyServices{
         }
 
     override fun getUserLobby(user: User): Flow<Lobby?> =
-        flow {
-            lobbies
-                .value
-                .find{ it.lobbyPlayers.contains(user) }
-                .apply { emit(this) }
-        }
+        snapshotFlow { lobbies.value }
+            .map { list ->
+                list.find { it.lobbyPlayers.contains(user) }
+            }
 
     @RequiresApi(Build.VERSION_CODES.VANILLA_ICE_CREAM)
     override fun getAndJoinOnLobby(id: String, user: User): Flow<Lobby?> =
         flow {
-            delay(1000)
+            delay(delayTime)
             lobbies
                 .value
                 .find { lobby -> lobby.id.toString() == id }
@@ -66,17 +66,12 @@ class FakeLobbyService(): LobbyServices{
                         it.userCredentials.username == user.userCredentials.username
                     } ?: false)
                         this?.lobbyPlayers?.addFirst(user)
-                    ;emit(this)
+                    emit(this)
                 }
         }
 
     override fun insertLobby(lobby: Lobby): Flow<Lobby?> =
-        flow {
-            lobbies.value += lobby
-            emit(
-                lobbies.value.firstOrNull{it.id === lobby.id}
-            )
-        }
+        flow { lobbies.value += lobby; emit(lobby) }
 
     private fun isLobbyWaiting(lobby: Lobby): Boolean = lobby.lobbyPlayers.size < lobby.expectedPlayers.value
 }

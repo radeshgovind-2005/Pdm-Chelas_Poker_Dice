@@ -33,6 +33,6 @@ class GameViewModel(
         data class Error(val e: Throwable) : State
         data object MatchInit: State
 
-        data class PlayingInRound(val Nround: Int = 0): State
+        data class PlayingInRound(val Nround: Int = 0,var isRolling: Boolean=false): State
     }
 }

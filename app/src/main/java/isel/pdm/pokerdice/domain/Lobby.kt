@@ -17,7 +17,8 @@ data class Lobby(
     val expectedPlayers: ExpectedPlayers,
     val nOfRounds: NumberOfRounds,
     val hostName: Name,
-    val lobbyPlayers: Users
+    val lobbyPlayers: Users,
+    val turn: User?
 ) {
     companion object {
         fun create(
@@ -41,7 +42,8 @@ data class Lobby(
                     expectedPlayers = expectedPlayersValue,
                     nOfRounds = nOfRoundsResult.getOrThrow(),
                     hostName = host.authInfo.userName,
-                    lobbyPlayers = mutableListOf(host)
+                    lobbyPlayers = mutableListOf(host),
+                    turn= host
                 )
             }
         }

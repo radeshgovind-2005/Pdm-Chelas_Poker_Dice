@@ -24,13 +24,36 @@ import isel.pdm.pokerdice.ui.components.card.DefaultCard
 import isel.pdm.pokerdice.ui.components.icons.MyIcon
 import isel.pdm.pokerdice.ui.components.icons.SimpleIcon
 import isel.pdm.pokerdice.ui.components.layout.OneFullColumn
+import isel.pdm.pokerdice.ui.components.layout.OneFullRow
 import isel.pdm.pokerdice.ui.components.text.HeadingLevel
 import isel.pdm.pokerdice.ui.components.text.HeadingText
 import isel.pdm.pokerdice.ui.components.text.PlainText
 import isel.pdm.pokerdice.ui.remember.RememberString
 
 @Composable
-fun LobbyContent(lobby: Lobby, navToGame: () -> Unit,padding: PaddingValues) {
+fun LandscapeLobbyContent(lobby: Lobby, navToGame: () -> Unit,padding: PaddingValues) {
+    OneFullColumn( padding,Arrangement.Top) {
+
+        Spacer(modifier = Modifier.height(16.dp))
+        DefaultCard(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 16.dp)
+        ) {
+            OneFullRow(
+                { LobbyHeader(lobby) },
+                { PlayersSection(lobby.lobbyPlayers) })
+            Row(
+                Modifier.fillMaxWidth(),
+                Arrangement.Center
+            ){
+                ButtonText(RememberString(R.string.start_game), MyIcon.Start, onClick = navToGame, enabled = lobby.lobbyPlayers.size == lobby.expectedPlayers.value)
+            }
+        }
+    }
+}
+@Composable
+fun PortraitLobbyContent(lobby: Lobby, navToGame: () -> Unit,padding: PaddingValues) {
     OneFullColumn( padding,Arrangement.Top) {
         Spacer(modifier = Modifier.height(16.dp))
         DefaultCard(
@@ -44,7 +67,7 @@ fun LobbyContent(lobby: Lobby, navToGame: () -> Unit,padding: PaddingValues) {
             Row(
                 Modifier.fillMaxWidth(),
                 Arrangement.Center
-                ){
+            ){
                 ButtonText(RememberString(R.string.start_game), MyIcon.Start, onClick = navToGame, enabled = lobby.lobbyPlayers.size == lobby.expectedPlayers.value)
             }
         }

@@ -35,7 +35,7 @@ fun ButtonText(
 ){
     Button(
         onClick = onClick,
-        modifier = modifier.width(Button_Width.dp),
+        modifier = if(modifier==Modifier) modifier.width(Button_Width.dp) else modifier,
         enabled = enabled,
         colors = color
     ) {

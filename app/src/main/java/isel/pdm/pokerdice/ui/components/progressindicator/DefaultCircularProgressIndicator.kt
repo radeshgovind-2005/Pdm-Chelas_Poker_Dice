@@ -7,9 +7,11 @@ import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
@@ -24,11 +26,11 @@ import isel.pdm.pokerdice.ui.components.text.HeadingText
 import isel.pdm.pokerdice.ui.remember.RememberString
 
 @Composable
-fun DefaultCircularProgressIndicator(){
+fun DefaultCircularProgressIndicator(padding: PaddingValues = PaddingValues(0.dp)){
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize().padding(padding)
     ) {
         val infiniteTransition = rememberInfiniteTransition(label = "rotation")
         val rotation by infiniteTransition.animateFloat(
@@ -39,17 +41,17 @@ fun DefaultCircularProgressIndicator(){
             ),
             label = "rotation"
         )
-
+        val size = 50.dp
         CircularProgressIndicator(
             modifier = Modifier
-                .size(64.dp)
+                .size(size)
                 .rotate(rotation),
             color = MaterialTheme.colorScheme.secondary,
             trackColor = MaterialTheme.colorScheme.surfaceVariant,
             strokeWidth = 6.dp
         )
 
-        Spacer(Modifier.height(64.dp))
+        Spacer(Modifier.height(size))
         HeadingText(RememberString(R.string.loading_progresssindicator))
     }
 }

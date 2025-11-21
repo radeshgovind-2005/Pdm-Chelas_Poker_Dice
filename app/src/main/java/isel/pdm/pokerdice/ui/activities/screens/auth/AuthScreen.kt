@@ -10,6 +10,7 @@ import androidx.compose.ui.unit.dp
 import isel.pdm.pokerdice.R
 import isel.pdm.pokerdice.ui.components.card.DefaultCard
 import isel.pdm.pokerdice.ui.components.images.PokerDiceLogo
+import isel.pdm.pokerdice.ui.components.layout.AdaptiveLayoutContent
 import isel.pdm.pokerdice.ui.components.layout.DefaultLayout
 import isel.pdm.pokerdice.ui.components.layout.OneFullColumn
 import isel.pdm.pokerdice.ui.components.text.HeadingText
@@ -23,25 +24,12 @@ fun AuthScreen(
     authViewModel: AuthViewModel
 ) {
     CommonLayout(){ pv ->
-        OneFullColumn(pv){
-            DefaultCard (hca = Alignment.CenterHorizontally){
-                Space(); HeadingText(RememberString(R.string.game_name))
-                Space(); PokerDiceLogo()
-                Space(); LoginForm(
-                {credentials ->
-                    authViewModel.login(credentials.username,credentials.password)
-                    if(authViewModel.state is AuthViewModel.State.LoggedIn)
-                        navToTitle()
-                }
-            ); Spacer(Modifier.height(16.dp))
-            }
-        }
-
+        AdaptiveLayoutContent(
+            landscape = {LandscapeAuthScreen(pv,navToTitle,authViewModel)},
+            portrait = {PortraitAuthScreen(pv,navToTitle,authViewModel)}
+        )
     }
 }
-@Composable
-private fun Space(){Spacer(Modifier.height(32.dp))}
-
 @Composable
 private fun CommonLayout(content: @Composable (PaddingValues) -> Unit){
     DefaultLayout(

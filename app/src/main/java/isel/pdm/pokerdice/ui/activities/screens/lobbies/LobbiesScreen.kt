@@ -31,8 +31,8 @@ fun LobbiesScreen(
         DefaultSearchbar(padding,{viewModel.searchLobbies(it)})
         when(val state = viewModel.state){
             LobbyViewModel.State.Idle -> {load()}
-            LobbyViewModel.State.LoadingLobbies -> { DefaultCircularProgressIndicator()}
-            LobbyViewModel.State.SearchingLobbies -> { DefaultCircularProgressIndicator()}
+            LobbyViewModel.State.LoadingLobbies -> { DefaultCircularProgressIndicator(padding)}
+            LobbyViewModel.State.SearchingLobbies -> { DefaultCircularProgressIndicator(padding)}
             is LobbyViewModel.State.LobbiesLoaded -> {
                 LobbiesContent(state.lobbies, { navToLobby(it) })
             }
