@@ -110,11 +110,15 @@ class LobbyViewModel(
     fun getCurrentLobby(user: User): Lobby? {
         var lobby: Lobby? = null
         launch(onError = { State.Error(it) }) {
+            updateState(State.LoadingLobby)
             services
                 .getUserLobby(user)
                 .collect { currLobby ->
                     lobby = currLobby
                 }
+            lobby
+                ?.let{updateState(State.LobbyLoaded(it))}
+                ?: updateState(State.Error(Exception("Lobby is Null")))
         }
         return lobby
     }

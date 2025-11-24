@@ -60,7 +60,7 @@ object FakeDataGenerator {
             ).getOrThrow()
             if(name == "Gamblers") {
                 opa.forEach{
-                    l.lobbyPlayers.add(it)
+                    l.lobbyUsers.add(it)
                 }
             }
             l

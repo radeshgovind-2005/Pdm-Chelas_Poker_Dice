@@ -1,34 +1,44 @@
 package isel.pdm.pokerdice.domain
 
-
-class PokerDice {
-    private val nOfDices = 5
-    var hand = Array(nOfDices) { Face.NINE }
-        private set
+const val NUMBER_OF_DICES = 5
 
 
-    sealed class Hand(faces: Array<Face>){
-        class FiveOfAKind(faces: Array<Face>) : Hand(faces)
-        class FourOfAKind(faces: Array<Face>) : Hand(faces)
-        class FullHouse(faces: Array<Face>) : Hand(faces)
-        class Straight(faces: Array<Face>) : Hand(faces)
-        class ThreeOfAKind(faces: Array<Face>) : Hand(faces)
-        class TwoPairs(faces: Array<Face>) : Hand(faces)
-        class OnePair(faces: Array<Face>) : Hand(faces)
-        class HighCard(faces: Array<Face>) : Hand(faces)
+data class PokerHand(
+    val dices: List<Dice> =
+        List(NUMBER_OF_DICES) {Dice(Face.NINE)}
+){
+    fun roll(): PokerHand {
+        val newDiceList = dices.map { dice -> dice.reroll() }
+        return PokerHand(newDiceList)
     }
 
-    sealed class Face(val symb: Char, val value: Int){
+    fun toggleSelection(index: Int): PokerHand {
+        if (index !in dices.indices) return this
 
-        companion object {
-            val entries = listOf(NINE, TEN, JACK, QUEEN, KING, ACE)
-        }
+        val newDiceList = dices.toMutableList()
+        newDiceList[index] = newDiceList[index].toggleSelection()
 
-        data object NINE : Face('9', 1)
-        data object TEN : Face('T', 2)
-        data object JACK : Face('J', 3)
-        data object QUEEN : Face('Q', 4)
-        data object KING : Face('K', 5)
-        data object ACE : Face('A', 6)
+        return PokerHand(newDiceList)
+    }
+}
+
+data class Dice(
+    val face: Face,
+    val isSelected: Boolean = false
+){
+    fun toggleSelection(): Dice = copy(isSelected=!isSelected)
+    fun reroll():Dice=if(isSelected)this else copy(Face.random())
+}
+
+enum class Face(val symb: Char, val value: Int) {
+    NINE('9', 1),
+    TEN('T', 2),
+    JACK('J', 3),
+    QUEEN('Q', 4),
+    KING('K', 5),
+    ACE('A', 6);
+
+    companion object {
+        fun random() = entries.random()
     }
 }

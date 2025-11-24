@@ -22,6 +22,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -35,8 +36,11 @@ import androidx.compose.ui.graphics.vector.DefaultTintColor
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import isel.pdm.pokerdice.GameLog
 import isel.pdm.pokerdice.R
+import isel.pdm.pokerdice.domain.PokerHand
 import isel.pdm.pokerdice.domain.Lobby
+import isel.pdm.pokerdice.domain.MATCH_MAX_TRIES
 import isel.pdm.pokerdice.domain.User
 import isel.pdm.pokerdice.ui.activities.screens.game.GameMainLayout
 import isel.pdm.pokerdice.ui.activities.screens.game.effects.OpenCurtain
@@ -44,20 +48,45 @@ import isel.pdm.pokerdice.ui.activities.screens.game.elements.InfoBox
 import isel.pdm.pokerdice.ui.activities.screens.game.elements.players.PokerPlayers
 import isel.pdm.pokerdice.ui.components.buttons.ButtonText
 import isel.pdm.pokerdice.ui.components.layout.OneFullColumn
+import isel.pdm.pokerdice.ui.components.text.PlainText
 import isel.pdm.pokerdice.ui.theme.MediumDarkRed
 import isel.pdm.pokerdice.ui.theme.PureBlack
+import isel.pdm.pokerdice.ui.viewmodels.MatchViewModel
+import kotlinx.coroutines.delay
 
 private val SHADOW_COLOR = Color(0x40000000)
 
 @Composable
-fun PokerGame(lobby: Lobby, user: User) {
+fun PokerGame(mvm: MatchViewModel, lobby: Lobby, user: User) {
+    val s = mvm.state as? MatchViewModel.State.MatchRunning ?: return
+
+    var match by remember{ mutableStateOf(s.match)}
     var infoBoxOpen by remember { mutableStateOf(false) }
+
+    var currentHand by remember { mutableStateOf(PokerHand()) }
+
+    var elapsedTime by remember { mutableStateOf(0L) }
+    var isRollingUI by remember { mutableStateOf(false) }
+    LaunchedEffect(match.tries) {
+        if(s.isRolling){
+            elapsedTime = 0L
+            val startTime = System.currentTimeMillis()
+            GameLog.logDebug("NewHand Rolling, tries: ${match.tries}")
+            while (elapsedTime < 3000L) {
+                currentHand = currentHand.roll()
+                delay(10L)
+                elapsedTime = System.currentTimeMillis() - startTime
+            }
+            s.isRolling = false
+            isRollingUI = false
+        }
+    }
     GameMainLayout(
         upperRow = {
             Row(
                 modifier= Modifier
                     .fillMaxWidth()
-                    .padding(horizontal=10.dp, vertical=25.dp)
+                    .padding(horizontal = 10.dp, vertical = 25.dp)
             ){
                 Box{
                     Surface(
@@ -84,30 +113,33 @@ fun PokerGame(lobby: Lobby, user: User) {
             Row (
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height((LocalConfiguration.current.screenHeightDp*0.2).dp),
+                    .height((LocalConfiguration.current.screenHeightDp * 0.2).dp),
                 horizontalArrangement = Arrangement.Center,
             ){
                 ButtonText(
                     text=stringResource(R.string.roll_all_btn),
                     modifier = Modifier.size(300.dp,50.dp),
-                    onClick = {},
+                    onClick = {
+                        val newMatchState = match.copy(tries = match.tries + 1)
+
+                        // Atualiza o ViewModel
+                        s.match = newMatchState
+                        s.isRolling = true
+
+                        // Atualiza o Estado Local (isto dispara o LaunchedEffect acima)
+                        match = newMatchState
+                    },
                     color = ButtonDefaults.buttonColors(
                         containerColor = MediumDarkRed,
                         contentColor = MaterialTheme.colorScheme.secondary
                     ),
-                    enabled = lobby.turn==user
+                    enabled = match.turn?.user==user && match.tries < MATCH_MAX_TRIES && !isRollingUI
                 )
             }
         },
         tableContent = {
-            var dices by remember { mutableStateOf(List(5) { "9" }) }
+
             var isSelected by remember { mutableStateOf(false) }
-            /**
-             * GVM:
-             *  -turn is gold
-             *  -dices values? if null is rolling
-             *  -
-             * */
             OneFullColumn {
                 Row(
                     modifier = Modifier
@@ -116,14 +148,13 @@ fun PokerGame(lobby: Lobby, user: User) {
                     horizontalArrangement = Arrangement.SpaceEvenly,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    dices.forEach {
-
+                    currentHand.dices.forEachIndexed { idx,dice->
                         val diceSize = if (isSelected) 48.dp else 40.dp
                         val borderWidth = if (isSelected) 3.dp else 0.dp
                         val borderColor = if (isSelected) Color.Black else Color.Transparent
-                        val diceColor = if (lobby.turn==user) Color.White else Color.LightGray
+                        val diceColor = if (match.turn?.user==user) Color.White else Color.LightGray
                         val faceColor =
-                            if (lobby.turn==user) listOf(Color.Black, Color.Red).random() else Color.DarkGray
+                            if (match.turn?.user==user) listOf(Color.Black, Color.Red).random() else Color.DarkGray
                         Box(
                             modifier = Modifier
                                 .size(diceSize)
@@ -151,15 +182,20 @@ fun PokerGame(lobby: Lobby, user: User) {
                                 },
                             contentAlignment = Alignment.Center
                         ) {
-                            Text(it ?: "?", color = faceColor)
+                            Text(dice.face.symb.toString(), color = faceColor)
                         }
                     }
+                }
+                Row(Modifier
+                    .fillMaxWidth()
+                    .padding(25.dp), horizontalArrangement = Arrangement.Center){
+                    PlainText("ReRolls: X${match.tries}")
                 }
             }
         },
         screenContent = {
-            PokerPlayers(lobby.lobbyPlayers,lobby.turn)
-            if(infoBoxOpen) InfoBox()
+            PokerPlayers(match.players,match.turn)
+            if(infoBoxOpen) InfoBox(lobby,match)
         }
     )
     OpenCurtain()

@@ -12,19 +12,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
-import isel.pdm.pokerdice.domain.User
-import isel.pdm.pokerdice.domain.Users
+import isel.pdm.pokerdice.domain.Players
+import isel.pdm.pokerdice.domain.Player
 import isel.pdm.pokerdice.ui.components.icons.MyIcon
 import isel.pdm.pokerdice.ui.components.icons.SimpleIcon
 import isel.pdm.pokerdice.ui.theme.DarkWhite
 
 @Composable
-fun PokerPlayers(players: Users,turn: User?) {
+fun PokerPlayers(players: Players, turn: Player?) {
     if(players.size !in (MIN_PLAYERS..MAX_PLAYERS)) return
     val screenHeight = LocalConfiguration.current.screenHeightDp
     val screenWidth = LocalConfiguration.current.screenWidthDp
     players.forEachIndexed { idx,p ->
-        val name = p.userCredentials.username
+        val name = p.user.userCredentials.username
         val position = playersPosition[idx]
         val playerModifier = Modifier.offset(
             x=position.xOffset(screenWidth),

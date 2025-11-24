@@ -6,6 +6,8 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import isel.pdm.pokerdice.HostApplication
+import isel.pdm.pokerdice.LobbiesLog
+import isel.pdm.pokerdice.getCurrentMethodName
 import isel.pdm.pokerdice.ui.activities.screens.lobbies.LobbiesScreen
 import isel.pdm.pokerdice.ui.navigation.NavActivity
 import isel.pdm.pokerdice.ui.navigation.Navigation
@@ -20,6 +22,7 @@ class LobbiesActivity : NavActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        LobbiesLog.logLifeCycle(getCurrentMethodName())
         enableEdgeToEdge()
         lobbyViewModel.loadLobbies()
         setContent {
@@ -36,20 +39,23 @@ class LobbiesActivity : NavActivity() {
 
     override fun onPause() {
         super.onPause()
+        LobbiesLog.logLifeCycle(getCurrentMethodName())
     }
 
     override fun onResume() {
         super.onResume()
-        //lobbyViewModel.refreshLobbies()
+        LobbiesLog.logLifeCycle(getCurrentMethodName())
+        //refresh lobbies
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        // Clean up if needed
+        LobbiesLog.logLifeCycle(getCurrentMethodName())
     }
 
-    private fun navigate(nav: Navigation.OnLobbies, lobbyId: UUID? = null) =
-        when(nav){
+    private fun navigate(nav: Navigation.OnLobbies, lobbyId: UUID? = null) {
+        LobbiesLog.logNavigation(nav)
+        when (nav) {
             Navigation.OnLobbies.GoBack -> finish()
             Navigation.OnLobbies.ToLobby -> {
                 val intent = Intent(this, LobbyActivity::class.java).apply {
@@ -57,6 +63,11 @@ class LobbiesActivity : NavActivity() {
                 }
                 startActivity(intent)
             }
-            Navigation.OnLobbies.ToCreateLobby -> toScreen(CreateLobbyActivity::class.java,Anim.Forward)
+
+            Navigation.OnLobbies.ToCreateLobby -> toScreen(
+                CreateLobbyActivity::class.java,
+                Anim.Forward
+            )
         }
+    }
 }

@@ -1,7 +1,11 @@
 package isel.pdm.pokerdice.domain.values
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 @JvmInline
-value class Name private constructor(val value: String) {
+value class Name private constructor(val value: String): Parcelable {
     companion object {
         fun create(value: String): Result<Name> =
             value

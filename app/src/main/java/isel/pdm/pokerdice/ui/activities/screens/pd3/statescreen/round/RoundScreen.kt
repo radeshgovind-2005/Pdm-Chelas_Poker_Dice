@@ -94,7 +94,7 @@ fun RoundScreen(lobby: Lobby) {
             )
         },
         screenContent = {
-            LobbyPlayersPosition(lobby.lobbyPlayers)
+            LobbyPlayersPosition(lobby.lobbyUsers)
         }
     )
     OpenCurtain()

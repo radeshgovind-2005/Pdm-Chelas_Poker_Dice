@@ -5,7 +5,10 @@ import android.util.Log
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import isel.pdm.pokerdice.AuthLog
 import isel.pdm.pokerdice.HostApplication
+import isel.pdm.pokerdice.TitleLog
+import isel.pdm.pokerdice.getCurrentMethodName
 import isel.pdm.pokerdice.ui.activities.screens.title.TitleScreen
 import isel.pdm.pokerdice.ui.navigation.NavActivity
 import isel.pdm.pokerdice.ui.navigation.Navigation
@@ -17,6 +20,7 @@ class TitleActivity : NavActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        TitleLog.logLifeCycle(getCurrentMethodName())
         enableEdgeToEdge()
         setContent {
             PokerDiceTheme {
@@ -31,12 +35,29 @@ class TitleActivity : NavActivity() {
 
     override fun onPause() {
         super.onPause()
+        TitleLog.logLifeCycle(getCurrentMethodName())
+    }
+    override fun onDestroy() {
+        super.onDestroy()
+        TitleLog.logLifeCycle(getCurrentMethodName())
+    }
+    override fun onResume() {
+        super.onResume()
+        TitleLog.logLifeCycle(getCurrentMethodName())
     }
 
-    private fun navigate(nav: Navigation.OnTitleScreen) =
-        when(nav){
-            Navigation.OnTitleScreen.ToLobbies -> toScreen(LobbiesActivity::class.java,Anim.Forward)
-            Navigation.OnTitleScreen.ToAbout -> toScreen(AboutActivity::class.java,Anim.Forward)
-            Navigation.OnTitleScreen.ToPlayerProfile ->toScreen(PlayerProfileActivity::class.java,Anim.Forward)
+    private fun navigate(nav: Navigation.OnTitleScreen) {
+        TitleLog.logNavigation(nav)
+        when (nav) {
+            Navigation.OnTitleScreen.ToLobbies -> toScreen(
+                LobbiesActivity::class.java,
+                Anim.Forward
+            )
+            Navigation.OnTitleScreen.ToAbout -> toScreen(AboutActivity::class.java, Anim.Forward)
+            Navigation.OnTitleScreen.ToPlayerProfile -> toScreen(
+                PlayerProfileActivity::class.java,
+                Anim.Forward
+            )
         }
+    }
 }

@@ -11,13 +11,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import isel.pdm.pokerdice.domain.Lobby
+import isel.pdm.pokerdice.domain.Match
 import isel.pdm.pokerdice.ui.components.card.DefaultCard
 import isel.pdm.pokerdice.ui.components.text.HeadingLevel
 import isel.pdm.pokerdice.ui.components.text.HeadingText
+import isel.pdm.pokerdice.ui.components.text.PlainText
 import isel.pdm.pokerdice.ui.theme.DarkWhite
 
 @Composable
-fun InfoBox() {
+fun InfoBox(lobby: Lobby,match: Match) {
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
@@ -31,21 +34,18 @@ fun InfoBox() {
                 modifier = Modifier.fillMaxWidth().padding(vertical = 10.dp),
                 horizontalArrangement = Arrangement.Center
             ){
-                HeadingText("GAME TITLE", color = DarkWhite)
+                HeadingText("${lobby.name}", color = DarkWhite)
             }
             Column(
                 modifier = Modifier.fillMaxWidth().padding(10.dp),
                 horizontalAlignment = Alignment.Start,
                 verticalArrangement = Arrangement.Center
             ){
-                HeadingText("Round: x/10", HeadingLevel.H3,color = DarkWhite)
-                HeadingText("Highest Hand: J J J J J (Full House)", HeadingLevel.H3,color = DarkWhite)
-                HeadingText("Ante: 100$", HeadingLevel.H3,color = DarkWhite)
-                HeadingText("Plays:", HeadingLevel.H3,color = DarkWhite)
-                HeadingText("\t- João: JJAQKA (Flush)", HeadingLevel.H3,color = DarkWhite)
-                HeadingText("\t- Maria: -", HeadingLevel.H3,color = DarkWhite)
-                HeadingText("\t- Radesh: -", HeadingLevel.H3,color = DarkWhite)
-
+                PlainText("Round: ${match.round}/${lobby.nOfRounds}")
+                PlainText("Ante: ${lobby.ante}$")
+                PlainText("Match Players: ${match.players.map { it.user.userCredentials.username }}")
+                PlainText("Prize: ${match.prize}")
+                PlainText("Turn: ${match.turn?.user?.userCredentials?.username}")
             }
         }
     }

@@ -20,14 +20,14 @@ import isel.pdm.pokerdice.ui.activities.screens.pd3.GameLayout
 import isel.pdm.pokerdice.ui.activities.screens.game.effects.CloseCurtain
 import isel.pdm.pokerdice.ui.components.buttons.ButtonText
 import isel.pdm.pokerdice.ui.theme.MediumDarkRed
-import isel.pdm.pokerdice.ui.viewmodels.GameViewModel
+import isel.pdm.pokerdice.ui.viewmodels.MatchViewModel
 
 @Composable
-fun MatchStartScreen(gvm: GameViewModel, lobby: Lobby) {
+fun MatchStartScreen(gvm: MatchViewModel, lobby: Lobby) {
     var isCurtainClosed by remember { mutableStateOf(false) }
     GameLayout(
         {BottomRow({ isCurtainClosed = true })}
-    ){ PlayersEntrance(lobby.lobbyPlayers)}
+    ){ PlayersEntrance(lobby.lobbyUsers)}
     CloseCurtain(isCurtainClosed, {})
 }
 

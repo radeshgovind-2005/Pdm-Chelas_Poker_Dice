@@ -5,7 +5,9 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import isel.pdm.pokerdice.CreateLobbyLog
 import isel.pdm.pokerdice.HostApplication
+import isel.pdm.pokerdice.getCurrentMethodName
 import isel.pdm.pokerdice.ui.activities.screens.createlobby.CreateLobbyScreen
 import isel.pdm.pokerdice.ui.navigation.NavActivity
 import isel.pdm.pokerdice.ui.navigation.Navigation
@@ -25,6 +27,7 @@ class CreateLobbyActivity: NavActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        CreateLobbyLog.logLifeCycle(getCurrentMethodName())
         enableEdgeToEdge()
         authViewModel.getCurrentUser()
         setContent {
@@ -41,20 +44,22 @@ class CreateLobbyActivity: NavActivity() {
 
     override fun onPause() {
         super.onPause()
+        CreateLobbyLog.logLifeCycle(getCurrentMethodName())
     }
 
     override fun onResume() {
         super.onResume()
-        //lobbyViewModel.refreshLobbies()
+        CreateLobbyLog.logLifeCycle(getCurrentMethodName())
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        // Clean up if needed
+        CreateLobbyLog.logLifeCycle(getCurrentMethodName())
     }
 
-    private fun navigate(nav: Navigation.OnCreateLobby, lobbyId: UUID? = null) =
-        when(nav){
+    private fun navigate(nav: Navigation.OnCreateLobby, lobbyId: UUID? = null) {
+        CreateLobbyLog.logNavigation(nav)
+        when (nav) {
             Navigation.OnCreateLobby.GoBack -> finish()
             Navigation.OnCreateLobby.ToLobby -> {
                 val intent = Intent(this, LobbyActivity::class.java).apply {
@@ -64,4 +69,5 @@ class CreateLobbyActivity: NavActivity() {
                 finish()
             }
         }
+    }
 }

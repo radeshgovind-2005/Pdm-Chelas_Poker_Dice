@@ -1,11 +1,14 @@
 package isel.pdm.pokerdice.domain
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 import java.util.UUID
 
+@Parcelize
 data class Player(
-    val id: UUID,
+    val id: UUID = UUID.randomUUID(),
     val user: User,
-    val lobbyId: UUID,
-)
+    val hand: Hand? = null
+): Parcelable
 
-typealias Players = MutableList<Player>
+typealias Players = List<Player>

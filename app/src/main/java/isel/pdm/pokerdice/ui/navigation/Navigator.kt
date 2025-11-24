@@ -17,8 +17,13 @@ abstract class NavActivity: ComponentActivity(){
         startActivity(intent, animation)
     }
 
-    fun toClearScreen(destination: Class<*>, anim: Anim){
+    fun toClearScreen(
+        destination: Class<*>,
+        anim: Anim,
+        intentConfig: (Intent) -> Unit = {}
+    ){
         val intent = Intent(this, destination)
+        intentConfig(intent)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or
                 Intent.FLAG_ACTIVITY_NEW_TASK
         val animation = animation(anim)

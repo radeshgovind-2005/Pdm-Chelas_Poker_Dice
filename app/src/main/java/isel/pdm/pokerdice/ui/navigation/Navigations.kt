@@ -1,5 +1,7 @@
 package isel.pdm.pokerdice.ui.navigation
 
+import isel.pdm.pokerdice.domain.Match
+
 /**
  * Sealed class with the navigations between Activities
  * */
@@ -29,7 +31,7 @@ sealed class Navigation {
     // Navigations on Lobby Screen
     sealed class OnLobby: Navigation(){
         data object GoBack: OnLobby()
-        data object ToGame: OnLobby()
+        data class ToGame(val match: Match): OnLobby()
     }
 
     // Navigations on Create Lobby Screen
@@ -48,4 +50,10 @@ sealed class Navigation {
     sealed class OnAuth: Navigation(){
         data object ToTitle: OnAuth()
     }
+
+    // Navigations on Athentication Screen
+    sealed class OnGame: Navigation(){
+ }
+
+
 }

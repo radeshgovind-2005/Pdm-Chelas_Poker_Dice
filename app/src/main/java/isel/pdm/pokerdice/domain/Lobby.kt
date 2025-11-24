@@ -1,6 +1,5 @@
 package isel.pdm.pokerdice.domain
 
-import isel.pdm.pokerdice.domain.Player
 import isel.pdm.pokerdice.domain.values.Description
 import isel.pdm.pokerdice.domain.values.ExpectedPlayers
 import isel.pdm.pokerdice.domain.values.Name
@@ -16,8 +15,9 @@ data class Lobby(
     val description: Description,
     val expectedPlayers: ExpectedPlayers,
     val nOfRounds: NumberOfRounds,
+    val ante: Int = 10,
     val hostName: Name,
-    val lobbyPlayers: Users,
+    val lobbyUsers: Users,
     val turn: User?
 ) {
     companion object {
@@ -42,7 +42,7 @@ data class Lobby(
                     expectedPlayers = expectedPlayersValue,
                     nOfRounds = nOfRoundsResult.getOrThrow(),
                     hostName = host.authInfo.userName,
-                    lobbyPlayers = mutableListOf(host),
+                    lobbyUsers = mutableListOf(host),
                     turn= host
                 )
             }

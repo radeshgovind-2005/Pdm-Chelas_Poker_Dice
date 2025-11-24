@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -17,7 +16,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import isel.pdm.pokerdice.R
 import isel.pdm.pokerdice.domain.Lobby
-import isel.pdm.pokerdice.domain.Players
 import isel.pdm.pokerdice.domain.Users
 import isel.pdm.pokerdice.ui.components.buttons.ButtonText
 import isel.pdm.pokerdice.ui.components.card.DefaultCard
@@ -42,12 +40,12 @@ fun LandscapeLobbyContent(lobby: Lobby, navToGame: () -> Unit,padding: PaddingVa
         ) {
             OneFullRow(
                 { LobbyHeader(lobby) },
-                { PlayersSection(lobby.lobbyPlayers) })
+                { PlayersSection(lobby.lobbyUsers) })
             Row(
                 Modifier.fillMaxWidth(),
                 Arrangement.Center
             ){
-                ButtonText(RememberString(R.string.start_game), MyIcon.Start, onClick = navToGame, enabled = lobby.lobbyPlayers.size == lobby.expectedPlayers.value)
+                ButtonText(RememberString(R.string.start_game), MyIcon.Start, onClick = {navToGame()}, enabled = lobby.lobbyUsers.size == lobby.expectedPlayers.value)
             }
         }
     }
@@ -62,13 +60,13 @@ fun PortraitLobbyContent(lobby: Lobby, navToGame: () -> Unit,padding: PaddingVal
                 .padding(horizontal = 16.dp)
         ) {
             LobbyHeader(lobby)
-            PlayersSection(lobby.lobbyPlayers)
+            PlayersSection(lobby.lobbyUsers)
             Spacer(modifier = Modifier.height(8.dp))
             Row(
                 Modifier.fillMaxWidth(),
                 Arrangement.Center
             ){
-                ButtonText(RememberString(R.string.start_game), MyIcon.Start, onClick = navToGame, enabled = lobby.lobbyPlayers.size == lobby.expectedPlayers.value)
+                ButtonText(RememberString(R.string.start_game), MyIcon.Start, onClick = navToGame, enabled = lobby.lobbyUsers.size == lobby.expectedPlayers.value)
             }
         }
     }
@@ -105,7 +103,7 @@ fun PlayersSection(players: Users){
 fun LobbyHeader(lobby: Lobby){
     val lobbyName: String = lobby?.name?.value ?: "Null"
     val hostName: String = lobby?.hostName?.value ?: "Null"
-    val playerCount: String = lobby?.lobbyPlayers?.size.toString()
+    val playerCount: String = lobby?.lobbyUsers?.size.toString()
     val maxPlayers: String = lobby?.expectedPlayers.toString()
     val rounds: String =lobby?.nOfRounds.toString()
 

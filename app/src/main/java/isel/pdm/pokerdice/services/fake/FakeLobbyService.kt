@@ -43,7 +43,7 @@ class FakeLobbyService(): LobbyServices{
             lobbies
                 .value
                 .find{ it.id == lobby.id }
-                ?.lobbyPlayers
+                ?.lobbyUsers
                 ?.removeIf{ it.userCredentials.username == user.userCredentials.username }
                 .apply { emit(Unit) }
         }
@@ -51,7 +51,7 @@ class FakeLobbyService(): LobbyServices{
     override fun getUserLobby(user: User): Flow<Lobby?> =
         snapshotFlow { lobbies.value }
             .map { list ->
-                list.find { it.lobbyPlayers.contains(user) }
+                list.find { it.lobbyUsers.contains(user) }
             }
 
     @RequiresApi(Build.VERSION_CODES.VANILLA_ICE_CREAM)
@@ -62,10 +62,10 @@ class FakeLobbyService(): LobbyServices{
                 .value
                 .find { lobby -> lobby.id.toString() == id }
                 .apply{
-                    if (this?.lobbyPlayers?.none{
+                    if (this?.lobbyUsers?.none{
                         it.userCredentials.username == user.userCredentials.username
                     } ?: false)
-                        this?.lobbyPlayers?.addFirst(user)
+                        this?.lobbyUsers?.addFirst(user)
                     emit(this)
                 }
         }
@@ -73,5 +73,5 @@ class FakeLobbyService(): LobbyServices{
     override fun insertLobby(lobby: Lobby): Flow<Lobby?> =
         flow { lobbies.value += lobby; emit(lobby) }
 
-    private fun isLobbyWaiting(lobby: Lobby): Boolean = lobby.lobbyPlayers.size < lobby.expectedPlayers.value
+    private fun isLobbyWaiting(lobby: Lobby): Boolean = lobby.lobbyUsers.size < lobby.expectedPlayers.value
 }

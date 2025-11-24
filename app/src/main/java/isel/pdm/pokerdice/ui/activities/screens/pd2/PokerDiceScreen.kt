@@ -34,25 +34,25 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import isel.pdm.pokerdice.ui.activities.screens.game.effects.CloseCurtain
+import isel.pdm.pokerdice.ui.activities.screens.game.effects.OpenCurtain
 import isel.pdm.pokerdice.ui.activities.screens.pd2.composition.GameUpperBar
 import isel.pdm.pokerdice.ui.activities.screens.pd2.composition.RoundBottomRow
 import isel.pdm.pokerdice.ui.activities.screens.pd2.dices.RowDices
 import isel.pdm.pokerdice.ui.activities.screens.pd2.states.AnimatedPlayersRow
-import isel.pdm.pokerdice.ui.activities.screens.game.effects.CloseCurtain
-import isel.pdm.pokerdice.ui.activities.screens.game.effects.OpenCurtain
 import isel.pdm.pokerdice.ui.activities.screens.pd2.states.RoundInitBottomRow
 import isel.pdm.pokerdice.ui.activities.screens.pd2.table.PokerDiceTable
-import isel.pdm.pokerdice.ui.viewmodels.GameViewModel
+import isel.pdm.pokerdice.ui.viewmodels.MatchViewModel
 import kotlinx.coroutines.delay
 
 
 @Composable
-fun PokerDiceScreen(gvm: GameViewModel) {
+fun PokerDiceScreen(gvm: MatchViewModel) {
 
     when(val state = gvm.state){
-        is GameViewModel.State.Error -> TODO()
-        GameViewModel.State.Idle -> TODO()
-        GameViewModel.State.MatchInit -> {
+        is MatchViewModel.State.Error -> TODO()
+        MatchViewModel.State.Idle -> TODO()
+        is MatchViewModel.State.MatchInit -> {
             var isCurtainClosed by remember { mutableStateOf(false) }
             CommonLayout(
                 bottomRow = {
@@ -61,7 +61,7 @@ fun PokerDiceScreen(gvm: GameViewModel) {
             ) { AnimatedPlayersRow() }
             CloseCurtain(isCurtainClosed, { gvm })
         }
-        is GameViewModel.State.PlayingInRound ->{
+        is MatchViewModel.State.MatchRunning -> {
             // Track dice faces and selection state
             var diceFaces by remember { mutableStateOf(List(5) { "9" }) }
             var selectedDice by remember { mutableStateOf<List<Boolean>>(List(5) { false }) }
@@ -135,6 +135,10 @@ fun PokerDiceScreen(gvm: GameViewModel) {
             )
             OpenCurtain()
         }
+
+        MatchViewModel.State.MatchLoading -> TODO()
+        is MatchViewModel.State.MatchCreated -> TODO()
+        MatchViewModel.State.MatchCreating -> TODO()
     }
 }
 
