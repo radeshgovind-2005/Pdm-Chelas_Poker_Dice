@@ -1,13 +1,24 @@
 package isel.pdm.pokerdice.ui.navigation
 
+import android.Manifest
 import android.app.ActivityOptions
 import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
+import androidx.activity.viewModels
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
+import isel.pdm.pokerdice.HostApplication
 import isel.pdm.pokerdice.R
+import isel.pdm.pokerdice.ui.viewmodels.AuthViewModel
+import isel.pdm.pokerdice.ui.viewmodels.LobbyViewModel
+import isel.pdm.pokerdice.ui.viewmodels.MatchViewModel
+import kotlin.getValue
 
 abstract class NavActivity: ComponentActivity(){
 

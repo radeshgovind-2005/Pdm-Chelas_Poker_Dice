@@ -4,6 +4,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
 import isel.pdm.pokerdice.R
@@ -29,14 +31,18 @@ fun LobbiesScreen(
     fun load() { viewModel.loadLobbies() }
     CommonLayout(navBack,navToCreateLobby){ padding ->
         DefaultSearchbar(padding,{viewModel.searchLobbies(it)})
-        when(val state = viewModel.state){
+        val state by viewModel.state.collectAsState()
+        when(state){
             LobbyViewModel.State.Idle -> {load()}
             LobbyViewModel.State.LoadingLobbies -> { DefaultCircularProgressIndicator(padding)}
             LobbyViewModel.State.SearchingLobbies -> { DefaultCircularProgressIndicator(padding)}
             is LobbyViewModel.State.LobbiesLoaded -> {
-                LobbiesContent(state.lobbies, { navToLobby(it) })
+                val castState = state as LobbyViewModel.State.LobbiesLoaded
+                LobbiesContent(castState.lobbies, { navToLobby(it) })
             }
-            is LobbyViewModel.State.Error -> {DefaultErrorContent(state.e.toString(),padding = padding){load()} }
+            is LobbyViewModel.State.Error -> {
+                DefaultErrorContent(state.toString(),padding = padding){load()}
+            }
             else -> {DefaultErrorContent(RememberString(R.string.invalid_state), padding = padding) }
         }
     }

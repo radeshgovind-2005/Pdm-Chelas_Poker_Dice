@@ -23,18 +23,7 @@ import isel.pdm.pokerdice.ui.viewmodels.MatchViewModel
 import isel.pdm.pokerdice.ui.viewmodels.LobbyViewModel
 import java.lang.Thread.sleep
 
-class GameActivity: NavActivity() {
-    private val lobbyViewModel: LobbyViewModel by viewModels {
-        LobbyViewModel.getFactory((application as HostApplication).lobbyService)
-    }
-    private val gameViewModel: MatchViewModel by viewModels {
-        MatchViewModel.getFactory((application as HostApplication).gameService)
-    }
-
-    private val authViewModel: AuthViewModel by viewModels {
-        AuthViewModel.getFactory((application as HostApplication).authUseCase)
-    }
-
+class GameActivity: MyActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

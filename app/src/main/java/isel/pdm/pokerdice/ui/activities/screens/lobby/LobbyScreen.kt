@@ -4,6 +4,8 @@ import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import isel.pdm.pokerdice.GameLog
 import isel.pdm.pokerdice.LobbyLog
@@ -31,9 +33,12 @@ fun LobbyScreen(
     gvm: MatchViewModel
 ) {
     val methodName =  getCurrentMethodName()
+    val avmState by avm.state.collectAsState()
+    val lvmState by lvm.state.collectAsState()
+    val gvmState by gvm.state.collectAsState()
     CommonLayout(
         navBack={
-            (avm.state as? AuthViewModel.State.LoggedIn)
+            (avmState as? AuthViewModel.State.LoggedIn)
                 ?.user
                 ?.let{ user -> lvm.leaveLobby(user) }
                 ?: LobbyLog.logVm(avm, methodName,"User is null")
@@ -41,24 +46,24 @@ fun LobbyScreen(
         }
     ){ padding ->
         LobbyLog.logVm(lvm, methodName)
-        when(val state = lvm.state){
+        when(lvmState){
             LobbyViewModel.State.LeavingLobby -> { DefaultCircularProgressIndicator()}
             LobbyViewModel.State.Idle -> { DefaultCircularProgressIndicator()}
             LobbyViewModel.State.LoadingLobby -> { DefaultCircularProgressIndicator()}
             is LobbyViewModel.State.LobbyLoaded -> {
                 fun enterGame(){
-                    val lobby = (lvm.state as LobbyViewModel.State.LobbyLoaded).lobby
+                    val lobby = (lvmState as LobbyViewModel.State.LobbyLoaded).lobby
                     gvm.startMatch(lobby)
                         ?.let {navToGame(it)}
                         ?: GameLog.logDebug("Unnable to start match: match is null at $methodName method")
 
                 }
                 AdaptiveLayoutContent(
-                    landscape = {LandscapeLobbyContent(state.lobby, {enterGame()},padding = padding)},
-                    portrait = {PortraitLobbyContent(state.lobby, {enterGame()},padding = padding)}
+                    landscape = {LandscapeLobbyContent((lvmState as LobbyViewModel.State.LobbyLoaded).lobby, {enterGame()},padding = padding)},
+                    portrait = {PortraitLobbyContent((lvmState as LobbyViewModel.State.LobbyLoaded).lobby, {enterGame()},padding = padding)}
                 )
             }
-            is LobbyViewModel.State.Error -> {DefaultErrorContent(state.e.toString(),padding = padding)}
+            is LobbyViewModel.State.Error -> {DefaultErrorContent((lvmState as LobbyViewModel.State.Error).e.message.toString(),padding = padding)}
             else -> {DefaultErrorContent(RememberString(R.string.invalid_state),padding = padding) }
         }
     }

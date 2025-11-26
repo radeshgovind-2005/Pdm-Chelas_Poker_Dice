@@ -10,7 +10,7 @@ import isel.pdm.pokerdice.ui.navigation.NavActivity
 import isel.pdm.pokerdice.ui.navigation.Navigation
 import isel.pdm.pokerdice.ui.theme.PokerDiceTheme
 
-class AboutActivity : NavActivity() {
+class AboutActivity : MyActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AboutLog.logLifeCycle(getCurrentMethodName())

@@ -59,9 +59,15 @@ class MatchViewModel(
 
 
     fun matchBegins(){
-        if(state !is State.MatchInit) GameLog.logDebug("Match View Model not initialized!")
-        val s = state as State.MatchInit
+        if(state.value !is State.MatchInit) GameLog.logDebug("Match View Model not initialized!")
+        val s = state.value as State.MatchInit
         updateState(State.MatchRunning(s.match))
+    }
+
+    fun rollDices(){
+        launch(onError = {State.Error(it)}){
+            //services.rollDices()
+        }
     }
     sealed interface State {
         data object Idle : State
@@ -70,7 +76,7 @@ class MatchViewModel(
         data class MatchCreated(val match: Match): State
         data object MatchLoading: State
         data class MatchInit(val match: Match): State
-        data class MatchRunning(var match: Match, var isRolling: Boolean=false): State
+        data class MatchRunning(var match: Match): State
 
     }
 }

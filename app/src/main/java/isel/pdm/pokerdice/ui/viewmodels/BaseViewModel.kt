@@ -1,21 +1,24 @@
 package isel.pdm.pokerdice.ui.viewmodels
 
-import android.util.Log
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import isel.pdm.pokerdice.BaseVmLog
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 abstract class BaseViewModel<StateType> : ViewModel() {
-    var state: StateType by mutableStateOf(initialState)
-        protected set
 
+    //Private mutable viewmodel state
+    private val _state = MutableStateFlow(initialState)
+
+    //Public read-only viewmodel state
+    val state: StateFlow<StateType> = _state.asStateFlow()
+
+    //Initial default state
     protected abstract val initialState: StateType
-
-    private val tag = this::class.java.simpleName
     private var job: Job? = null
 
     protected fun launch(
@@ -27,16 +30,16 @@ abstract class BaseViewModel<StateType> : ViewModel() {
             try {
                 code()
             } catch (e: Exception) {
-                Log.e(tag, e.toString())
+                BaseVmLog.logException(e)
                 onError(e)?.let { newState ->
-                    state = newState
+                    _state.value = newState
                 }
             }
         }
     }
 
     protected fun updateState(newState: StateType) {
-        state = newState
+        _state.value = newState
     }
 
     override fun onCleared() {

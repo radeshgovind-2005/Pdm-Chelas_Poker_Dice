@@ -3,7 +3,9 @@ package isel.pdm.pokerdice.ui.activities
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.activity.viewModels
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import isel.pdm.pokerdice.HostApplication
 import isel.pdm.pokerdice.LobbyLog
 import isel.pdm.pokerdice.domain.AuthInfo
@@ -16,30 +18,17 @@ import isel.pdm.pokerdice.ui.navigation.NavActivity
 import isel.pdm.pokerdice.ui.navigation.Navigation
 import isel.pdm.pokerdice.ui.theme.PokerDiceTheme
 import isel.pdm.pokerdice.ui.viewmodels.AuthViewModel
-import isel.pdm.pokerdice.ui.viewmodels.MatchViewModel
-import isel.pdm.pokerdice.ui.viewmodels.LobbyViewModel
 
-class LobbyActivity: NavActivity() {
-
-    private val lobbyViewModel: LobbyViewModel by viewModels {
-        LobbyViewModel.getFactory((application as HostApplication).lobbyService)
-    }
-
-    private val authViewModel: AuthViewModel by viewModels {
-        AuthViewModel.getFactory((application as HostApplication).authUseCase)
-    }
-
-    private val gameViewModel: MatchViewModel by viewModels {
-        MatchViewModel.getFactory((application as HostApplication).gameService)
-    }
+class LobbyActivity: MyActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         LobbyLog.logLifeCycle(getCurrentMethodName())
         enableEdgeToEdge()
-        loadVms()
+        lobbyViewModel.startPolling()
         setContent {
             PokerDiceTheme {
+                LoadVms()
                 LobbyScreen(
                     navBack = { navigate(Navigation.OnLobby.GoBack) },
                     navToGame = { navigate(Navigation.OnLobby.ToGame(it)) },
@@ -49,11 +38,14 @@ class LobbyActivity: NavActivity() {
                 )
             }
         }
+        checkNotificationPermission()
     }
 
-    private fun loadVms() {
+    @Composable
+    private fun LoadVms() {
         authViewModel.getCurrentUser()
-        val user = (authViewModel.state as? AuthViewModel.State.LoggedIn)?.user
+        val avmState by authViewModel.state.collectAsState()
+        val user = (avmState as? AuthViewModel.State.LoggedIn)?.user
             ?: User(
                 UserCredentials("Guess Invalid", "Invalid"),
                 AuthInfo(Name.create("Invalid Guess").getOrThrow(), "fake-token")
@@ -71,6 +63,13 @@ class LobbyActivity: NavActivity() {
     override fun onResume() {
         super.onResume()
         LobbyLog.logLifeCycle(getCurrentMethodName())
+        // TEMPORARY TEST: Trigger notification 5 seconds after opening screen
+        // Remove this before final submission!
+        window.decorView.postDelayed({
+            (application as HostApplication)
+                .notificationSource
+                .showGameStartedNotification("Test Lobby")
+        }, 5000)
     }
 
     override fun onDestroy() {
@@ -83,7 +82,7 @@ class LobbyActivity: NavActivity() {
             Navigation.OnLobby.GoBack -> finish()
             is Navigation.OnLobby.ToGame -> {
                 toClearScreen(GameActivity::class.java, Anim.Forward){ intent ->
-                intent.putExtra("MATCH_EXTRA", nav.match)
+                    intent.putExtra("MATCH_EXTRA", nav.match)
                 }
             }
         }

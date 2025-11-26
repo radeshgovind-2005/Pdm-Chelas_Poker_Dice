@@ -16,14 +16,7 @@ import isel.pdm.pokerdice.ui.viewmodels.AuthViewModel
 import isel.pdm.pokerdice.ui.viewmodels.LobbyViewModel
 import java.util.UUID
 
-class CreateLobbyActivity: NavActivity() {
-    private val lobbyViewModel: LobbyViewModel by viewModels {
-        LobbyViewModel.getFactory((application as HostApplication).lobbyService)
-    }
-    private val authViewModel: AuthViewModel by viewModels {
-        AuthViewModel.getFactory((application as HostApplication).authUseCase)
-    }
-
+class CreateLobbyActivity: MyActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

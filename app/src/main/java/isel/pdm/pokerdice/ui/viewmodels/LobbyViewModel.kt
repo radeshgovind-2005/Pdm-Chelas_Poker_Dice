@@ -2,25 +2,50 @@ package isel.pdm.pokerdice.ui.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
+import isel.pdm.pokerdice.NotificationLog
 import isel.pdm.pokerdice.domain.Lobbies
 import isel.pdm.pokerdice.domain.Lobby
 import isel.pdm.pokerdice.domain.User
 import isel.pdm.pokerdice.services.LobbyServices
 import isel.pdm.pokerdice.services.fake.FakeLobbyService
+import isel.pdm.pokerdice.ui.notifications.NotificationSource
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.isActive
+import kotlinx.coroutines.launch
 
 class LobbyViewModel(
-    private val services: LobbyServices = FakeLobbyService()
+    private val services: LobbyServices = FakeLobbyService(),
+    private val notificationSource: NotificationSource
 ) : BaseViewModel<LobbyViewModel.State>() {
 
-    companion object {
-        fun getFactory(service: LobbyServices) = object : ViewModelProvider.Factory {
-            @Suppress("UNCHECKED_CAST")
-            override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                return LobbyViewModel(service) as T
+    fun startPolling() {
+        viewModelScope.launch {
+            while (isActive) {
+
+                NotificationLog.logDebug("startPollling")
+                //val result = service.getLobby(lobbyId)
+
+                // LOGIC: If we detect the game started, notify the user
+                //if (result.isSuccess && result.getOrNull()?.status == "STARTED") {
+                notificationSource.showGameStartedNotification( "Game")
+                //}
+
+                delay(3000) // Poll every 3 seconds
             }
         }
+    }
+
+    companion object {
+        fun getFactory(service: LobbyServices,notificationSource: NotificationSource) =
+            object : ViewModelProvider.Factory {
+                @Suppress("UNCHECKED_CAST")
+                override fun <T : ViewModel> create(modelClass: Class<T>): T {
+                    return LobbyViewModel(service, notificationSource) as T
+                }
+            }
     }
 
     override val initialState: State = State.Idle
@@ -97,9 +122,9 @@ class LobbyViewModel(
     }
 
     fun leaveLobby(user: User) {
-        if(state !is State.LobbyLoaded) return
+        if(state.value !is State.LobbyLoaded) return
         launch(onError = { State.Error(it) }) {
-            val lobby = (state as State.LobbyLoaded).lobby
+            val lobby = (state.value as State.LobbyLoaded).lobby
             updateState(State.LeavingLobby)
             services
                 .leaveLobby(user,lobby)

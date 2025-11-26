@@ -29,11 +29,11 @@ class AuthViewModel(
             val logged = State.LoggedIn(user)
             updateState(newState=logged)
         }
-        return if (state is State.LoggedIn) (state as State.LoggedIn).user else null
+        return if (state.value is State.LoggedIn) (state.value as State.LoggedIn).user else null
     }
 
     fun login(username: String, password: String) {
-        if (state is State.LoggingIn || state is State.LoggedIn) return
+        if (state.value is State.LoggingIn || state.value is State.LoggedIn) return
         launch(onError = { State.Error(it) }) {
             val credentials = UserCredentials(username,password)
             val loggingIn = State.LoggingIn(credentials)

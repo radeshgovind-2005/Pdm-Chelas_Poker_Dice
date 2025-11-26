@@ -34,7 +34,7 @@ fun PortraitAuthScreen(
             Space(); LoginForm(
             {credentials ->
                 authViewModel.login(credentials.username,credentials.password)
-                if(authViewModel.state is AuthViewModel.State.LoggedIn)
+                if(authViewModel.state.value is AuthViewModel.State.LoggedIn)
                     navToTitle()
             }
         ); Spacer(Modifier.height(16.dp))
@@ -63,7 +63,7 @@ fun LandscapeAuthScreen(
                         LoginForm(
                             { credentials ->
                                 authViewModel.login(credentials.username, credentials.password)
-                                if (authViewModel.state is AuthViewModel.State.LoggedIn)
+                                if (authViewModel.state.value is AuthViewModel.State.LoggedIn)
                                     navToTitle()
                             }
                         )

@@ -16,14 +16,15 @@ enum class ScreensPreview { TitleScreen, AboutScreen, LobbiesScreen, LobbyScreen
 fun Previewer(){
 
     val screen: ScreensPreview = ScreensPreview.GameScreen
-    val lvm = LobbyViewModel()
+    //val lvm = LobbyViewModel()
     PokerDiceTheme {
         when (screen) {
             ScreensPreview.TitleScreen -> TitleScreen()
             ScreensPreview.AboutScreen -> AboutScreen()
-            ScreensPreview.LobbiesScreen -> LobbiesScreen(viewModel =lvm)
+            //ScreensPreview.LobbiesScreen -> LobbiesScreen(viewModel =lvm)
             ScreensPreview.GameScreen -> GameScreen()
             ScreensPreview.LobbyScreen -> TODO()
+            ScreensPreview.LobbiesScreen -> TODO()
         }
     }
 }

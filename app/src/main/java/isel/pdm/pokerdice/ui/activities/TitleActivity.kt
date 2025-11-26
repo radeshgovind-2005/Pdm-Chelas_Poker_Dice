@@ -16,7 +16,7 @@ import isel.pdm.pokerdice.ui.theme.PokerDiceTheme
 import isel.pdm.pokerdice.ui.viewmodels.AuthViewModel
 import kotlin.getValue
 
-class TitleActivity : NavActivity() {
+class TitleActivity : MyActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

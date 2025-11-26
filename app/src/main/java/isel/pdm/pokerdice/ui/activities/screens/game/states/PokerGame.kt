@@ -60,24 +60,23 @@ private val SHADOW_COLOR = Color(0x40000000)
 fun PokerGame(mvm: MatchViewModel, lobby: Lobby, user: User) {
     val s = mvm.state as? MatchViewModel.State.MatchRunning ?: return
 
-    var match by remember{ mutableStateOf(s.match)}
+    var matchUI by remember{ mutableStateOf(s.match)}
     var infoBoxOpen by remember { mutableStateOf(false) }
 
     var currentHand by remember { mutableStateOf(PokerHand()) }
 
     var elapsedTime by remember { mutableStateOf(0L) }
     var isRollingUI by remember { mutableStateOf(false) }
-    LaunchedEffect(match.tries) {
-        if(s.isRolling){
+    LaunchedEffect(matchUI.tries) {
+        if(isRollingUI){
             elapsedTime = 0L
             val startTime = System.currentTimeMillis()
-            GameLog.logDebug("NewHand Rolling, tries: ${match.tries}")
+            GameLog.logDebug("NewHand Rolling, tries: ${matchUI.tries}")
             while (elapsedTime < 3000L) {
                 currentHand = currentHand.roll()
                 delay(10L)
                 elapsedTime = System.currentTimeMillis() - startTime
             }
-            s.isRolling = false
             isRollingUI = false
         }
     }
@@ -120,20 +119,17 @@ fun PokerGame(mvm: MatchViewModel, lobby: Lobby, user: User) {
                     text=stringResource(R.string.roll_all_btn),
                     modifier = Modifier.size(300.dp,50.dp),
                     onClick = {
-                        val newMatchState = match.copy(tries = match.tries + 1)
-
-                        // Atualiza o ViewModel
+                        mvm.rollDices()
+                        val newMatchState = matchUI.copy(tries = matchUI.tries + 1)
                         s.match = newMatchState
-                        s.isRolling = true
-
-                        // Atualiza o Estado Local (isto dispara o LaunchedEffect acima)
-                        match = newMatchState
+                        isRollingUI=true
+                        matchUI = newMatchState
                     },
                     color = ButtonDefaults.buttonColors(
                         containerColor = MediumDarkRed,
                         contentColor = MaterialTheme.colorScheme.secondary
                     ),
-                    enabled = match.turn?.user==user && match.tries < MATCH_MAX_TRIES && !isRollingUI
+                    enabled = matchUI.turn?.user==user && matchUI.tries < MATCH_MAX_TRIES && !isRollingUI
                 )
             }
         },
@@ -152,9 +148,9 @@ fun PokerGame(mvm: MatchViewModel, lobby: Lobby, user: User) {
                         val diceSize = if (isSelected) 48.dp else 40.dp
                         val borderWidth = if (isSelected) 3.dp else 0.dp
                         val borderColor = if (isSelected) Color.Black else Color.Transparent
-                        val diceColor = if (match.turn?.user==user) Color.White else Color.LightGray
+                        val diceColor = if (matchUI.turn?.user==user) Color.White else Color.LightGray
                         val faceColor =
-                            if (match.turn?.user==user) listOf(Color.Black, Color.Red).random() else Color.DarkGray
+                            if (matchUI.turn?.user==user) listOf(Color.Black, Color.Red).random() else Color.DarkGray
                         Box(
                             modifier = Modifier
                                 .size(diceSize)
@@ -189,13 +185,13 @@ fun PokerGame(mvm: MatchViewModel, lobby: Lobby, user: User) {
                 Row(Modifier
                     .fillMaxWidth()
                     .padding(25.dp), horizontalArrangement = Arrangement.Center){
-                    PlainText("ReRolls: X${match.tries}")
+                    PlainText("ReRolls: X${matchUI.tries}")
                 }
             }
         },
         screenContent = {
-            PokerPlayers(match.players,match.turn)
-            if(infoBoxOpen) InfoBox(lobby,match)
+            PokerPlayers(matchUI.players,matchUI.turn)
+            if(infoBoxOpen) InfoBox(lobby,matchUI)
         }
     )
     OpenCurtain()

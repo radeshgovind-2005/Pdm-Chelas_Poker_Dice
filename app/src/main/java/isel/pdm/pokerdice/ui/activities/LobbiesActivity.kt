@@ -15,11 +15,7 @@ import isel.pdm.pokerdice.ui.theme.PokerDiceTheme
 import isel.pdm.pokerdice.ui.viewmodels.LobbyViewModel
 import java.util.UUID
 
-class LobbiesActivity : NavActivity() {
-    private val lobbyViewModel: LobbyViewModel by viewModels {
-        LobbyViewModel.getFactory((application as HostApplication).lobbyService)
-    }
-
+class LobbiesActivity : MyActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         LobbiesLog.logLifeCycle(getCurrentMethodName())

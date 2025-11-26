@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -46,6 +47,8 @@ fun CreateLobbyScreen(
     lvm: LobbyViewModel,
     avm: AuthViewModel
 ) {
+    val avmState by avm.state.collectAsState()
+    val lvmState by lvm.state.collectAsState()
     var lobbyName by rememberSaveable  { mutableStateOf("") }
     var lobbyDescription by rememberSaveable { mutableStateOf("") }
     var expectedPlayers by rememberSaveable { mutableStateOf("") }
@@ -87,18 +90,16 @@ fun CreateLobbyScreen(
             expectedPlayersTouched && numberOfRoundsTouched
 
     CommonLayout(navBack,{
-        if (isFormValid && avm.state is AuthViewModel.State.LoggedIn) {
-            lvm
-                .insertLobby(
+        if (isFormValid && avmState is AuthViewModel.State.LoggedIn) {
+            lvm.insertLobby(
                     name = lobbyName,
                     description = lobbyDescription,
                     expectedPlayers = expectedPlayers,
                     numberOfRounds = numberOfRounds,
-                    host = (avm.state as AuthViewModel.State.LoggedIn).user
-                )?.let {
-                    if(lvm.state is LobbyViewModel.State.CreatedLobby)
-                        navToLobby((lvm.state as LobbyViewModel.State.CreatedLobby).lobby.id)
-                }
+                    host = (avmState as AuthViewModel.State.LoggedIn).user
+                )
+            if(lvmState is LobbyViewModel.State.CreatedLobby)
+                navToLobby((lvmState as LobbyViewModel.State.CreatedLobby).lobby.id)
         }
     },isFormValid){ padding ->
         OneFullColumn(padding) {
