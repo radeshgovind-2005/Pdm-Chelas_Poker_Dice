@@ -3,6 +3,7 @@ package isel.pdm.pokerdice.ui.activities.screens.title
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import isel.pdm.pokerdice.R
+import isel.pdm.pokerdice.domain.User
 import isel.pdm.pokerdice.ui.components.drawer.DefaultDrawer
 import isel.pdm.pokerdice.ui.components.drawer.DrawerMenuItem
 import isel.pdm.pokerdice.ui.components.icons.MyIcon
@@ -15,7 +16,7 @@ import isel.pdm.pokerdice.ui.components.topbar.DefaultTopBar
 fun TitleScreen(
     navToPlayerProfile: () -> Unit = {},
     navToAbout: () -> Unit = {},
-    navToLobbies: () -> Unit = {},
+    navToLobbies: () -> Unit = {}
 ) {
     CommonLayout(
         items = MenuDrawerItems(navToPlayerProfile, navToAbout)

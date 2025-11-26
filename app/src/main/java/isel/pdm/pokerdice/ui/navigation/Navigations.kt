@@ -29,7 +29,7 @@ sealed class Navigation {
     val lobbyClass = LobbyActivity::class.java
     val aboutClass = AboutActivity::class.java
     val authClass = MainActivity::class.java
-    val titleClass = TitleActivity::class.java
+    val titleClass = MainActivity::class.java
     val gameClass = GameActivity::class.java
 
     // Navigations on Title Screen
@@ -72,7 +72,7 @@ sealed class Navigation {
     }
 
     // Navigations on Athentication Screen
-    sealed class OnAuth(val dest: Class<*>? = null): Navigation(){
+    sealed class OnAuth(val dest: Class<*>): Navigation(){
         data object ToTitle: OnAuth(titleClass)
     }
 

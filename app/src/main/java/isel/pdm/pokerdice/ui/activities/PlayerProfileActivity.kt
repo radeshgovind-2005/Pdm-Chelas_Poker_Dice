@@ -5,6 +5,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import isel.pdm.pokerdice.PlayerProfileLog
 import isel.pdm.pokerdice.getCurrentMethodName
+import isel.pdm.pokerdice.ui.activities.screens.about.AboutScreen
 import isel.pdm.pokerdice.ui.activities.screens.playerprofile.PlayerProfileScreen
 import isel.pdm.pokerdice.ui.navigation.NavActivity
 import isel.pdm.pokerdice.ui.navigation.Navigation
@@ -16,12 +17,15 @@ class PlayerProfileActivity : MyActivity() {
         PlayerProfileLog.logLifeCycle(getCurrentMethodName())
         enableEdgeToEdge()
         setContent {
-            PokerDiceTheme {
-                PlayerProfileScreen(
-                    navBack = { navigate(Navigation.OnPlayerProfile.GoBack) },
-                    logout = {  navigate(Navigation.OnPlayerProfile.Logout) },
-                )
-            }
+            SessionVerification(
+                authenticatedScreen = { user ->
+                    PlayerProfileScreen(
+                        navBack = { navigate(Navigation.OnPlayerProfile.GoBack) },
+                        logout = {  navigate(Navigation.OnPlayerProfile.Logout) },
+                        avm=authViewModel
+                    )
+                }
+            )
         }
     }
 
@@ -40,12 +44,8 @@ class PlayerProfileActivity : MyActivity() {
 
     private fun navigate(nav: Navigation.OnPlayerProfile) {
         PlayerProfileLog.logNavigation(nav)
-        when (nav) {
-            Navigation.OnPlayerProfile.GoBack -> finish()
-            Navigation.OnPlayerProfile.Logout -> toClearScreen(
-                MainActivity::class.java,
-                Anim.Backwards
-            )
-        }
+        nav.dest
+            ?.let{ toClearScreen(it, Anim.Backwards) }
+            ?: finish()
     }
 }

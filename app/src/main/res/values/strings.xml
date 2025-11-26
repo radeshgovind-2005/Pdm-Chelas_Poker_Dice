@@ -39,6 +39,13 @@
     <!-- Lobby Screen-->
     <string name="lobby_screen_title">Lobby</string>
 
+    <!-- Player Profile Screen-->
+    <string name="player_profile_title">Player Profile</string>
+
+    <!-- Session Expired Screen-->
+    <string name="session_expired_title">Session Expired</string>
+    <string name="session_expired_btn">Log In</string>
+
     <string name="start_game">Start Game</string>
     <string name="lobby_item_host">Host</string>
     <string name="lobby_item_players">Players</string>
@@ -58,8 +65,6 @@
     <string name="create_lobby_btn">Create Lobby</string>
 
 
-    <!-- Player Profile Screen-->
-    <string name="player_profile_title">Create Lobby</string>
 
     <!-- Auth Screen-->
     <string name="auth_title">Login</string>

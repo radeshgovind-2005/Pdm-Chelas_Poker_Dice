@@ -15,6 +15,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
+import java.util.UUID
 
 class LobbyViewModel(
     private val services: LobbyServices = FakeLobbyService(),
@@ -64,13 +65,13 @@ class LobbyViewModel(
         }
     }
 
-    fun joinLobby(id: String, user: User) {
+    fun joinLobby(uuid: UUID, user: User) {
         launch(
             onError = { State.Error(it) }
         ) {
             updateState(State.LoadingLobby)
             services
-                .getAndJoinOnLobby(id,user)
+                .getAndJoinOnLobby(uuid,user)
                 .collect { data ->
                     updateState(
                         data?.let { State.LobbyLoaded(it) }

@@ -27,7 +27,8 @@ class TitleActivity : MyActivity() {
                 TitleScreen(
                     navToPlayerProfile = {navigate((Navigation.OnTitleScreen.ToPlayerProfile))},
                     navToAbout = { navigate(Navigation.OnTitleScreen.ToAbout)},
-                    navToLobbies = {navigate(Navigation.OnTitleScreen.ToLobbies)}
+                    navToLobbies = {navigate(Navigation.OnTitleScreen.ToLobbies)},
+                    user= null
                 )
             }
         }
@@ -48,16 +49,6 @@ class TitleActivity : MyActivity() {
 
     private fun navigate(nav: Navigation.OnTitleScreen) {
         TitleLog.logNavigation(nav)
-        when (nav) {
-            Navigation.OnTitleScreen.ToLobbies -> toScreen(
-                LobbiesActivity::class.java,
-                Anim.Forward
-            )
-            Navigation.OnTitleScreen.ToAbout -> toScreen(AboutActivity::class.java, Anim.Forward)
-            Navigation.OnTitleScreen.ToPlayerProfile -> toScreen(
-                PlayerProfileActivity::class.java,
-                Anim.Forward
-            )
-        }
+        toScreen(nav.dest)
     }
 }

@@ -5,11 +5,12 @@ import isel.pdm.pokerdice.domain.Lobbies
 import isel.pdm.pokerdice.domain.Lobby
 import isel.pdm.pokerdice.domain.User
 import kotlinx.coroutines.flow.Flow
+import java.util.UUID
 
 interface LobbyServices {
     val lobbies: MutableState<Lobbies>
     fun getWaitingLobbies(): Flow<Lobbies>
-    fun getAndJoinOnLobby(id: String, user: User): Flow<Lobby?>
+    fun getAndJoinOnLobby(uuid: UUID, user: User): Flow<Lobby?>
     fun insertLobby(lobby: Lobby): Flow<Lobby?>
     fun getLobbies(serach: String): Flow<Lobbies>
 

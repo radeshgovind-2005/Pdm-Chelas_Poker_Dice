@@ -19,12 +19,11 @@ fun Previewer(){
     //val lvm = LobbyViewModel()
     PokerDiceTheme {
         when (screen) {
-            ScreensPreview.TitleScreen -> TitleScreen()
+            //ScreensPreview.TitleScreen -> //TitleScreen()
             ScreensPreview.AboutScreen -> AboutScreen()
             //ScreensPreview.LobbiesScreen -> LobbiesScreen(viewModel =lvm)
             ScreensPreview.GameScreen -> GameScreen()
-            ScreensPreview.LobbyScreen -> TODO()
-            ScreensPreview.LobbiesScreen -> TODO()
+            else -> TODO()
         }
     }
 }

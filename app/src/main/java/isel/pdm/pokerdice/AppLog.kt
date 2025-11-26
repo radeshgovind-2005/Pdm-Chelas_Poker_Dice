@@ -25,6 +25,7 @@ sealed class LogTag(private val category: String){
         Log.v(tag, "$category Activity state: $state")
     }
     fun logNavigation(nav: Navigation){ Log.i(tag, "$category Activity navigation to: ${nav::class.java.simpleName}")}
+    fun logInfo(info: String){ Log.i(tag, info)}
     fun logVm(vm: BaseViewModel<*>, method: String, msg:String? = null){
         val phrase ="${vm.javaClass.simpleName} state is ${vm.state::class.java.simpleName} at $method method."
         msg?.let{
@@ -45,6 +46,7 @@ data object CreateLobbyLog: LogTag("CreateLobby")
 data object NotificationLog: LogTag("Notification")
 data object BaseVmLog: LogTag("ViewModel")
 data object MainLog: LogTag("Main")
+data object SessionLog: LogTag("Main")
 
 fun getCurrentMethodName(): String {
     return Throwable().stackTrace[1].methodName

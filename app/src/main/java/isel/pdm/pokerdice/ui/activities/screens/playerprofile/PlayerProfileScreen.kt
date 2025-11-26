@@ -10,13 +10,15 @@ import isel.pdm.pokerdice.ui.components.icons.SimpleIcon
 import isel.pdm.pokerdice.ui.components.layout.DefaultLayout
 import isel.pdm.pokerdice.ui.components.topbar.DefaultTopBar
 import isel.pdm.pokerdice.ui.remember.RememberString
+import isel.pdm.pokerdice.ui.viewmodels.AuthViewModel
 
 @Composable
 fun PlayerProfileScreen(
     navBack: () -> Unit = {},
     logout: () -> Unit = {},
+    avm: AuthViewModel
 ) {
-    CommonLayout(navBack,logout){
+    CommonLayout(navBack,{logout(); avm.logOut()}){
 
     }
 }

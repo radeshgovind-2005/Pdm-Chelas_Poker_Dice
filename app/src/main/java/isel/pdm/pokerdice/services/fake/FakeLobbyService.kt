@@ -15,6 +15,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart
+import java.util.UUID
 
 class FakeLobbyService(): LobbyServices{
 
@@ -55,17 +56,17 @@ class FakeLobbyService(): LobbyServices{
             }
 
     @RequiresApi(Build.VERSION_CODES.VANILLA_ICE_CREAM)
-    override fun getAndJoinOnLobby(id: String, user: User): Flow<Lobby?> =
+    override fun getAndJoinOnLobby(uuid: UUID, user: User): Flow<Lobby?> =
         flow {
             delay(delayTime)
             lobbies
                 .value
-                .find { lobby -> lobby.id.toString() == id }
+                .find { lobby -> lobby.id == uuid }
                 .apply{
-                    if (this?.lobbyUsers?.none{
-                        it.userCredentials.username == user.userCredentials.username
-                    } ?: false)
-                        this?.lobbyUsers?.addFirst(user)
+                    if (this?.lobbyUsers
+                            ?.none{ it.userCredentials.username == user.userCredentials.username }
+                            ?: false
+                    ) { lobbyUsers.addFirst(user) }
                     emit(this)
                 }
         }

@@ -3,8 +3,10 @@ package isel.pdm.pokerdice.ui.viewmodels
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import isel.pdm.pokerdice.AuthLog
 import isel.pdm.pokerdice.domain.User
 import isel.pdm.pokerdice.domain.UserCredentials
+import isel.pdm.pokerdice.getCurrentMethodName
 import isel.pdm.pokerdice.usecases.AuthUseCase
 
 class AuthViewModel(
@@ -46,11 +48,25 @@ class AuthViewModel(
         }
     }
 
+    fun logOut(){
+        if(state.value !is State.LoggedIn) {
+            AuthLog.logVm(this, getCurrentMethodName(),"To log out avm state must be logged in")
+            return
+        }
+        launch(onError={State.Error(it)}){
+            val user  = (state.value as State.LoggedIn).user
+            updateState(State.LoggingOut)
+            authUseCase.logOut(user.userCredentials.username)
+            updateState(State.LoggedOut)
+        }
+    }
+
     sealed interface State {
         data object Idle : State
         data class Error(val e: Throwable) : State
         data class LoggingIn(val credentials: UserCredentials): State
-        data class LoggingOut(val authToken: String): State
+        data object LoggingOut: State
+        data object LoggedOut: State
         data class LoggedIn(val user: User): State
     }
 }

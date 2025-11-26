@@ -15,6 +15,7 @@ import isel.pdm.pokerdice.domain.UserCredentials
 import isel.pdm.pokerdice.domain.values.Name
 import isel.pdm.pokerdice.getCurrentMethodName
 import isel.pdm.pokerdice.ui.activities.screens.game.PokerScreen
+import isel.pdm.pokerdice.ui.activities.screens.lobby.LobbyScreen
 import isel.pdm.pokerdice.ui.navigation.NavActivity
 import isel.pdm.pokerdice.ui.navigation.Navigation
 import isel.pdm.pokerdice.ui.theme.PokerDiceTheme
@@ -32,9 +33,11 @@ class GameActivity: MyActivity() {
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
         reloadVms()
         setContent {
-            PokerDiceTheme {
-                PokerScreen(gameViewModel,lobbyViewModel,authViewModel)
-            }
+            SessionVerification(
+                authenticatedScreen = { user ->
+                    PokerScreen(gameViewModel,lobbyViewModel,authViewModel)
+                }
+            )
         }
     }
 

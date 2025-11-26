@@ -6,6 +6,7 @@ import androidx.activity.enableEdgeToEdge
 import isel.pdm.pokerdice.AboutLog
 import isel.pdm.pokerdice.getCurrentMethodName
 import isel.pdm.pokerdice.ui.activities.screens.about.AboutScreen
+import isel.pdm.pokerdice.ui.activities.screens.title.TitleScreen
 import isel.pdm.pokerdice.ui.navigation.NavActivity
 import isel.pdm.pokerdice.ui.navigation.Navigation
 import isel.pdm.pokerdice.ui.theme.PokerDiceTheme
@@ -16,15 +17,18 @@ class AboutActivity : MyActivity() {
         AboutLog.logLifeCycle(getCurrentMethodName())
         enableEdgeToEdge()
         setContent {
-            PokerDiceTheme {
-               AboutScreen(
-                   navBack = { navigate(Navigation.OnAbout.GoBack)},
-                   navToWeb = { link -> navigate(Navigation.OnAbout.ToWeb(link))},
-                   navToMail = { sendTo,subject -> navigate(Navigation.OnAbout.ToMail(sendTo,subject))},
-               )
-            }
+            SessionVerification(
+                authenticatedScreen = { user ->
+                    AboutScreen(
+                        navBack = { navigate(Navigation.OnAbout.GoBack)},
+                        navToWeb = { link -> navigate(Navigation.OnAbout.ToWeb(link))},
+                        navToMail = { sendTo,subject -> navigate(Navigation.OnAbout.ToMail(sendTo,subject))},
+                    )
+                }
+            )
         }
     }
+
 
     override fun onPause() {
         super.onPause()

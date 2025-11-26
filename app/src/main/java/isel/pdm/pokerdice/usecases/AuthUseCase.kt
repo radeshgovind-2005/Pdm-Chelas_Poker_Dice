@@ -31,4 +31,9 @@ class AuthUseCase(
         )
         return User(credentials, authInfo)
     }
+
+    suspend fun logOut(username:String){
+        authRepo.clearAuthInfo()
+        authService.logout(username)
+    }
 }

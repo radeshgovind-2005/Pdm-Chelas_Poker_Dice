@@ -22,21 +22,25 @@ import kotlin.getValue
 
 abstract class NavActivity: ComponentActivity(){
 
-    fun toScreen(destination: Class<*>, anim: Anim){
+    fun toScreen(
+        destination: Class<*>,
+        anim: Anim= Anim.Forward,
+        intentConfig: Intent.() -> Unit = {}
+    ){
         val intent = Intent(this, destination)
+        intent.intentConfig()
         val animation = animation(anim)
         startActivity(intent, animation)
     }
 
     fun toClearScreen(
         destination: Class<*>,
-        anim: Anim,
-        intentConfig: (Intent) -> Unit = {}
+        anim: Anim = Anim.Forward,
+        intentConfig: Intent.() -> Unit = {}
     ){
         val intent = Intent(this, destination)
-        intentConfig(intent)
-        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or
-                Intent.FLAG_ACTIVITY_NEW_TASK
+        intent.intentConfig()
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
         val animation = animation(anim)
         startActivity(intent, animation)
         finish()
