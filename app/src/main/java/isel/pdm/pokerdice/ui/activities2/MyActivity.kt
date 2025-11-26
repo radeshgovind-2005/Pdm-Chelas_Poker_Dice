@@ -72,11 +72,11 @@ abstract class MyActivity: NavActivity() {
         PokerDiceTheme {
             val state by authViewModel.state.collectAsState()
             when (state) {
-                is AuthViewModel.State.LoggedIn -> {
+                is AuthViewModel.State.Authenticated -> {
                     SessionLog.logInfo("User Authenticated")
-                    authenticatedScreen((state as AuthViewModel.State.LoggedIn).user)
+                    authenticatedScreen((state as AuthViewModel.State.Authenticated).user)
                 }
-                is AuthViewModel.State.LoggingIn -> {
+                is AuthViewModel.State.Loading -> {
                     SessionLog.logInfo("User in Authentication Process")
                     DefaultCircularProgressIndicator()
                 }

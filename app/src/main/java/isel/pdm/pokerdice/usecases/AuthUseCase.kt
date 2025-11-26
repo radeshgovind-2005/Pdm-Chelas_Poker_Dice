@@ -15,7 +15,7 @@ class AuthUseCase(
     private val authService: AuthService,
     private val authRepo: AuthRepository
 ) {
-    suspend fun login(credentials: UserCredentials): User {
+    suspend fun signIn(credentials: UserCredentials): User {
         val authToken = authService.login(credentials)
         val name = Name.create(credentials.username).getOrThrow()
         val authInfo = AuthInfo(userName = name, authToken = authToken)
@@ -32,7 +32,7 @@ class AuthUseCase(
         return User(credentials, authInfo)
     }
 
-    suspend fun logOut(username:String){
+    suspend fun signOut(username:String){
         authRepo.clearAuthInfo()
         authService.logout(username)
     }

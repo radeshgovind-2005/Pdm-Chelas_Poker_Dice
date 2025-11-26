@@ -1,6 +1,5 @@
 package isel.pdm.pokerdice.ui.activities.screens.lobby
 
-import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
@@ -38,7 +37,7 @@ fun LobbyScreen(
     val gvmState by gvm.state.collectAsState()
     CommonLayout(
         navBack={
-            (avmState as? AuthViewModel.State.LoggedIn)
+            (avmState as? AuthViewModel.State.Authenticated)
                 ?.user
                 ?.let{ user -> lvm.leaveLobby(user) }
                 ?: LobbyLog.logVm(avm, methodName,"User is null")

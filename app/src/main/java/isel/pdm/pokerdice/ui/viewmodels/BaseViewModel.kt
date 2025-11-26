@@ -39,6 +39,13 @@ abstract class BaseViewModel<StateType> : ViewModel() {
     }
 
     protected fun updateState(newState: StateType) {
+        _state.value?.let { oldState->
+            newState?.let{ updatedState ->
+                BaseVmLog
+                    .logInfo("UpdateState: ${oldState::class.java.simpleName} " +
+                            "-> ${updatedState::class.java.simpleName}")
+            }
+        }
         _state.value = newState
     }
 

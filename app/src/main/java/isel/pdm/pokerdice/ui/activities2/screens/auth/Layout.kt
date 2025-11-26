@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -15,7 +14,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import isel.pdm.pokerdice.R
-import isel.pdm.pokerdice.domain.User
 import isel.pdm.pokerdice.ui.components.card.DefaultCard
 import isel.pdm.pokerdice.ui.components.images.PokerDiceLogo
 import isel.pdm.pokerdice.ui.components.layout.OneFullColumn
@@ -38,7 +36,7 @@ fun PortraitAuthScreen(
             Space(); LoginForm(
             {credentials ->
                 authViewModel.login(credentials.username,credentials.password)
-                if(avmState is AuthViewModel.State.LoggedIn)
+                if(avmState is AuthViewModel.State.Authenticated)
                     navToTitle()
             }
         ); Spacer(Modifier.height(16.dp))
@@ -68,7 +66,7 @@ fun LandscapeAuthScreen(
                         LoginForm(
                             { credentials ->
                                 authViewModel.login(credentials.username, credentials.password)
-                                if (avmState is AuthViewModel.State.LoggedIn){
+                                if (avmState is AuthViewModel.State.Authenticated){
                                     navToTitle()
                                 }
                             }

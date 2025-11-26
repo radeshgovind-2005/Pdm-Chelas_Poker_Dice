@@ -90,13 +90,13 @@ fun CreateLobbyScreen(
             expectedPlayersTouched && numberOfRoundsTouched
 
     CommonLayout(navBack,{
-        if (isFormValid && avmState is AuthViewModel.State.LoggedIn) {
+        if (isFormValid && avmState is AuthViewModel.State.Authenticated) {
             lvm.insertLobby(
                     name = lobbyName,
                     description = lobbyDescription,
                     expectedPlayers = expectedPlayers,
                     numberOfRounds = numberOfRounds,
-                    host = (avmState as AuthViewModel.State.LoggedIn).user
+                    host = (avmState as AuthViewModel.State.Authenticated).user
                 )
             if(lvmState is LobbyViewModel.State.CreatedLobby)
                 navToLobby((lvmState as LobbyViewModel.State.CreatedLobby).lobby.id)

@@ -46,7 +46,7 @@ data object CreateLobbyLog: LogTag("CreateLobby")
 data object NotificationLog: LogTag("Notification")
 data object BaseVmLog: LogTag("ViewModel")
 data object MainLog: LogTag("Main")
-data object SessionLog: LogTag("Main")
+data object SessionLog: LogTag("Session")
 
 fun getCurrentMethodName(): String {
     return Throwable().stackTrace[1].methodName
