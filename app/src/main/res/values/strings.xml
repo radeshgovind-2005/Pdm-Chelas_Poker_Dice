@@ -1,0 +1,90 @@
+<resources>
+    <string name="app_name">pokerdice</string>
+    <string name="game_name">Chelas Poker Dice</string>
+
+    <string name="group_member1">Radesh Govind</string>
+    <string name="group_member2">Martim Monteiro</string>
+    <string name="group_member3">Francisco Tavares</string>
+    <string name="contact_mail1">A51620@alunos.isel.pt</string>
+    <string name="contact_mail2">A51619@alunos.isel.pt</string>
+    <string name="contact_mail3">A51618@alunos.isel.pt</string>
+
+    <!-- Main Screen-->
+    <string name="main_text">Loading App</string>
+
+    <!-- Login Screen-->
+    <string name="login_title">Login</string>
+    <string name="username_textfield">Username</string>
+    <string name="password_textfield">Password</string>
+
+    <!-- Title Screen-->
+    <string name="title_btn">Lobbies</string>
+    <string name="title_item1">Player Profile</string>
+    <string name="title_item2">About</string>
+    <string name="title_drawer">Menu</string>
+
+    <!-- About Screen-->
+    <string name="about_title">About</string>
+
+    <!-- About Screen-->
+    <string name="profile_title">Player Profile</string>
+    <string name="profile_p1_title">Gameplay</string>
+    <string name="profile_p1_btn">Learn More</string>
+    <string name="profile_p1_content">
+        Poker Dice is played with 5 special dice featuring playing card suits (9, 10, Jack, Queen, King, Ace) instead of numbers.
+        Players roll the dice and try to form the best poker hand possible. Each player typically gets up to 3 rolls per turn,
+        choosing which dice to keep and which to re-roll. After the final roll, the player with the highest-ranking poker hand wins the round.
+        Common hands include pairs, three/four of a kind, full house, and five of a kind.
+    </string>
+    <string name="profile_p2_title">This Project</string>
+    <string name="profile_p2_btn">Contact Us</string>
+    <string name="profile_p2_content">
+        This application was developed as part of the Mobile Devices Programming (PDM) course
+        at Instituto Superior de Engenharia de Lisboa (ISEL), for the Computer Engineering and Computers degree (LEIC).
+        Developed during the 2025/2026 Winter Semester by Group 28, class 52D:
+    </string>
+    <string name="mail_subject">Chelas Poker Dice App</string>
+
+    <!-- Browse Screen-->
+    <string name="browse_title">Browse Lobbies</string>
+    <string name="browse_placeholder">Search</string>
+    <string name="browse_no_lobbies">No Lobbies Available</string>
+    <string name="browse_host">Host</string>
+    <string name="browse_rounds">Rounds</string>
+
+
+    <!-- Create Screen-->
+    <string name="create_title">Create Lobby</string>
+    <string name="create_outfield_name">Lobby Name</string>
+    <string name="create_outfield_desc">Lobby Description</string>
+    <string name="create_outfield_players">Expected Players (2-6)</string>
+    <string name="create_outfield_rounds">Max Rounds</string>
+    <string name="create_outfield_balance">Initial Balance</string>
+    <string name="create_outfield_ante">Ante</string>
+
+    <!-- Lobby Screen-->
+    <string name="lobby_title">Lobby</string>
+    <string name="lobby_rounds">Rounds</string>
+    <string name="lobby_balance">Balance</string>
+    <string name="lobby_ante">Ante</string>
+    <string name="lobby_players">Players</string>
+    <string name="lobby_join">Join Lobby</string>
+    <string name="lobby_start">Start Match</string>
+
+
+
+    <!-- Match Screen-->
+    <string name="match_fetching">Fectching Match</string>
+    <string name="match_wait_btn">Start Round</string>
+    <string name="match_next_btn">Next</string>
+    <string name="match_roll_btn">Roll Dices</string>
+    <string name="match_hold_btn">Hold Dices</string>
+    <string name="match_balance">Balance</string>
+    <string name="match_prize">Prize</string>
+
+
+    <!-- Alert Dialog-->
+    <string name="alert_error_title">Error</string>
+    <string name="alert_error_unknown">Unknown error</string>
+    <string name="alert_error_btn">Try Again</string>
+</resources>
