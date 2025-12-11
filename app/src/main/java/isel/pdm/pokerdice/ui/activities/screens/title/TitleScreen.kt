@@ -5,9 +5,6 @@ import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.res.stringResource
 import isel.pdm.pokerdice.R
 import isel.pdm.pokerdice.ui.components.card.SimpleCard

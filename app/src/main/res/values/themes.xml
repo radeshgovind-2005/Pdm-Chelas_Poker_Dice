@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <style name="Theme.MySpashScreen" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/dark_red</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/splash_logo_inset</item>
+        <item name="postSplashScreenTheme">@style/Theme.Pokerdice</item>
+    </style>
     <style name="Theme.Pokerdice" parent="android:Theme.Material.Light.NoActionBar" />
 </resources>

@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import isel.pdm.pokerdice.app.HostApp
 import isel.pdm.pokerdice.app.AppLog
 import isel.pdm.pokerdice.ui.activities.screens.main.MainScreen
@@ -28,6 +29,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         logger.lifeCycle("onCreate")
+        installSplashScreen()
         enableEdgeToEdge()
         requestNotificationPermission()
         setContent {

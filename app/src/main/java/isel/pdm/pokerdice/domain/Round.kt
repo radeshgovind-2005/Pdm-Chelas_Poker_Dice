@@ -5,7 +5,6 @@ data class Round (
     val players: List<Player>,
     val prize: Int,
     val turn: String?,
-    val hand: Dices,
     val isRolling: Boolean,
     val rerollCounter: Int
 )

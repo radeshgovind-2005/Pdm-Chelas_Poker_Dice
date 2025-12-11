@@ -64,7 +64,7 @@ fun PokerDices(
         }
         if(state.currTurn == null) return
         Row{
-            Text("Rolls Left: X${state.currTurn.rerollsLeft}", color = MaterialTheme.colorScheme.primary, fontWeight = FontWeight.ExtraBold)
+            Text("Re-Rolls: X${state.currTurn.rerollsLeft}", color = MaterialTheme.colorScheme.primary, fontWeight = FontWeight.ExtraBold)
         }
     }
 }
