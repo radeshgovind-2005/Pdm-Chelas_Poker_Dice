@@ -63,7 +63,7 @@ class MatchViewModel (
                             setState {
                                 copy(
                                     currTurn = playerTurn,
-                                    game= game?.copy( round=event.game.round) ?: event.game,
+                                    game= game?.copy(round=event.game.round, msg=null) ?: event.game,
                                     currHand= Hand(),
                                     isLoading = false
                                 )

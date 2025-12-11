@@ -6,7 +6,7 @@ import java.io.IOException
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
-const val NGROK_ID = "https://spirometric-hollis-dialectically.ngrok-free.dev"
+const val NGROK_ID = "https://sun-semicarbonate-feastfully.ngrok-free.dev"
 const val BASE_URL = NGROK_ID + "/chelas-poker-dice/"
 val JSON_MEDIA_TYPE = "application/json; charset=utf-8".toMediaType()
 suspend fun okhttp3.Call.await(): okhttp3.Response = suspendCancellableCoroutine { continuation ->

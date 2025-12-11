@@ -32,8 +32,6 @@ import isel.pdm.pokerdice.ui.components.text.TitleSize
 
 @Composable
 fun ShowLobbies(lobbies: List<BrowseLobby>, onLobbyClick: (String) -> Unit) {
-    val hostResId by rememberSaveable { mutableIntStateOf(R.string.browse_host) }
-    val roundsResId by rememberSaveable { mutableIntStateOf(R.string.browse_rounds) }
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Top,
@@ -60,8 +58,8 @@ fun ShowLobbies(lobbies: List<BrowseLobby>, onLobbyClick: (String) -> Unit) {
                     Column {
                         BoldTitle(lobby.name, TitleSize.SMALL)
                         Row{
-                            Text("${stringResource(hostResId)}: ${lobby.hostName}")
-                            Text("\t|\t ${stringResource(roundsResId)}: ${lobby.rounds} ")
+                            Text("${stringResource(R.string.browse_host)}: ${lobby.hostName}")
+                            Text("\t|\t ${stringResource(R.string.browse_rounds)}: ${lobby.rounds} ")
                         }
 
                     }

@@ -22,10 +22,9 @@ fun AboutScreen(
     onMailClick: (List<String>, String) -> Unit,
     onWebRequest: (String) -> Unit,
     ) {
-    val titleResId by rememberSaveable { mutableIntStateOf(R.string.about_title) }
     val pagerState = rememberPagerState(pageCount = {state.pageCount})
     DefaultBackScreen(
-        title = stringResource(titleResId),
+        title = stringResource(R.string.about_title),
         onClick=onBackClick,
         content = {
             SimpleCard {

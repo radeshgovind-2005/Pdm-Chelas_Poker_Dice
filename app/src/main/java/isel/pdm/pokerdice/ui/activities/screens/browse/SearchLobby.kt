@@ -27,7 +27,6 @@ import isel.pdm.pokerdice.ui.viewmodels.browse.BrowseState
     onQueryChange: (String) -> Unit,
     onSearch: () -> Unit,
 ) {
-    val searchResId by rememberSaveable { mutableIntStateOf(R.string.browse_placeholder) }
     SearchBar(
         modifier = Modifier.padding(horizontal = 16.dp),
         inputField = {
@@ -37,7 +36,7 @@ import isel.pdm.pokerdice.ui.viewmodels.browse.BrowseState
                 onSearch = { onSearch() },
                 expanded = state.expanded,
                 onExpandedChange = { },
-                placeholder = { Text(stringResource(searchResId), color = MaterialTheme.colorScheme.onPrimary) },
+                placeholder = { Text(stringResource(R.string.browse_placeholder), color = MaterialTheme.colorScheme.onPrimary) },
                 leadingIcon = {
                     Icon(
                         imageVector = Icons.Default.Search,

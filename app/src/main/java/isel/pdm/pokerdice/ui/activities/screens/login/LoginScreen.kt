@@ -18,9 +18,8 @@ fun LoginScreen(
     onPasswordChange: (String) -> Unit,
     onLoginClick: () -> Unit
 ) {
-    val titleResId by rememberSaveable { mutableIntStateOf(R.string.login_title) }
-    val gamenameResId by rememberSaveable { mutableIntStateOf(R.string.game_name) }
-    val titleStr=stringResource(titleResId)
+    val gamenameResId =R.string.game_name
+    val titleStr=stringResource(R.string.login_title)
     SimpleScreen(
         title= titleStr,
         content = {

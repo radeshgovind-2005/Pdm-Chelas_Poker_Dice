@@ -27,8 +27,6 @@ fun ProfileScreen(
     onLogoutConfirm: () -> Unit,
     onLogoutCancel: () -> Unit
     ) {
-    val titleResId by rememberSaveable { mutableIntStateOf(R.string.profile_title) }
-
     if (state.showLogoutDialog) {
         AlertDialog(
             onDismissRequest = onLogoutCancel,
@@ -48,7 +46,7 @@ fun ProfileScreen(
     }
 
     DefaultBackScreen(
-        title = stringResource(titleResId),
+        title = stringResource(R.string.profile_title),
         onClick = onBackClick,
         fab = {
             FloatingActionButton(

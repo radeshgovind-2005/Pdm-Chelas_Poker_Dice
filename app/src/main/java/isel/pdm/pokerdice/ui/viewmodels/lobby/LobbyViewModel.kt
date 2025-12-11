@@ -114,7 +114,7 @@ class LobbyViewModel(
                 .fold(
                     onSuccess = { lobbyId ->
                         logger.i("Lobby Left successfully: $lobbyId")
-                        setState { copy(isLoading = false, isJoined =false) }
+                        setState { copy(isLoading = false, isJoined =false, lobby=null,lobbyId="") }
                         sendEffect(LobbyNavigation.ToBrowse )
                     },
                     onFailure = { e ->

@@ -21,13 +21,10 @@ import isel.pdm.pokerdice.ui.components.card.SimplePage
 
 @Composable
 fun GameplayPage(onWebRequest: (String) -> Unit) {
-    val titleResId by rememberSaveable { mutableIntStateOf(R.string.profile_p1_title) }
-    val textResId by rememberSaveable { mutableIntStateOf(R.string.profile_p1_content) }
-    val btnResId by rememberSaveable { mutableIntStateOf(R.string.profile_p1_btn) }
-    SimplePage(titleResId){
+    SimplePage(R.string.profile_p1_title){
         Column(Modifier.fillMaxSize()){
             Spacer(Modifier.height(32.dp))
-            Text(stringResource(textResId))
+            Text(stringResource(R.string.profile_p1_content))
             Spacer(Modifier.height(16.dp))
             Row(
                 modifier=Modifier.fillMaxWidth(),
@@ -37,7 +34,7 @@ fun GameplayPage(onWebRequest: (String) -> Unit) {
                     onClick = { onWebRequest("https://en.wikipedia.org/wiki/Poker_dice") },
                     modifier = Modifier.fillMaxWidth(0.5f)
                 ) {
-                    Text(stringResource(btnResId))
+                    Text(stringResource(R.string.profile_p1_btn))
                 }
             }
         }

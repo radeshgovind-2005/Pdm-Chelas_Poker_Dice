@@ -24,9 +24,6 @@ import isel.pdm.pokerdice.ui.layouts.background.DarkRedBackground
 
 @Composable
 fun AnounceRoundWinner(game: Game, onClickNext: () -> Unit) {
-    val btnResId by rememberSaveable { mutableIntStateOf(R.string.match_next_btn) }
-    val lobbyName = game.lobby.name
-    val msg = game.msg.toString()
     DarkRedBackground {
         SimpleCard {
             Column (
@@ -34,15 +31,15 @@ fun AnounceRoundWinner(game: Game, onClickNext: () -> Unit) {
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ){
-                BoldTitle( lobbyName)
+                BoldTitle( game.lobby.name)
                 Spacer(Modifier.height(32.dp))
-                Text(msg)
+                Text(game.msg.toString())
                 Spacer(Modifier.height(32.dp))
                 Button(
                     onClick = onClickNext,
                     modifier = Modifier.fillMaxWidth(0.65f)
                 ) {
-                    Text(stringResource(btnResId))
+                    Text(stringResource(R.string.match_next_btn))
                 }
             }
         }

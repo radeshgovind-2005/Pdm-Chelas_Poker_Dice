@@ -67,8 +67,6 @@ fun PlayView(state: MatchState, onClickDice: (Int) -> Unit, onClickBtn: () -> Un
 
 @Composable
 private fun MatchTopBar(game: Game) {
-    val bResId by rememberSaveable { mutableIntStateOf(R.string.match_balance) }
-    val pResId by rememberSaveable { mutableIntStateOf(R.string.match_prize) }
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -76,15 +74,13 @@ private fun MatchTopBar(game: Game) {
         verticalAlignment = Alignment.Top,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        Text("${stringResource(bResId)}: ${game.round?.players?.firstOrNull{it.name==game.username}?.balance }$")
-        Text("${stringResource(pResId)}: ${game.round?.roundBet}$")
+        Text("${stringResource(R.string.match_balance)}: ${game.round?.players?.firstOrNull{it.name==game.username}?.balance }$")
+        Text("${stringResource(R.string.match_prize)}: ${game.round?.roundBet}$")
     }
 }
 
 @Composable
 private fun MatchBottomBar(state: MatchState, onClickButton: () -> Unit) {
-    val rollResId by rememberSaveable { mutableIntStateOf(R.string.match_roll_btn) }
-    val holdResId by rememberSaveable { mutableIntStateOf(R.string.match_hold_btn) }
     val game = state.game ?: return
     val isUserTurn = game.username == game.round?.players?.firstOrNull{it.state=="turn"}?.name
     Row(
@@ -100,8 +96,8 @@ private fun MatchBottomBar(state: MatchState, onClickButton: () -> Unit) {
 
             Text(
                 if(state.currHand.value.all{it.isSelected} ||state.currTurn?.rerollsLeft == 0)
-                    stringResource(holdResId)
-                else stringResource(rollResId)
+                    stringResource(R.string.match_hold_btn)
+                else stringResource(R.string.match_roll_btn)
             )
         }
     }

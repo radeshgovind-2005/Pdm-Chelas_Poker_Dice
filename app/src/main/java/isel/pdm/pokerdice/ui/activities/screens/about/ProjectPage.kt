@@ -10,11 +10,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -24,30 +19,14 @@ import isel.pdm.pokerdice.ui.components.text.BulletPoints
 
 @Composable
 fun ProjectPage(onMailClick: (List<String>, String) -> Unit) {
-    val titleResId by rememberSaveable { mutableIntStateOf(R.string.profile_p2_title) }
-    val textResId by rememberSaveable { mutableIntStateOf(R.string.profile_p2_content) }
-    val btnResId by rememberSaveable { mutableIntStateOf(R.string.profile_p2_btn) }
-    val subjectResId by rememberSaveable { mutableIntStateOf(R.string.mail_subject) }
-    val groupMembersIds = remember {
-        mutableStateListOf(
-            R.string.group_member1,
-            R.string.group_member2,
-            R.string.group_member3,
-        )
-    }
-    val emails = remember {
-        mutableStateListOf(
-            R.string.contact_mail1,
-            R.string.contact_mail2,
-            R.string.contact_mail3,
-        )
-    }
+    val groupMembersIds = listOf(R.string.group_member1,R.string.group_member2, R.string.group_member3,)
+    val emails = listOf(R.string.contact_mail1,R.string.contact_mail2,R.string.contact_mail3,)
     val contacts = emails.map{stringResource(it)}
-    val subject = stringResource(subjectResId)
-    SimplePage(titleResId){
+    val subject = stringResource(R.string.mail_subject)
+    SimplePage(R.string.profile_p2_title){
         Column(Modifier.fillMaxSize()){
             Spacer(Modifier.height(32.dp))
-            Text(stringResource(textResId))
+            Text(stringResource(R.string.profile_p2_content))
             BulletPoints(groupMembersIds)
             Spacer(Modifier.height(16.dp))
             Row(
@@ -60,7 +39,7 @@ fun ProjectPage(onMailClick: (List<String>, String) -> Unit) {
                     },
                     modifier = Modifier.fillMaxWidth(0.5f)
                 ) {
-                    Text(stringResource(btnResId))
+                    Text(stringResource(R.string.profile_p2_btn))
                 }
             }
         }

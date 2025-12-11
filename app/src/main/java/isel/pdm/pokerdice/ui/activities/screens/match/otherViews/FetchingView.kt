@@ -21,7 +21,6 @@ import isel.pdm.pokerdice.ui.layouts.background.DarkRedBackground
 
 @Composable
 fun FetchingView() {
-    val fetchingResId by rememberSaveable { mutableIntStateOf(R.string.match_fetching) }
     DarkRedBackground {
         SimpleCard {
             Column (
@@ -29,7 +28,7 @@ fun FetchingView() {
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ){
-                BoldTitle(stringResource(fetchingResId))
+                BoldTitle(stringResource(R.string.match_fetching))
                 Spacer(Modifier.height(32.dp))
                 LinearProgressIndicator()
             }

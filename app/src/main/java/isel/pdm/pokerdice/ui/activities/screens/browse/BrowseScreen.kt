@@ -45,10 +45,8 @@ fun BrowseLobbiesScreen(
     onCreateLobby: () -> Unit,
     onLobbyClick: (String) -> Unit
 ) {
-    val titleResId by rememberSaveable { mutableIntStateOf(R.string.browse_title) }
-    val noLobbiesResId by rememberSaveable { mutableIntStateOf(R.string.browse_no_lobbies) }
     DefaultBackScreen(
-        title = stringResource(titleResId),
+        title = stringResource(R.string.browse_title),
         onClick=onBackClick,
         fab={
             FloatingActionButton(
@@ -75,7 +73,7 @@ fun BrowseLobbiesScreen(
                     ) {
                         when {
                             state.isLoading -> CircularProgressIndicator()
-                            !state.isLoading && state.filteredLobbies.isEmpty() -> Text(stringResource(noLobbiesResId))
+                            !state.isLoading && state.filteredLobbies.isEmpty() -> Text(stringResource(R.string.browse_no_lobbies))
                             !state.isLoading -> ShowLobbies(state.filteredLobbies, onLobbyClick)
                         }
                     }

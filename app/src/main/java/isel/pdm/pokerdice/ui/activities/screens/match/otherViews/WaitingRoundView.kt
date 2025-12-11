@@ -24,8 +24,6 @@ import isel.pdm.pokerdice.ui.layouts.background.DarkRedBackground
 
 @Composable
 fun WaitingRoundView(game: Game, onStartRound: () -> Unit) {
-    val btnResId by rememberSaveable { mutableIntStateOf(R.string.match_wait_btn) }
-    val lobbyName = game.lobby.name
     DarkRedBackground {
         SimpleCard {
             Column (
@@ -33,13 +31,13 @@ fun WaitingRoundView(game: Game, onStartRound: () -> Unit) {
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ){
-                BoldTitle( lobbyName)
+                BoldTitle( game.lobby.name)
                 Spacer(Modifier.height(32.dp))
                 Button(
                     onClick = onStartRound,
                     modifier = Modifier.fillMaxWidth(0.65f)
                 ) {
-                    Text(stringResource(btnResId))
+                    Text(stringResource(R.string.match_wait_btn))
                 }
             }
         }

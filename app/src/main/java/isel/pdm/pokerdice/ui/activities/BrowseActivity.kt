@@ -69,7 +69,7 @@ class BrowseActivity : ComponentActivity() {
                 logger.i("Effect collected -> ${effect::class.java.simpleName}")
                 when (effect) {
                     BrowseNavigation.ToCreateLobby -> navigateTo(CreateActivity::class.java,false)
-                    is BrowseNavigation.ToLobby -> navigateTo(LobbyActivity::class.java){
+                    is BrowseNavigation.ToLobby -> navigateTo(LobbyActivity::class.java,false){
                         putExtra("LOBBY_ID", effect.lobbyId)
                     }
                     BrowseNavigation.ToTitle -> finish()

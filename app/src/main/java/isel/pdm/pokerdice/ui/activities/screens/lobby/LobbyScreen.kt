@@ -35,16 +35,8 @@ fun LobbyScreen(
     onJoinRequest: () -> Unit,
     onStartMatch: () -> Unit
 ) {
-    val titleResId by rememberSaveable { mutableIntStateOf(R.string.lobby_title) }
-    val roundsResId by rememberSaveable { mutableIntStateOf(R.string.lobby_rounds) }
-    val balanceResId by rememberSaveable { mutableIntStateOf(R.string.lobby_balance) }
-    val anteResId by rememberSaveable { mutableIntStateOf(R.string.lobby_ante) }
-    val playersResId by rememberSaveable { mutableIntStateOf(R.string.lobby_players) }
-    val joinResId by rememberSaveable { mutableIntStateOf(R.string.lobby_join) }
-    val startResId by rememberSaveable { mutableIntStateOf(R.string.lobby_start) }
-    val titleStr = stringResource(titleResId)
     DefaultBackScreen(
-        title = titleStr,
+        title = stringResource(R.string.lobby_title),
         onClick = onBackClick,
         content = {
             val scrollState = rememberScrollState()
@@ -88,12 +80,12 @@ fun LobbyScreen(
                                     modifier = Modifier.fillMaxWidth(0.5f),
                                     horizontalAlignment = Alignment.Start
                                 ) {
-                                    Text("${stringResource(roundsResId)}: ${state.lobby.maxRounds}")
-                                    Text("${stringResource(balanceResId)}: ${state.lobby.initialBalance}")
-                                    Text("${stringResource(anteResId)}: ${state.lobby.ante}")
+                                    Text("${stringResource(R.string.lobby_rounds)}: ${state.lobby.maxRounds}")
+                                    Text("${stringResource(R.string.lobby_balance)}: ${state.lobby.initialBalance}")
+                                    Text("${stringResource(R.string.lobby_ante)}: ${state.lobby.ante}")
                                 }
                                 Column {
-                                    Text("${stringResource(playersResId)}(${state.lobby.players.size}/${state.lobby.maxPlayers})")
+                                    Text("${stringResource(R.string.lobby_players)}(${state.lobby.players.size}/${state.lobby.maxPlayers})")
                                     state.lobby.players.forEach {
                                         Row(Modifier.fillMaxWidth()) {
                                             Icon(Icons.Default.Person, "Player")
@@ -116,7 +108,7 @@ fun LobbyScreen(
                                 if (state.isLoading) {
                                     CircularProgressIndicator()
                                 } else {
-                                    val txt = stringResource(if(state.isJoined) startResId else joinResId)
+                                    val txt = stringResource(if(state.isJoined) R.string.lobby_start else R.string.lobby_join)
                                     val enabled = when{
                                         state.isJoined
                                                 && state.lobby.maxPlayers == state.lobby.players.size

@@ -22,7 +22,6 @@ import isel.pdm.pokerdice.ui.viewmodels.main.MainState
 
 @Composable
 fun MainScreen(state: MainState) {
-    val textResId by rememberSaveable { mutableIntStateOf(R.string.main_text) }
     DarkRedBackground {
         SimpleCard {
             Column (
@@ -30,7 +29,7 @@ fun MainScreen(state: MainState) {
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ){
-                BoldTitle(stringResource(textResId))
+                BoldTitle(stringResource(R.string.main_text))
                 Spacer(Modifier.height(32.dp))
                 LinearProgressIndicator()
             }

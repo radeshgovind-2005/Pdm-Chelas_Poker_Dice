@@ -26,20 +26,16 @@ fun TitleScreen(
     onClickLobbies: () -> Unit,
     onClickProfile: () -> Unit
 ) {
-    val titleResId by rememberSaveable { mutableIntStateOf(R.string.game_name) }
-    val btnResId by rememberSaveable { mutableIntStateOf(R.string.title_btn) }
-    val menuResId by rememberSaveable { mutableIntStateOf(R.string.title_drawer) }
-    val ppResId by rememberSaveable { mutableIntStateOf(R.string.title_item1) }
-    val aResId by rememberSaveable { mutableIntStateOf(R.string.title_item2) }
+    val btnResId =R.string.title_btn
     val items by lazy {
         listOf(
-            Person(ppResId,onClickProfile),
-            Info(aResId,onClickAbout)
+            Person(R.string.title_item1,onClickProfile),
+            Info(R.string.title_item2,onClickAbout)
         )
     }
-    SimpleDrawer(menuResId,items) { scope,drawerState ->
+    SimpleDrawer(R.string.title_drawer,items) { scope,drawerState ->
         SimpleScreen(
-            title = stringResource(titleResId),
+            title = stringResource(R.string.game_name),
             navigationIcon = {
                 IconButton(onClick = {
                     scope.launch { drawerState.open() }

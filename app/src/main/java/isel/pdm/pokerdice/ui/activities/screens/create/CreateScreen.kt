@@ -45,19 +45,15 @@ fun CreateScreen(
     onCreateRequest: () -> Unit,
     onTryAgain: () -> Unit
 ) {
-    val titleResId by rememberSaveable { mutableIntStateOf(R.string.create_title) }
-    val alertTitleResId by rememberSaveable { mutableIntStateOf(R.string.alert_error_title) }
-    val alertBodyResId by rememberSaveable { mutableIntStateOf(R.string.alert_error_unknown) }
-    val alertBtnResId by rememberSaveable { mutableIntStateOf(R.string.alert_error_btn) }
-    val titleStr=stringResource(titleResId)
+    val titleStr=stringResource(R.string.create_title)
     if (state.error != null) {
         AlertDialog(
             onDismissRequest = {  },
-            title = { Text(stringResource(alertTitleResId)) },
-            text = { Text(state.error ?: stringResource(alertBodyResId)) },
+            title = { Text(stringResource(R.string.alert_error_title)) },
+            text = { Text(state.error ?: stringResource(R.string.alert_error_unknown)) },
             confirmButton = {
                 TextButton(onClick = onTryAgain) {
-                    Text(stringResource(alertBtnResId))
+                    Text(stringResource(R.string.alert_error_btn))
                 }
             },
         )
