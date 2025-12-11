@@ -5,3 +5,10 @@ import isel.pdm.pokerdice.domain.types.Username
 data class User(val authInfo: AuthInfo)
 
 data class AuthInfo(val username: Username, val authToken: String? = null)
+
+data class SessionInfo(
+    val id: Int,
+    val username: String,
+    val lobbyId: String?,
+    val matchId: String?
+)

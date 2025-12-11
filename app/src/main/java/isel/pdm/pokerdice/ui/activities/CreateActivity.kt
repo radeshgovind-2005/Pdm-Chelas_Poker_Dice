@@ -74,7 +74,7 @@ class CreateActivity: ComponentActivity() {
             viewmodel.effects.collect { effect ->
                 logger.i("Effect collected -> ${effect::class.java.simpleName}")
                 when (effect) {
-                    CreateNavigation.ToBrowse -> finish()
+                    CreateNavigation.ToBrowse -> navigateTo(BrowseActivity::class.java)
                     is CreateNavigation.ToLobby -> navigateTo(LobbyActivity::class.java){
                         putExtra("LOBBY_ID", effect.lobbyId)
                     }

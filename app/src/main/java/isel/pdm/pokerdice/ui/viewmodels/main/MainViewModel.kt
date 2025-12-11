@@ -34,25 +34,13 @@ class MainViewModel (
             usecase
                 .sessionCheck()
                 .fold(
-                    onSuccess = {
-                        logger.i("Session existent -> checking player state")
-                        usecase
-                            .checkPlayerState()
-                            .fold(
-                                onSuccess =  { state ->
-                                    logger.i("Player State: $state")
-                                    when{
-                                        state == null -> sendEffect(MainNavigation.ToTitle)
-                                        state.state == "waiting" -> sendEffect(MainNavigation.ToLobby(state.contextId))
-                                        state.state == "playing"-> sendEffect(MainNavigation.ToMatch(state.contextId))
-                                    }
-
-                                },
-                                onFailure = {
-                                    sendEffect(MainNavigation.ToTitle)
-                                    logger.i("Failed getting player State")
-                                }
-                            )
+                    onSuccess = { res ->
+                        logger.i("Session existent -> $res")
+                        when{
+                            res.second.lobbyId == null -> sendEffect(MainNavigation.ToTitle)
+                            res.second.lobbyId != null && res.second.matchId != null  -> sendEffect(MainNavigation.ToMatch(res.second.matchId!!))
+                            res.second.lobbyId != null -> sendEffect(MainNavigation.ToLobby(res.second.lobbyId!!))
+                        }
                         setState { copy(isLoading = false) }
                     },
                     onFailure = {

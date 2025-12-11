@@ -7,6 +7,7 @@ import isel.pdm.pokerdice.domain.Hand
 import isel.pdm.pokerdice.services.events.MatchEvents
 import isel.pdm.pokerdice.ui.viewmodels.BaseViewModel
 import isel.pdm.pokerdice.ui.viewmodels.usecases.MatchUseCase
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.retry
 
 class MatchViewModel (
@@ -35,7 +36,7 @@ class MatchViewModel (
             }
         ) {
 
-           val username = usecase.getUsername().getOrNull()
+            val username = usecase.getUsername().getOrNull()
             usecase
                 .subscribeToMatch(matchId)
                 .retry { cause ->
@@ -54,7 +55,7 @@ class MatchViewModel (
                                     game=event.game.copy(username=username),
                                     isLoading = false,
                                     currTurn = playerTurn,
-                                    )
+                                )
                             }
                         }
                         is MatchEvents.RoundInit -> {
@@ -138,6 +139,12 @@ class MatchViewModel (
                                     isLoading = false
                                 )
                             }
+                            launchWithHandler {
+                                logger.i("Starting 5s timer for auto-next")
+                                delay(5000)
+                                logger.i("Timer finished, calling onClickNext automatically")
+                                onClickNext()
+                            }
                         }
 
                         is MatchEvents.Connected -> {
@@ -163,7 +170,7 @@ class MatchViewModel (
         val lobbyId = state.value.game?.lobby?.lobbyId
         logger.i("matchEnded changing activity to lobby if possible -> lobbyId is $lobbyId")
         if(lobbyId == null)
-             sendEffect(MatchNavigation.ToTitle)
+            sendEffect(MatchNavigation.ToTitle)
         else
             sendEffect(MatchNavigation.ToLobby(lobbyId))
 
@@ -218,7 +225,7 @@ class MatchViewModel (
                     usecase.rollAllDices(matchId)
                 }
                 state.value.currTurn?.rerollsLeft == 0 ||
-                     state.value.currHand.value.all{it.isSelected}-> {
+                        state.value.currHand.value.all{it.isSelected}-> {
                     //hold all
                     usecase
                         .holdDices(matchId)

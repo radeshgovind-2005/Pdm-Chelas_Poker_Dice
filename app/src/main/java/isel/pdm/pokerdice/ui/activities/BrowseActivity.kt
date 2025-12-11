@@ -68,11 +68,11 @@ class BrowseActivity : ComponentActivity() {
             viewmodel.effects.collect { effect ->
                 logger.i("Effect collected -> ${effect::class.java.simpleName}")
                 when (effect) {
-                    BrowseNavigation.ToCreateLobby -> navigateTo(CreateActivity::class.java,false)
-                    is BrowseNavigation.ToLobby -> navigateTo(LobbyActivity::class.java,false){
+                    BrowseNavigation.ToCreateLobby -> navigateTo(CreateActivity::class.java)
+                    is BrowseNavigation.ToLobby -> navigateTo(LobbyActivity::class.java){
                         putExtra("LOBBY_ID", effect.lobbyId)
                     }
-                    BrowseNavigation.ToTitle -> finish()
+                    BrowseNavigation.ToTitle -> navigateTo(TitleActivity::class.java)
                 }
             }
         }

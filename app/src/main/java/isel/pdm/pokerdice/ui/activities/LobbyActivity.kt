@@ -69,7 +69,7 @@ class LobbyActivity: ComponentActivity() {
             viewmodel.effects.collect { effect ->
                 logger.i("Effect collected -> ${effect::class.java.simpleName}")
                 when (effect) {
-                    LobbyNavigation.ToBrowse -> finish()//navigateTo(BrowseActivity::class.java)
+                    LobbyNavigation.ToBrowse -> navigateTo(BrowseActivity::class.java)
                     is LobbyNavigation.ToMatch -> navigateTo(MatchActivity::class.java){
                         putExtra("MATCH_ID", effect.matchId)
                     }

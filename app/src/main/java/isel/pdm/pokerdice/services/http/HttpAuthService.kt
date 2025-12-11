@@ -4,6 +4,7 @@ import com.google.gson.Gson
 import isel.pdm.pokerdice.app.AppLog
 import isel.pdm.pokerdice.domain.types.Password
 import isel.pdm.pokerdice.domain.types.Username
+import isel.pdm.pokerdice.domain.user.SessionInfo
 import isel.pdm.pokerdice.services.AuthService
 import isel.pdm.pokerdice.services.http.HttpLobbyService.DefaultLobbyResponse
 import okhttp3.OkHttpClient
@@ -45,21 +46,18 @@ class HttpAuthService(
         }
     }
 
-    override suspend fun sessionCheck(token: String): String {
+    override suspend fun sessionCheck(token: String): SessionInfo {
         val request = Request
             .Builder()
             .url("${BASE_URL}me")
             .header("Authorization", "Bearer $token")
             .build()
         val response = client.newCall(request).await()
-
         if (!response.isSuccessful) {
             throw Exception("Failed to Session check: ${response.code}")
         }
-
         val responseBody = response.body?.string() ?: throw Exception("Empty response")
-        val responseDto = gson.fromJson(responseBody, String::class.java)
-        return responseDto
+        return gson.fromJson(responseBody, SessionInfo::class.java)
     }
 
     override suspend fun logout(token: String) {

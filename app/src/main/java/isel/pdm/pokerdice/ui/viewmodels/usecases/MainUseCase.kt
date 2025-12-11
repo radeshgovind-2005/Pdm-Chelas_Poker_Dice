@@ -1,5 +1,6 @@
 package isel.pdm.pokerdice.ui.viewmodels.usecases
 
+import isel.pdm.pokerdice.domain.user.SessionInfo
 import isel.pdm.pokerdice.domain.user.User
 import isel.pdm.pokerdice.domain.user.UserState
 import isel.pdm.pokerdice.repo.AuthRepository
@@ -13,14 +14,14 @@ class MainUseCase(
     private val lobbyService: LobbyService,
 ) {
 
-    suspend fun sessionCheck(): Result<User> =
+    suspend fun sessionCheck(): Result<Pair<User, SessionInfo>> =
         runCatching {
             val info = authRepo.getAuthInfo()
             if(info == null) throw UserNotAuthenticated()
             val token = info.authToken
             if(token==null)throw UserNotAuthenticated()
-            authService.sessionCheck(token)
-            User(info)
+            val sessionInfo = authService.sessionCheck(token)
+            Pair(User(info), sessionInfo)
         }
 
     suspend fun checkPlayerState(): Result<UserState?> =
