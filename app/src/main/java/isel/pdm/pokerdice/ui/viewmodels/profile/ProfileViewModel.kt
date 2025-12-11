@@ -22,6 +22,33 @@ class ProfileViewModel(
         }
     }
 
+    fun onCreateActivity(){
+        launchWithHandler(
+            onError = { e->
+                logger.e("Error fetching stats", e)
+                setState { copy(isLoading = false) }
+            }
+        ) {
+            usecase
+                .getStats()
+                .fold(
+                    onSuccess = { res ->
+                        setState {
+                            copy(
+                                isLoading=false,
+                                stats = res.first,
+                                username = res.second
+                            )
+                        }
+                    },
+                    onFailure = { e->
+                        logger.e("Error: ${e.message}", e)
+                        setState { copy(isLoading = false) }
+                    }
+                )
+        }
+
+    }
     fun onBackRequest() {
         sendEffect(ProfileNavigation.ToTitle)
     }

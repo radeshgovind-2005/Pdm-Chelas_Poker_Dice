@@ -28,6 +28,7 @@ class ProfileActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         logger.lifeCycle("onCreate")
+        viewmodel.onCreateActivity()
         enableEdgeToEdge()
         requestNotificationPermission()
         setContent {

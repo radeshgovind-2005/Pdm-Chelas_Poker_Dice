@@ -1,5 +1,6 @@
 package isel.pdm.pokerdice.ui.viewmodels.usecases
 
+import isel.pdm.pokerdice.domain.user.UserStats
 import isel.pdm.pokerdice.repo.AuthRepository
 import isel.pdm.pokerdice.services.AuthService
 import kotlinx.coroutines.Dispatchers
@@ -19,4 +20,14 @@ class ProfileUseCase(
                 }
             }
         }
+
+    suspend fun getStats(): Result<Pair<UserStats, String>> =
+        runCatching {
+            val auth = authRepo.getAuthInfo()
+            if(auth==null ) throw Exception("User not authenticated")
+            val token = auth.authToken
+            if(token==null ) throw Exception("Session Expired")
+            Pair(authService.getUserStats(token), auth.username.value)
+        }
+
 }

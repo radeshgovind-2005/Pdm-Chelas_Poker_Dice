@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="affirmative">Sim</string>
+    <string name="negative">Não</string>
+
+    <string name="profile_title">Perfil de Jogador</string>
+    <string name="profile_logout">Sair</string>
+    <string name="profile_logout_text">Tem a certeza que deseja sair?</string>
+    <string name="profile_stats">Estatísticas de</string>
+    <string name="profile_g_played">Jogos Realizados</string>
+    <string name="profile_m_won">Partidas Ganhas</string>
+    <string name="profile_w_rate">Taxa de Vitória</string>
+    <string name="profile_r_won">Rondas Ganhas</string>
+    <string name="profile_l_hosted">Lobbies Criados</string>
+    <string name="profile_n_invites">Convites Enviados</string>
+    <string name="profile_e_hands">Mãos Épicas</string>
+
+    <string name="main_text">A carregar...</string>
+
+    <string name="login_title">Entrar</string>
+    <string name="username_textfield">Nome de Utilizador</string>
+    <string name="password_textfield">Palavra-passe</string>
+
+    <string name="title_btn">Lobbies</string>
+    <string name="title_item1">Perfil</string>
+    <string name="title_item2">Sobre</string>
+    <string name="title_drawer">Menu</string>
+
+    <string name="about_title">Sobre</string>
+
+    <string name="profile_p1_title">Como Jogar</string>
+    <string name="profile_p1_btn">Saber Mais</string>
+    <string name="profile_p1_content">
+        O Poker de Dados joga-se com 5 dados especiais com naipes de cartas (9, 10, Valete, Dama, Rei, Ás).
+        Os jogadores lançam os dados para tentar formar a melhor mão de poker possível. Cada jogador tem geralmente 3 lançamentos por turno,
+        escolhendo quais dados manter e quais relançar. Após o último lançamento, o jogador com a mão mais alta vence a ronda.
+        Mãos comuns incluem pares, trios, full house e five of a kind (Quinas).
+    </string>
+    <string name="profile_p2_title">Este Projeto</string>
+    <string name="profile_p2_btn">Contacte-nos</string>
+    <string name="profile_p2_content">
+        Esta aplicação foi desenvolvida no âmbito da disciplina de Programação de Dispositivos Móveis (PDM)
+        no Instituto Superior de Engenharia de Lisboa (ISEL), para a licenciatura em Engenharia Informática e Computadores (LEIC).
+        Desenvolvido no Semestre de Inverno 2025/2026 pelo Grupo 28, turma 52D:
+    </string>
+    <string name="mail_subject">Aplicação Chelas Poker Dice</string>
+
+    <string name="browse_title">Procurar Lobbies</string>
+    <string name="browse_placeholder">Pesquisar</string>
+    <string name="browse_no_lobbies">Sem Lobbies Disponíveis</string>
+    <string name="browse_host">Host</string>
+    <string name="browse_rounds">Rondas</string>
+
+    <string name="create_title">Criar Lobby</string>
+    <string name="create_outfield_name">Nome do Lobby</string>
+    <string name="create_outfield_desc">Descrição</string>
+    <string name="create_outfield_players">Jogadores (2-6)</string>
+    <string name="create_outfield_rounds">Max Rondas</string>
+    <string name="create_outfield_balance">Saldo Inicial</string>
+    <string name="create_outfield_ante">Ante (Aposta)</string>
+
+    <string name="lobby_title">Lobby</string>
+    <string name="lobby_rounds">Rondas</string>
+    <string name="lobby_balance">Saldo</string>
+    <string name="lobby_ante">Ante</string>
+    <string name="lobby_players">Jogadores</string>
+    <string name="lobby_join">Entrar no Lobby</string>
+    <string name="lobby_start">Iniciar Partida</string>
+
+    <string name="match_fetching">A obter dados...</string>
+    <string name="match_wait_btn">Iniciar Ronda</string>
+    <string name="match_next_btn">Próximo</string>
+    <string name="match_roll_btn">Lançar Dados</string>
+    <string name="match_hold_btn">Manter Dados</string>
+    <string name="match_balance">Saldo</string>
+    <string name="match_prize">Prémio</string>
+
+    <string name="alert_error_title">Erro</string>
+    <string name="alert_error_unknown">Erro desconhecido</string>
+    <string name="alert_error_btn">Tentar Novamente</string>
+</resources>

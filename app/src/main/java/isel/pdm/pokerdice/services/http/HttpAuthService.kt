@@ -1,10 +1,13 @@
 package isel.pdm.pokerdice.services.http
 
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import isel.pdm.pokerdice.app.AppLog
 import isel.pdm.pokerdice.domain.types.Password
 import isel.pdm.pokerdice.domain.types.Username
 import isel.pdm.pokerdice.domain.user.SessionInfo
+import isel.pdm.pokerdice.domain.user.UserStats
+import isel.pdm.pokerdice.domain.user.toUserStats
 import isel.pdm.pokerdice.services.AuthService
 import isel.pdm.pokerdice.services.http.HttpLobbyService.DefaultLobbyResponse
 import okhttp3.OkHttpClient
@@ -49,7 +52,7 @@ class HttpAuthService(
     override suspend fun sessionCheck(token: String): SessionInfo {
         val request = Request
             .Builder()
-            .url("${BASE_URL}me")
+            .url("${USER_BASE_URL}/me")
             .header("Authorization", "Bearer $token")
             .build()
         val response = client.newCall(request).await()
@@ -77,6 +80,27 @@ class HttpAuthService(
             } else {
                 logger.i("Server logout successful")
             }
+        }
+    }
+
+    override suspend fun getUserStats(token: String): UserStats {
+        val request = Request.Builder()
+            .url("${USER_BASE_URL}/me/stats")
+            .header("Authorization", "Bearer $token")
+            .get()
+            .build()
+
+        return client.newCall(request).await().use { response ->
+            if (!response.isSuccessful) {
+                throw Exception("Failed to fetch stats: ${response.code}")
+            }
+
+            val responseBody = response.body?.string() ?: throw Exception("Empty stats response")
+
+            val mapType = object : TypeToken<Map<String, String>>() {}.type
+            val statsMap: Map<String, String> = gson.fromJson(responseBody, mapType)
+
+            statsMap.toUserStats()
         }
     }
 

@@ -1,13 +1,30 @@
 <resources>
-    <string name="app_name">pokerdice</string>
-    <string name="game_name">Chelas Poker Dice</string>
+    <string name="app_name" translatable="false">pokerdice</string>
+    <string name="game_name" translatable="false">Chelas Poker Dice</string>
 
-    <string name="group_member1">Radesh Govind</string>
-    <string name="group_member2">Martim Monteiro</string>
-    <string name="group_member3">Francisco Tavares</string>
-    <string name="contact_mail1">A51620@alunos.isel.pt</string>
-    <string name="contact_mail2">A51619@alunos.isel.pt</string>
-    <string name="contact_mail3">A51618@alunos.isel.pt</string>
+    <string name="group_member1" translatable="false">Radesh Govind</string>
+    <string name="group_member2" translatable="false">Martim Monteiro</string>
+    <string name="group_member3" translatable="false">Francisco Tavares</string>
+    <string name="contact_mail1" translatable="false">A51620@alunos.isel.pt</string>
+    <string name="contact_mail2" translatable="false">A51619@alunos.isel.pt</string>
+    <string name="contact_mail3" translatable="false">A51618@alunos.isel.pt</string>
+    <!-- Basics -->
+    <string name="affirmative">Yes</string>
+    <string name="negative">No</string>
+
+   <!-- Player Profile Screen -->
+    <string name="profile_title">Player Profile</string>
+    <string name="profile_logout">Logout</string>
+    <string name="profile_logout_text">Are you sure you want to exit?
+    </string>
+    <string name="profile_stats">Stats of</string>
+    <string name="profile_g_played">Games Played</string>
+    <string name="profile_m_won">Matches Won</string>
+    <string name="profile_w_rate">Win Rate</string>
+    <string name="profile_r_won">Round Won</string>
+    <string name="profile_l_hosted">Lobbies Hosted</string>
+    <string name="profile_n_invites">Invited Sent</string>
+    <string name="profile_e_hands">Epic Hands</string>
 
     <!-- Main Screen-->
     <string name="main_text">Loading App</string>
@@ -26,8 +43,6 @@
     <!-- About Screen-->
     <string name="about_title">About</string>
 
-    <!-- About Screen-->
-    <string name="profile_title">Player Profile</string>
     <string name="profile_p1_title">Gameplay</string>
     <string name="profile_p1_btn">Learn More</string>
     <string name="profile_p1_content">
