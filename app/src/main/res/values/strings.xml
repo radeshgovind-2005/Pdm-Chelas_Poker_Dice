@@ -102,4 +102,39 @@
     <string name="alert_error_title">Error</string>
     <string name="alert_error_unknown">Unknown error</string>
     <string name="alert_error_btn">Try Again</string>
+
+    <!-- Errors -->
+    <string name="err_invalid_balance">Invalid Balance</string>
+    <string name="err_balance_positive">Initial balance must be greater than 0.</string>
+
+    <string name="err_invalid_lobby_name">Invalid Lobby Name</string>
+    <string name="err_lobby_name_empty">Lobby Name cannot be empty or blank.</string>
+    <string name="err_start_capital">Must start with a Capital letter.</string>
+    <string name="err_lobby_name_length">Lobby Name must be 20 characters or fewer.</string>
+
+    <string name="err_invalid_user">Invalid Username</string>
+    <string name="err_user_empty">Username cannot be empty.</string>
+    <string name="err_no_numbers">Numbers are not allowed.</string>
+    <string name="err_letters_only">Only alphabet letters allowed.</string>
+
+    <string name="err_invalid_pass">Invalid Password</string>
+    <string name="err_pass_length">Password must be at least 4 characters.</string>
+    <string name="err_pass_blank">Password cannot be Blank.</string>
+    <string name="err_pass_capital">Password must have at least one Capital letter.</string>
+    <string name="err_pass_digit">Password must have at least one Number.</string>
+
+    <string name="err_invalid_desc">Invalid Description</string>
+    <string name="err_desc_length">Description is too long (max 50 chars).</string>
+
+    <string name="err_invalid_ante">Invalid Ante</string>
+    <string name="err_ante_positive">Ante must be greater than 0.</string>
+
+    <string name="err_invalid_player_count">Invalid Player Count</string>
+    <string name="err_player_range">Expected players must be between %1$d and %2$d.</string>
+
+    <string name="err_invalid_round">Invalid Round Count</string>
+    <string name="err_rounds_positive">Rounds must be positive.</string>
+    <string name="err_rounds_max">Max rounds is %1$d.</string>
+    <string name="err_player_zero">Player count cannot be zero.</string>
+    <string name="err_rounds_multiple">Rounds (%1$d) must be a multiple of the player count (%2$d).</string>
 </resources>

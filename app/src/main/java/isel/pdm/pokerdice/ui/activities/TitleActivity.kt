@@ -19,10 +19,7 @@ import isel.pdm.pokerdice.ui.viewmodels.title.TitleViewModel
 class TitleActivity : ComponentActivity() {
 
     val logger by lazy{ AppLog(this::class.java.simpleName) }
-    val viewmodel: TitleViewModel by viewModels {
-        val app = application as HostApp
-        TitleViewModel.getFactory(app.container.titleUseCase)
-    }
+    val viewmodel: TitleViewModel by viewModels { TitleViewModel.getFactory() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

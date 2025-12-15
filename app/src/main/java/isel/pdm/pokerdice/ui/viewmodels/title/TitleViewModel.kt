@@ -4,21 +4,18 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import isel.pdm.pokerdice.app.AppLog
 import isel.pdm.pokerdice.ui.viewmodels.BaseViewModel
-import isel.pdm.pokerdice.ui.viewmodels.usecases.TitleUseCase
 
 
-class TitleViewModel (
-    private val usecase: TitleUseCase
-) : BaseViewModel<TitleState, TitleNavigation>(TitleState()){
+class TitleViewModel: BaseViewModel<TitleState, TitleNavigation>(TitleState()){
 
     private val logger = AppLog(this::class.java.simpleName)
 
     companion object {
-        fun getFactory(usecase: TitleUseCase) = object : ViewModelProvider.Factory {
+        fun getFactory() = object : ViewModelProvider.Factory {
             @Suppress("UNCHECKED_CAST")
             override fun <T : ViewModel> create(modelClass: Class<T>): T =
                 if (modelClass.isAssignableFrom(TitleViewModel::class.java)) {
-                    TitleViewModel(usecase = usecase) as T
+                    TitleViewModel() as T
                 } else throw IllegalArgumentException("Unknown ViewModel class")
         }
     }

@@ -20,10 +20,7 @@ import kotlin.getValue
 class AboutActivity: ComponentActivity() {
 
     val logger by lazy{ AppLog(this::class.java.simpleName) }
-    val viewmodel: AboutViewModel by viewModels {
-        val app = application as HostApp
-        AboutViewModel.getFactory(app.container.aboutUseCase)
-    }
+    val viewmodel: AboutViewModel by viewModels { AboutViewModel.getFactory() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

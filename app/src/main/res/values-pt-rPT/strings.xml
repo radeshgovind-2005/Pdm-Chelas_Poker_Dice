@@ -78,4 +78,38 @@
     <string name="alert_error_title">Erro</string>
     <string name="alert_error_unknown">Erro desconhecido</string>
     <string name="alert_error_btn">Tentar Novamente</string>
+
+    <string name="err_invalid_balance">Saldo Inválido</string>
+    <string name="err_balance_positive">O saldo inicial deve ser maior que 0.</string>
+
+    <string name="err_invalid_lobby_name">Nome de Lobby Inválido</string>
+    <string name="err_lobby_name_empty">O nome não pode estar vazio.</string>
+    <string name="err_start_capital">Deve começar com letra Maiúscula.</string>
+    <string name="err_lobby_name_length">O nome deve ter 20 caracteres ou menos.</string>
+
+    <string name="err_invalid_user">Nome de Utilizador Inválido</string>
+    <string name="err_user_empty">O nome de utilizador não pode estar vazio.</string>
+    <string name="err_no_numbers">Números não são permitidos.</string>
+    <string name="err_letters_only">Apenas letras são permitidas.</string>
+
+    <string name="err_invalid_pass">Palavra-passe Inválida</string>
+    <string name="err_pass_length">A palavra-passe deve ter pelo menos 4 caracteres.</string>
+    <string name="err_pass_blank">A palavra-passe não pode estar vazia.</string>
+    <string name="err_pass_capital">Deve conter pelo menos uma letra Maiúscula.</string>
+    <string name="err_pass_digit">Deve conter pelo menos um Número.</string>
+
+    <string name="err_invalid_desc">Descrição Inválida</string>
+    <string name="err_desc_length">A descrição é demasiado longa (máx 50 carateres).</string>
+
+    <string name="err_invalid_ante">Ante Inválida</string>
+    <string name="err_ante_positive">A Ante deve ser maior que 0.</string>
+
+    <string name="err_invalid_player_count">Número de Jogadores Inválido</string>
+    <string name="err_player_range">Jogadores esperados entre %1$d e %2$d.</string>
+
+    <string name="err_invalid_round">Número de Rondas Inválido</string>
+    <string name="err_rounds_positive">As rondas devem ser um valor positivo.</string>
+    <string name="err_rounds_max">Máximo de rondas é %1$d.</string>
+    <string name="err_player_zero">O número de jogadores não pode ser zero.</string>
+    <string name="err_rounds_multiple">Rondas (%1$d) devem ser um múltiplo do nº de jogadores (%2$d).</string>
 </resources>

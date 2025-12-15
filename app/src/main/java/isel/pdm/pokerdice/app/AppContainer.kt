@@ -8,7 +8,6 @@ import isel.pdm.pokerdice.repo.preferences.AuthRepoPreferences
 import isel.pdm.pokerdice.services.http.HttpAuthService
 import isel.pdm.pokerdice.services.http.HttpLobbyService
 import isel.pdm.pokerdice.services.http.HttpMatchService
-import isel.pdm.pokerdice.ui.viewmodels.usecases.AboutUseCase
 import isel.pdm.pokerdice.ui.viewmodels.usecases.AuthUseCase
 import isel.pdm.pokerdice.ui.viewmodels.usecases.BrowseUseCase
 import isel.pdm.pokerdice.ui.viewmodels.usecases.CreateUseCase
@@ -16,7 +15,6 @@ import isel.pdm.pokerdice.ui.viewmodels.usecases.LobbyUseCase
 import isel.pdm.pokerdice.ui.viewmodels.usecases.MainUseCase
 import isel.pdm.pokerdice.ui.viewmodels.usecases.MatchUseCase
 import isel.pdm.pokerdice.ui.viewmodels.usecases.ProfileUseCase
-import isel.pdm.pokerdice.ui.viewmodels.usecases.TitleUseCase
 import okhttp3.OkHttpClient
 
 class AppContainer(context: Context) {
@@ -48,9 +46,7 @@ class AppContainer(context: Context) {
 
     //USE CASES
     val authUseCase by lazy { AuthUseCase(authService, authRepo) }
-    val titleUseCase by lazy { TitleUseCase(authRepo, lobbyService) }
     val mainUseCase by lazy { MainUseCase(authRepo, authService, lobbyService) }
-    val aboutUseCase by lazy { AboutUseCase(authRepo) }
     val profileUseCase by lazy { ProfileUseCase(authService,authRepo) }
     val browseUseCase by lazy { BrowseUseCase(lobbyService) }
     val createUseCase by lazy { CreateUseCase(lobbyService,authRepo) }
