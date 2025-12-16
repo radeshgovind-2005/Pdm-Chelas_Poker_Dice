@@ -101,6 +101,7 @@ class LobbyViewModel(
 
 
     fun onBackRequest(){
+        if(!state.value.isJoined) return sendEffect(LobbyNavigation.ToBrowse )
         logger.i("Back Requested -> Navigate to Browse Activity")
         setState { copy(isLoading = true) }
         launchWithHandler(
