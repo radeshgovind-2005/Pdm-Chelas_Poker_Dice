@@ -23,7 +23,7 @@ abstract class BaseViewModel<S,E>(initialState: S): ViewModel() {
     private val _effects = Channel<E>(Channel.BUFFERED)
     val effects: Flow<E> = _effects.receiveAsFlow()
 
-    protected fun setState(reducer: S.() -> S) {
+    fun setState(reducer: S.() -> S) {
         _state.update(reducer)
     }
 

@@ -32,7 +32,7 @@ class BrowseViewModel(
         logger.i("VM initialized successfully")
     }
 
-    private suspend fun subscribeToLobbies(){
+    suspend fun subscribeToLobbies(){
         logger.i("subscribe to Lobbies")
         setState { copy(isLoading=true) }
         usecase
