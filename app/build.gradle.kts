@@ -63,11 +63,14 @@ dependencies {
     implementation(libs.androidx.lifecycle.process)
 
     // Test dependencies
-    testImplementation(libs.junit)  // JUnit for unit testing
-    testImplementation(libs.mockito.kotlin)
-    testImplementation("androidx.arch.core:core-testing:2.1.0")
-    testImplementation(libs.kotlinx.coroutines.test.v150)  // Coroutines test dependency
-    testImplementation(libs.kotlinx.coroutines.core)  // Core coroutines library for tests
+    testImplementation(libs.junit)
+
+    // REPLACE the old string with this:
+    testImplementation(libs.mockk)
+
+    // Keep these
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation("app.cash.turbine:turbine:1.0.0")
 
     // Android test dependencies
     androidTestImplementation(libs.androidx.junit)  // Android JUnit
