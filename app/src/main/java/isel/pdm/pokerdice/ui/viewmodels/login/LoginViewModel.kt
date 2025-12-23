@@ -5,10 +5,10 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.savedstate.SavedStateRegistryOwner
 import isel.pdm.pokerdice.app.AppLog
-import isel.pdm.pokerdice.domain.types.Password
-import isel.pdm.pokerdice.domain.types.Username
+import isel.pdm.pokerdice.domain.rules.Password
+import isel.pdm.pokerdice.domain.rules.Username
 import isel.pdm.pokerdice.ui.viewmodels.BaseViewModel
-import isel.pdm.pokerdice.ui.viewmodels.usecases.AuthUseCase
+import isel.pdm.pokerdice.domain.usecases.AuthUseCase
 
 @Suppress("DEPRECATION")
 class LoginViewModel(

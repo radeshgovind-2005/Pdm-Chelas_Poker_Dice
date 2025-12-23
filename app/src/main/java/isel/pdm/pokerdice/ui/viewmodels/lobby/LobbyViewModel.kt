@@ -3,9 +3,9 @@ package isel.pdm.pokerdice.ui.viewmodels.lobby
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import isel.pdm.pokerdice.app.AppLog
-import isel.pdm.pokerdice.services.events.LobbyEvent
+import isel.pdm.pokerdice.domain.events.LobbyEvent
 import isel.pdm.pokerdice.ui.viewmodels.BaseViewModel
-import isel.pdm.pokerdice.ui.viewmodels.usecases.LobbyUseCase
+import isel.pdm.pokerdice.domain.usecases.LobbyUseCase
 
 class LobbyViewModel(
     private val usecase: LobbyUseCase

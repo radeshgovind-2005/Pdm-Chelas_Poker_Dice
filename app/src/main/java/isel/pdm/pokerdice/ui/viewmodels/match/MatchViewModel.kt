@@ -3,10 +3,10 @@ package isel.pdm.pokerdice.ui.viewmodels.match
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import isel.pdm.pokerdice.app.AppLog
-import isel.pdm.pokerdice.domain.Hand
-import isel.pdm.pokerdice.services.events.MatchEvents
+import isel.pdm.pokerdice.domain.events.MatchEvents
+import isel.pdm.pokerdice.domain.model.Hand
 import isel.pdm.pokerdice.ui.viewmodels.BaseViewModel
-import isel.pdm.pokerdice.ui.viewmodels.usecases.MatchUseCase
+import isel.pdm.pokerdice.domain.usecases.MatchUseCase
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.retry
 

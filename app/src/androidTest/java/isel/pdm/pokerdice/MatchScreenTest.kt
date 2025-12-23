@@ -8,11 +8,11 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.test.platform.app.InstrumentationRegistry
 import isel.pdm.pokerdice.R
-import isel.pdm.pokerdice.domain.match.Game
-import isel.pdm.pokerdice.domain.match.LobbyContent
-import isel.pdm.pokerdice.domain.match.MatchContent
-import isel.pdm.pokerdice.domain.match.MatchPlayers
-import isel.pdm.pokerdice.domain.match.Round
+import isel.pdm.pokerdice.domain.model.match.Game
+import isel.pdm.pokerdice.domain.model.match.LobbyContent
+import isel.pdm.pokerdice.domain.model.match.MatchContent
+import isel.pdm.pokerdice.domain.model.match.MatchPlayers
+import isel.pdm.pokerdice.domain.model.match.Round
 import isel.pdm.pokerdice.ui.activities.screens.match.MatchScreen
 import isel.pdm.pokerdice.ui.viewmodels.match.MatchState
 import org.junit.Rule

@@ -1,6 +1,6 @@
 package isel.pdm.pokerdice.ui.viewmodels.profile
 
-import isel.pdm.pokerdice.domain.user.UserStats
+import isel.pdm.pokerdice.domain.model.user.UserStats
 
 data class ProfileState(
     val isLoading: Boolean = false,

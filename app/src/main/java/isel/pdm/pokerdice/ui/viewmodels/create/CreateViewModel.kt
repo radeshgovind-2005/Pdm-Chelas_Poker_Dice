@@ -5,14 +5,14 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.savedstate.SavedStateRegistryOwner
 import isel.pdm.pokerdice.app.AppLog
-import isel.pdm.pokerdice.domain.types.LobbyAnte
-import isel.pdm.pokerdice.domain.types.LobbyBalance
-import isel.pdm.pokerdice.domain.types.LobbyDescription
-import isel.pdm.pokerdice.domain.types.LobbyExpectedPlayers
-import isel.pdm.pokerdice.domain.types.LobbyName
-import isel.pdm.pokerdice.domain.types.LobbyRounds
+import isel.pdm.pokerdice.domain.rules.LobbyAnte
+import isel.pdm.pokerdice.domain.rules.LobbyBalance
+import isel.pdm.pokerdice.domain.rules.LobbyDescription
+import isel.pdm.pokerdice.domain.rules.LobbyExpectedPlayers
+import isel.pdm.pokerdice.domain.rules.LobbyName
+import isel.pdm.pokerdice.domain.rules.LobbyRounds
 import isel.pdm.pokerdice.ui.viewmodels.BaseViewModel
-import isel.pdm.pokerdice.ui.viewmodels.usecases.CreateUseCase
+import isel.pdm.pokerdice.domain.usecases.CreateUseCase
 
 @Suppress("DEPRECATION")
 class CreateViewModel (

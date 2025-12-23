@@ -1,10 +1,10 @@
 package isel.pdm.pokerdice.ui.viewmodels.match
 
 
-import isel.pdm.pokerdice.domain.Hand
-import isel.pdm.pokerdice.domain.Round
-import isel.pdm.pokerdice.domain.match.Game
-import isel.pdm.pokerdice.domain.match.MatchPlayers
+import isel.pdm.pokerdice.domain.model.Hand
+import isel.pdm.pokerdice.domain.model.Round
+import isel.pdm.pokerdice.domain.model.match.Game
+import isel.pdm.pokerdice.domain.model.match.MatchPlayers
 
 data class MatchState(
     val matchId: String="",

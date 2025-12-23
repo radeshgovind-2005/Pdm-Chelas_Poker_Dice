@@ -9,10 +9,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import isel.pdm.pokerdice.app.HostApp
 import isel.pdm.pokerdice.app.AppLog
-import isel.pdm.pokerdice.ui.activities.screens.about.AboutScreen
-import isel.pdm.pokerdice.ui.theme.PokerdiceTheme
+import isel.pdm.pokerdice.ui.common.theme.PokerdiceTheme
+import isel.pdm.pokerdice.ui.screens.about.AboutScreen
 import isel.pdm.pokerdice.ui.viewmodels.about.AboutNavigation
 import isel.pdm.pokerdice.ui.viewmodels.about.AboutViewModel
 import kotlin.getValue

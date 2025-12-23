@@ -9,7 +9,7 @@ import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTextInput
 import androidx.test.platform.app.InstrumentationRegistry
 import isel.pdm.pokerdice.R
-import isel.pdm.pokerdice.domain.lobby.BrowseLobby
+import isel.pdm.pokerdice.domain.model.lobby.BrowseLobby
 import isel.pdm.pokerdice.ui.activities.screens.browse.BrowseLobbiesScreen
 import isel.pdm.pokerdice.ui.viewmodels.browse.BrowseState
 import org.junit.Rule

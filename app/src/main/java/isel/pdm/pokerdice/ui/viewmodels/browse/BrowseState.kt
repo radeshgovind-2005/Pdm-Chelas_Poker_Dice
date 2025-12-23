@@ -1,6 +1,6 @@
 package isel.pdm.pokerdice.ui.viewmodels.browse
 
-import isel.pdm.pokerdice.domain.lobby.BrowseLobby
+import isel.pdm.pokerdice.domain.model.lobby.BrowseLobby
 
 data class BrowseState(
     val isLoading: Boolean=false,

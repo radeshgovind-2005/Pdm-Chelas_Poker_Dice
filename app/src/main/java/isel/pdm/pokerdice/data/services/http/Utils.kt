@@ -1,0 +1,28 @@
+package isel.pdm.pokerdice.data.services.http
+
+import kotlinx.coroutines.suspendCancellableCoroutine
+import okhttp3.Call
+import okhttp3.Callback
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.Response
+import java.io.IOException
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
+
+const val NGROK_ID = "https://semiclinical-starchlike-vania.ngrok-free.dev"
+const val BASE_URL = NGROK_ID + "/chelas-poker-dice/"
+val JSON_MEDIA_TYPE = "application/json; charset=utf-8".toMediaType()
+suspend fun Call.await(): Response = suspendCancellableCoroutine { continuation ->
+    enqueue(object : Callback {
+        override fun onResponse(call: Call, response: Response) {
+            continuation.resume(response)
+        }
+
+        override fun onFailure(call: Call, e: IOException) {
+            if (continuation.isActive) {
+                continuation.resumeWithException(e)
+            }
+        }
+    })
+}
+

@@ -11,8 +11,8 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import isel.pdm.pokerdice.app.HostApp
 import isel.pdm.pokerdice.app.AppLog
-import isel.pdm.pokerdice.ui.activities.screens.browse.BrowseLobbiesScreen
-import isel.pdm.pokerdice.ui.theme.PokerdiceTheme
+import isel.pdm.pokerdice.ui.common.theme.PokerdiceTheme
+import isel.pdm.pokerdice.ui.screens.browse.BrowseLobbiesScreen
 import isel.pdm.pokerdice.ui.viewmodels.browse.BrowseNavigation
 import isel.pdm.pokerdice.ui.viewmodels.browse.BrowseViewModel
 import kotlin.getValue

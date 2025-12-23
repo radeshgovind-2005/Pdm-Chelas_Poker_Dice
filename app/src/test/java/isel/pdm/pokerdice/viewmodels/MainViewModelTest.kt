@@ -6,9 +6,9 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkStatic
 import io.mockk.unmockkStatic
-import isel.pdm.pokerdice.domain.user.SessionInfo
-import isel.pdm.pokerdice.domain.user.User
-import isel.pdm.pokerdice.ui.viewmodels.usecases.MainUseCase
+import isel.pdm.pokerdice.domain.model.user.SessionInfo
+import isel.pdm.pokerdice.domain.model.user.User
+import isel.pdm.pokerdice.domain.usecases.MainUseCase
 import isel.pdm.pokerdice.utils.MainDispatcherRule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch

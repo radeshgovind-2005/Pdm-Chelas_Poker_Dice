@@ -1,6 +1,6 @@
 package isel.pdm.pokerdice.ui.viewmodels.lobby
 
-import isel.pdm.pokerdice.domain.lobby.Lobby
+import isel.pdm.pokerdice.domain.model.lobby.Lobby
 
 data class LobbyState (
     val username: String = "",

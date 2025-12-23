@@ -3,10 +3,10 @@ package isel.pdm.pokerdice.ui.viewmodels.browse
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import isel.pdm.pokerdice.app.AppLog
-import isel.pdm.pokerdice.domain.lobby.BrowseLobby
-import isel.pdm.pokerdice.services.events.LobbiesEvents
+import isel.pdm.pokerdice.domain.events.LobbiesEvents
+import isel.pdm.pokerdice.domain.model.lobby.BrowseLobby
 import isel.pdm.pokerdice.ui.viewmodels.BaseViewModel
-import isel.pdm.pokerdice.ui.viewmodels.usecases.BrowseUseCase
+import isel.pdm.pokerdice.domain.usecases.BrowseUseCase
 
 class BrowseViewModel(
     private val usecase: BrowseUseCase

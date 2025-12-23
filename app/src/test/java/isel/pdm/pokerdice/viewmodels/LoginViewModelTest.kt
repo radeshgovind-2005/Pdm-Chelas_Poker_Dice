@@ -7,10 +7,10 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkStatic
 import io.mockk.unmockkStatic
-import isel.pdm.pokerdice.domain.types.Password
-import isel.pdm.pokerdice.domain.types.Username
-import isel.pdm.pokerdice.domain.user.User
-import isel.pdm.pokerdice.ui.viewmodels.usecases.AuthUseCase
+import isel.pdm.pokerdice.domain.rules.Password
+import isel.pdm.pokerdice.domain.rules.Username
+import isel.pdm.pokerdice.domain.model.user.User
+import isel.pdm.pokerdice.domain.usecases.AuthUseCase
 import isel.pdm.pokerdice.utils.MainDispatcherRule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch

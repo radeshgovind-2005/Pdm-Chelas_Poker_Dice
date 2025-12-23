@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import isel.pdm.pokerdice.app.AppLog
 import isel.pdm.pokerdice.ui.viewmodels.BaseViewModel
-import isel.pdm.pokerdice.ui.viewmodels.usecases.ProfileUseCase
+import isel.pdm.pokerdice.domain.usecases.ProfileUseCase
 
 class ProfileViewModel(
     private val usecase: ProfileUseCase

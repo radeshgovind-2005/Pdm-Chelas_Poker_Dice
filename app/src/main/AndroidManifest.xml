@@ -19,7 +19,7 @@
         android:theme="@style/Theme.Pokerdice">
 
         <service
-            android:name=".services.AppMonitorService"
+            android:name=".app.AppMonitorService"
             android:foregroundServiceType="specialUse"
             android:exported="false" />
 

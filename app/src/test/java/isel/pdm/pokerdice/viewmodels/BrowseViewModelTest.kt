@@ -6,9 +6,9 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkStatic
 import io.mockk.unmockkStatic
-import isel.pdm.pokerdice.domain.lobby.BrowseLobby
-import isel.pdm.pokerdice.services.events.LobbiesEvents
-import isel.pdm.pokerdice.ui.viewmodels.usecases.BrowseUseCase
+import isel.pdm.pokerdice.domain.model.lobby.BrowseLobby
+import isel.pdm.pokerdice.events.LobbiesEvents
+import isel.pdm.pokerdice.domain.usecases.BrowseUseCase
 import isel.pdm.pokerdice.utils.MainDispatcherRule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableSharedFlow

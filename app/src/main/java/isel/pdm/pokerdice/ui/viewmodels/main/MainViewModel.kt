@@ -4,8 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import isel.pdm.pokerdice.app.AppLog
 import isel.pdm.pokerdice.ui.viewmodels.BaseViewModel
-import isel.pdm.pokerdice.ui.viewmodels.title.TitleNavigation
-import isel.pdm.pokerdice.ui.viewmodels.usecases.MainUseCase
+import isel.pdm.pokerdice.domain.usecases.MainUseCase
 
 class MainViewModel (
     private val usecase: MainUseCase

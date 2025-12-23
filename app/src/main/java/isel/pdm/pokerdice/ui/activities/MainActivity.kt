@@ -12,11 +12,10 @@ import androidx.compose.runtime.getValue
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import isel.pdm.pokerdice.app.HostApp
 import isel.pdm.pokerdice.app.AppLog
-import isel.pdm.pokerdice.ui.activities.screens.main.MainScreen
-import isel.pdm.pokerdice.ui.theme.PokerdiceTheme
+import isel.pdm.pokerdice.ui.common.theme.PokerdiceTheme
+import isel.pdm.pokerdice.ui.screens.main.MainScreen
 import isel.pdm.pokerdice.ui.viewmodels.main.MainNavigation
 import isel.pdm.pokerdice.ui.viewmodels.main.MainViewModel
-import isel.pdm.pokerdice.ui.viewmodels.title.TitleNavigation
 
 class MainActivity : ComponentActivity() {
 
