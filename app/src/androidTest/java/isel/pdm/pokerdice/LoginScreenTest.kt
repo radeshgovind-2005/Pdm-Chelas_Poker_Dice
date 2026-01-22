@@ -1,5 +1,6 @@
-package isel.pdm.pokerdice.ui.screens
+package isel.pdm.pokerdice
 
+import androidx.compose.ui.semantics.ProgressBarRangeInfo
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsEnabled
 import androidx.compose.ui.test.assertIsNotEnabled
@@ -10,8 +11,7 @@ import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.performTextInput
 import androidx.test.platform.app.InstrumentationRegistry
-import isel.pdm.pokerdice.R
-import isel.pdm.pokerdice.ui.activities.screens.login.LoginScreen
+import isel.pdm.pokerdice.ui.screens.login.LoginScreen
 import isel.pdm.pokerdice.ui.viewmodels.login.LoginState
 import org.junit.Rule
 import org.junit.Test
@@ -76,7 +76,7 @@ class LoginScreenTest {
 
         // 1. Progress Bar is Visible
         composeTestRule
-            .onNode(hasProgressBarRangeInfo(androidx.compose.ui.semantics.ProgressBarRangeInfo.Indeterminate))
+            .onNode(hasProgressBarRangeInfo(ProgressBarRangeInfo.Indeterminate))
             .assertIsDisplayed()
 
         // 2. Button Should NOT Exist

@@ -1,4 +1,4 @@
-package isel.pdm.pokerdice.ui.viewmodels.match
+package isel.pdm.pokerdice.viewmodels
 
 import android.util.Log
 import io.mockk.coEvery
@@ -7,13 +7,15 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkStatic
 import io.mockk.unmockkStatic
+import isel.pdm.pokerdice.domain.events.MatchEvents
 import isel.pdm.pokerdice.domain.model.match.Game
 import isel.pdm.pokerdice.domain.model.match.LobbyContent
 import isel.pdm.pokerdice.domain.model.match.MatchContent
 import isel.pdm.pokerdice.domain.model.match.MatchPlayers
 import isel.pdm.pokerdice.domain.model.match.Round
-import isel.pdm.pokerdice.events.MatchEvents
 import isel.pdm.pokerdice.domain.usecases.MatchUseCase
+import isel.pdm.pokerdice.ui.viewmodels.match.MatchState
+import isel.pdm.pokerdice.ui.viewmodels.match.MatchViewModel
 import isel.pdm.pokerdice.utils.MainDispatcherRule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableSharedFlow

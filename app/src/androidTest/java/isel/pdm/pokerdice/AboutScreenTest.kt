@@ -1,4 +1,4 @@
-package isel.pdm.pokerdice.ui.screens
+package isel.pdm.pokerdice
 
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsEnabled
@@ -8,8 +8,7 @@ import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTouchInput
 import androidx.compose.ui.test.swipeLeft
 import androidx.test.platform.app.InstrumentationRegistry
-import isel.pdm.pokerdice.R
-import isel.pdm.pokerdice.ui.activities.screens.about.AboutScreen
+import isel.pdm.pokerdice.ui.screens.about.AboutScreen
 import isel.pdm.pokerdice.ui.viewmodels.about.AboutState
 import org.junit.Rule
 import org.junit.Test

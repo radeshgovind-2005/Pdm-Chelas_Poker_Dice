@@ -1,9 +1,11 @@
-package isel.pdm.pokerdice.ui.viewmodels.about
+package isel.pdm.pokerdice.viewmodels
 
 import android.util.Log
 import io.mockk.every
 import io.mockk.mockkStatic
 import io.mockk.unmockkStatic
+import isel.pdm.pokerdice.ui.viewmodels.about.AboutNavigation
+import isel.pdm.pokerdice.ui.viewmodels.about.AboutViewModel
 import isel.pdm.pokerdice.utils.MainDispatcherRule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch

@@ -9,7 +9,7 @@ import java.io.IOException
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
-const val NGROK_ID = "https://semiclinical-starchlike-vania.ngrok-free.dev"
+const val NGROK_ID = "https://sun-semicarbonate-feastfully.ngrok-free.dev"
 const val BASE_URL = NGROK_ID + "/chelas-poker-dice/"
 val JSON_MEDIA_TYPE = "application/json; charset=utf-8".toMediaType()
 suspend fun Call.await(): Response = suspendCancellableCoroutine { continuation ->

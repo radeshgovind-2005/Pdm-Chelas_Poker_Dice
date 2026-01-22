@@ -1,4 +1,4 @@
-package isel.pdm.pokerdice.ui.viewmodels.login
+package isel.pdm.pokerdice.viewmodels
 
 import android.util.Log
 import androidx.lifecycle.SavedStateHandle
@@ -11,6 +11,9 @@ import isel.pdm.pokerdice.domain.rules.Password
 import isel.pdm.pokerdice.domain.rules.Username
 import isel.pdm.pokerdice.domain.model.user.User
 import isel.pdm.pokerdice.domain.usecases.AuthUseCase
+import isel.pdm.pokerdice.ui.viewmodels.login.LoginNavigation
+import isel.pdm.pokerdice.ui.viewmodels.login.LoginState
+import isel.pdm.pokerdice.ui.viewmodels.login.LoginViewModel
 import isel.pdm.pokerdice.utils.MainDispatcherRule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch

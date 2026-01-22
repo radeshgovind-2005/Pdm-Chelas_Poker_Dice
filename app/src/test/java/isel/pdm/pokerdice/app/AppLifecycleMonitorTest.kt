@@ -26,12 +26,6 @@ class AppLifecycleMonitorTest {
     private val logger = mockk<AppLog>(relaxed = true)
     private val lifecycleOwner = mockk<LifecycleOwner>()
 
-    @Before
-    fun setup() {
-        // No reflection hacks needed.
-        // In Unit Tests, Build.VERSION.SDK_INT is 0, so the code defaults
-        // to calling startService(). We will test that logic.
-    }
 
     @Test
     fun `onStop_starts_service_after_delay`() = runTest {

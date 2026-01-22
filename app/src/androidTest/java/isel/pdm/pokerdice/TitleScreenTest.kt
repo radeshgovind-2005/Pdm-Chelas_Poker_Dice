@@ -1,4 +1,4 @@
-package isel.pdm.pokerdice.ui.screens
+package isel.pdm.pokerdice
 
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsEnabled
@@ -7,8 +7,7 @@ import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.test.platform.app.InstrumentationRegistry
-import isel.pdm.pokerdice.R
-import isel.pdm.pokerdice.ui.activities.screens.title.TitleScreen
+import isel.pdm.pokerdice.ui.screens.title.TitleScreen
 import isel.pdm.pokerdice.ui.viewmodels.title.TitleState
 import org.junit.Rule
 import org.junit.Test

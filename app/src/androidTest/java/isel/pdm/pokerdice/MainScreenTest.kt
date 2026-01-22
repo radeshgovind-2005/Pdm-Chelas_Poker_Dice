@@ -1,15 +1,15 @@
-package isel.pdm.pokerdice.ui.screens
+package isel.pdm.pokerdice
 
+import androidx.compose.ui.semantics.ProgressBarRangeInfo
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.hasProgressBarRangeInfo
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
-import isel.pdm.pokerdice.R
-import isel.pdm.pokerdice.ui.activities.screens.main.MainScreen
 import isel.pdm.pokerdice.ui.viewmodels.main.MainState
 import org.junit.Rule
 import org.junit.Test
 import androidx.test.platform.app.InstrumentationRegistry
+import isel.pdm.pokerdice.ui.screens.main.MainScreen
 
 class MainScreenTest {
 
@@ -45,7 +45,7 @@ class MainScreenTest {
         }
 
         composeTestRule
-            .onNode(hasProgressBarRangeInfo(androidx.compose.ui.semantics.ProgressBarRangeInfo.Indeterminate))
+            .onNode(hasProgressBarRangeInfo(ProgressBarRangeInfo.Indeterminate))
             .assertIsDisplayed()
     }
 }

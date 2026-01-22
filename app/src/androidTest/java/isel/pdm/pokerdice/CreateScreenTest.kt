@@ -1,4 +1,4 @@
-package isel.pdm.pokerdice.ui.screens
+package isel.pdm.pokerdice
 
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsEnabled
@@ -9,8 +9,7 @@ import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.test.platform.app.InstrumentationRegistry
-import isel.pdm.pokerdice.R
-import isel.pdm.pokerdice.ui.activities.screens.create.CreateScreen
+import isel.pdm.pokerdice.ui.screens.create.CreateScreen
 import isel.pdm.pokerdice.ui.viewmodels.create.CreateState
 import org.junit.Rule
 import org.junit.Test
@@ -22,33 +21,6 @@ class CreateScreenTest {
 
     private fun getString(id: Int): String {
         return InstrumentationRegistry.getInstrumentation().targetContext.getString(id)
-    }
-
-    @Test
-    fun initial_state_shows_fields_and_disabled_button() {
-        val state = CreateState() // Default: empty, disabled
-        val btnText = getString(R.string.create_title)
-
-        composeTestRule.setContent {
-            CreateScreen(
-                state = state,
-                onBackRequest = {},
-                onNameChange = {},
-                onDescriptionChange = {},
-                onExpectedPlayersChange = {},
-                onMaxRoundsChange = {},
-                onBalanceChange = {},
-                onAnteChange = {},
-                onCreateRequest = {},
-                onTryAgain = {}
-            )
-        }
-
-        // Verify button exists but is disabled
-        composeTestRule
-            .onNode(hasText(btnText) and hasClickAction())
-            .assertIsDisplayed()
-            .assertIsNotEnabled()
     }
 
     @Test

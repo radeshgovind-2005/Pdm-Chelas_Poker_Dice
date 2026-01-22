@@ -1,5 +1,6 @@
-package isel.pdm.pokerdice.ui.screens
+package isel.pdm.pokerdice
 
+import androidx.compose.ui.semantics.ProgressBarRangeInfo
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.hasContentDescription
 import androidx.compose.ui.test.hasProgressBarRangeInfo
@@ -8,9 +9,8 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTextInput
 import androidx.test.platform.app.InstrumentationRegistry
-import isel.pdm.pokerdice.R
 import isel.pdm.pokerdice.domain.model.lobby.BrowseLobby
-import isel.pdm.pokerdice.ui.activities.screens.browse.BrowseLobbiesScreen
+import isel.pdm.pokerdice.ui.screens.browse.BrowseLobbiesScreen
 import isel.pdm.pokerdice.ui.viewmodels.browse.BrowseState
 import org.junit.Rule
 import org.junit.Test
@@ -33,7 +33,7 @@ class BrowseScreenTest {
         }
 
         composeTestRule
-            .onNode(hasProgressBarRangeInfo(androidx.compose.ui.semantics.ProgressBarRangeInfo.Indeterminate))
+            .onNode(hasProgressBarRangeInfo(ProgressBarRangeInfo.Indeterminate))
             .assertIsDisplayed()
     }
 

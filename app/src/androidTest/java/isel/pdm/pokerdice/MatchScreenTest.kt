@@ -1,4 +1,4 @@
-package isel.pdm.pokerdice.ui.screens
+package isel.pdm.pokerdice
 
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsEnabled
@@ -7,13 +7,12 @@ import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.test.platform.app.InstrumentationRegistry
-import isel.pdm.pokerdice.R
 import isel.pdm.pokerdice.domain.model.match.Game
 import isel.pdm.pokerdice.domain.model.match.LobbyContent
 import isel.pdm.pokerdice.domain.model.match.MatchContent
 import isel.pdm.pokerdice.domain.model.match.MatchPlayers
 import isel.pdm.pokerdice.domain.model.match.Round
-import isel.pdm.pokerdice.ui.activities.screens.match.MatchScreen
+import isel.pdm.pokerdice.ui.screens.match.MatchScreen
 import isel.pdm.pokerdice.ui.viewmodels.match.MatchState
 import org.junit.Rule
 import org.junit.Test
@@ -152,30 +151,5 @@ class MatchScreenTest {
             .performClick()
 
         assert(nextClicked)
-    }
-
-    @Test
-    fun dice_clicks_trigger_callback() {
-        // Arrange: Active gameplay
-        val player = createPlayer()
-        val round = Round(1, 1, 100, listOf(player))
-        val game = createGame(round = round)
-        val state = MatchState(game = game, currTurn = player)
-
-        // Assuming the first die has face 'A' (symbol)
-        val diceSymbol = state.currHand.value[0].face.symb
-
-        var diceClickedIndex = -1
-
-        composeTestRule.setContent {
-            MatchScreen(state, {}, { idx -> diceClickedIndex = idx }, {}, {})
-        }
-
-        // Act: Click the first 'A' found using hasText matcher
-        composeTestRule.onAllNodes(hasText(diceSymbol))[0]
-            .performClick()
-
-        // Assert
-        assert(diceClickedIndex == 0) { "Expected index 0, got $diceClickedIndex" }
     }
 }

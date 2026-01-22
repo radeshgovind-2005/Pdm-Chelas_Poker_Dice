@@ -1,4 +1,4 @@
-package isel.pdm.pokerdice.ui.viewmodels.lobby
+package isel.pdm.pokerdice.viewmodels
 
 import android.util.Log
 import io.mockk.coEvery
@@ -7,9 +7,12 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkStatic
 import io.mockk.unmockkStatic
+import isel.pdm.pokerdice.domain.events.LobbyEvent
 import isel.pdm.pokerdice.domain.model.lobby.Lobby
-import isel.pdm.pokerdice.events.LobbyEvent
 import isel.pdm.pokerdice.domain.usecases.LobbyUseCase
+import isel.pdm.pokerdice.ui.viewmodels.lobby.LobbyNavigation
+import isel.pdm.pokerdice.ui.viewmodels.lobby.LobbyState
+import isel.pdm.pokerdice.ui.viewmodels.lobby.LobbyViewModel
 import isel.pdm.pokerdice.utils.MainDispatcherRule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableSharedFlow

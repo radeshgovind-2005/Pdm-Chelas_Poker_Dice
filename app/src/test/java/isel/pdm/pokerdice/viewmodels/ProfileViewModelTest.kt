@@ -1,4 +1,4 @@
-package isel.pdm.pokerdice.ui.viewmodels.profile
+package isel.pdm.pokerdice.viewmodels
 
 import android.util.Log
 import io.mockk.coEvery
@@ -9,6 +9,9 @@ import io.mockk.mockkStatic
 import io.mockk.unmockkStatic
 import isel.pdm.pokerdice.domain.model.user.UserStats
 import isel.pdm.pokerdice.domain.usecases.ProfileUseCase
+import isel.pdm.pokerdice.ui.viewmodels.profile.ProfileNavigation
+import isel.pdm.pokerdice.ui.viewmodels.profile.ProfileState
+import isel.pdm.pokerdice.ui.viewmodels.profile.ProfileViewModel
 import isel.pdm.pokerdice.utils.MainDispatcherRule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
