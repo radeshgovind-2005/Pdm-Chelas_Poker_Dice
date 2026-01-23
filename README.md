@@ -39,13 +39,18 @@ The project is divided into milestones:
 
 ## Technologies Used
 - Kotlin with Jetpack Compose for UI
-- Navigation Compose for screen routing
 - Coroutines and Flows for asynchronous operations
-- Retrofit or Ktor for HTTP API calls
+-  Ktor for HTTP API calls
+
+## Theoric Notes
+- MVVM Architecture
+- Manual Injection Dependency
+- State Hoisting
+- Unidirectional Data Flow
+- Smart Routing
+- Debouncing
 
 ## Contributing
 This is an academic project.
 
 
-
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/e5Yj8iZn)
