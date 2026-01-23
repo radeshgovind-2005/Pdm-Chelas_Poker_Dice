@@ -17,7 +17,7 @@ fun Activity.navigateTo(
     val intent = Intent(this, dest)
     intent.intentConfig()
     startActivity(intent)
-    if(finish)
+    if(finish) // a better usage would be to use the No History flag
         finish()
 }
 

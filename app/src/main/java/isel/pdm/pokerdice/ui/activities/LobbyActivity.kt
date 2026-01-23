@@ -9,12 +9,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import isel.pdm.pokerdice.app.HostApp
 import isel.pdm.pokerdice.app.AppLog
 import isel.pdm.pokerdice.ui.common.theme.PokerdiceTheme
 import isel.pdm.pokerdice.ui.screens.lobby.LobbyScreen
 import isel.pdm.pokerdice.ui.viewmodels.lobby.LobbyNavigation
 import isel.pdm.pokerdice.ui.viewmodels.lobby.LobbyViewModel
+import kotlinx.coroutines.launch
 import kotlin.getValue
 
 class LobbyActivity: ComponentActivity() {
@@ -33,10 +37,10 @@ class LobbyActivity: ComponentActivity() {
         viewmodel.inititializeVM(lobbyId)
         enableEdgeToEdge()
         requestNotificationPermission()
+        listenForEffects()
         setContent {
             PokerdiceTheme {
                 val state by viewmodel.state.collectAsState()
-                ListenForEffects()
                 LobbyScreen(
                     state = state,
                     onBackClick = viewmodel::onBackRequest,
@@ -62,16 +66,18 @@ class LobbyActivity: ComponentActivity() {
         logger.lifeCycle("onDestroy")
     }
 
-    @Composable
-    private fun ListenForEffects(){
-        logger.i("Listening for Effects")
-        LaunchedEffect(Unit) {
-            viewmodel.effects.collect { effect ->
-                logger.i("Effect collected -> ${effect::class.java.simpleName}")
-                when (effect) {
-                    LobbyNavigation.ToBrowse -> navigateTo(BrowseActivity::class.java)
-                    is LobbyNavigation.ToMatch -> navigateTo(MatchActivity::class.java){
-                        putExtra("MATCH_ID", effect.matchId)
+
+    private fun listenForEffects(){
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                logger.i("Listening for Effects")
+                viewmodel.effects.collect { effect ->
+                    logger.i("Effect collected -> ${effect::class.java.simpleName}")
+                    when (effect) {
+                        LobbyNavigation.ToBrowse -> navigateTo(BrowseActivity::class.java)
+                        is LobbyNavigation.ToMatch -> navigateTo(MatchActivity::class.java) {
+                            putExtra("MATCH_ID", effect.matchId)
+                        }
                     }
                 }
             }

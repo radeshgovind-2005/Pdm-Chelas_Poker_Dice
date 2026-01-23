@@ -6,15 +6,17 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import isel.pdm.pokerdice.app.AppLog
 import isel.pdm.pokerdice.ui.common.theme.PokerdiceTheme
 import isel.pdm.pokerdice.ui.screens.about.AboutScreen
 import isel.pdm.pokerdice.ui.viewmodels.about.AboutNavigation
 import isel.pdm.pokerdice.ui.viewmodels.about.AboutViewModel
-import kotlin.getValue
+import kotlinx.coroutines.launch
 
 class AboutActivity: ComponentActivity() {
 
@@ -26,10 +28,10 @@ class AboutActivity: ComponentActivity() {
         logger.lifeCycle("onCreate")
         enableEdgeToEdge()
         requestNotificationPermission()
+        listenForEffects()
         setContent {
             PokerdiceTheme {
                 val state by viewmodel.state.collectAsState()
-                ListenForEffects()
                 AboutScreen(
                     state = state,
                     onBackClick = viewmodel::onBackRequest,
@@ -55,16 +57,18 @@ class AboutActivity: ComponentActivity() {
         logger.lifeCycle("onDestroy")
     }
 
-    @Composable
-    private fun ListenForEffects(){
-        logger.i("Listening for Effects")
-        LaunchedEffect(Unit) {
-            viewmodel.effects.collect { effect ->
-                logger.i("Effect collected -> ${effect::class.java.simpleName}")
-                when (effect) {
-                    AboutNavigation.ToTitle -> finish()
-                    is AboutNavigation.ToMail -> navigateToMail(effect.sendTo,effect.subject)
-                    is AboutNavigation.ToWeb -> navigateToWeb(effect.uri)
+
+    private fun listenForEffects(){
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                logger.i("Listening for Effects")
+                viewmodel.effects.collect { effect ->
+                    logger.i("Effect collected -> ${effect::class.java.simpleName}")
+                    when (effect) {
+                        AboutNavigation.ToTitle -> finish()
+                        is AboutNavigation.ToMail -> navigateToMail(effect.sendTo, effect.subject)
+                        is AboutNavigation.ToWeb -> navigateToWeb(effect.uri)
+                    }
                 }
             }
         }

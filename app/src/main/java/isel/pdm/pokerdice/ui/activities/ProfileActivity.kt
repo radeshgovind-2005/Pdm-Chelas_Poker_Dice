@@ -10,12 +10,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import isel.pdm.pokerdice.app.HostApp
 import isel.pdm.pokerdice.app.AppLog
 import isel.pdm.pokerdice.ui.common.theme.PokerdiceTheme
 import isel.pdm.pokerdice.ui.screens.profile.ProfileScreen
 import isel.pdm.pokerdice.ui.viewmodels.profile.ProfileNavigation
 import isel.pdm.pokerdice.ui.viewmodels.profile.ProfileViewModel
+import kotlinx.coroutines.launch
 
 class ProfileActivity : ComponentActivity() {
 
@@ -31,10 +35,10 @@ class ProfileActivity : ComponentActivity() {
         viewmodel.onCreateActivity()
         enableEdgeToEdge()
         requestNotificationPermission()
+        listenForEffects()
         setContent {
             PokerdiceTheme {
                 val state by viewmodel.state.collectAsState()
-                ListenForEffects()
                 ProfileScreen(
                     state = state,
                     onBackClick = viewmodel::onBackRequest,
@@ -59,17 +63,20 @@ class ProfileActivity : ComponentActivity() {
         super.onDestroy()
         logger.lifeCycle("onDestroy")
     }
-    @Composable
-    private fun ListenForEffects(){
-        logger.i("Listening for Effects")
-        LaunchedEffect(Unit) {
-            viewmodel.effects.collect { effect ->
-                logger.i("Effect collected -> ${effect::class.java.simpleName}")
-                when (effect) {
-                    ProfileNavigation.ToTitle -> finish()
-                    ProfileNavigation.ToLogin ->  {
-                        navigateTo(LoginActivity::class.java, finish = true) {
-                            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+
+    private fun listenForEffects(){
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                logger.i("Listening for Effects")
+                viewmodel.effects.collect { effect ->
+                    logger.i("Effect collected -> ${effect::class.java.simpleName}")
+                    when (effect) {
+                        ProfileNavigation.ToTitle -> finish()
+                        ProfileNavigation.ToLogin -> {
+                            navigateTo(LoginActivity::class.java, finish = true) {
+                                flags =
+                                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                            }
                         }
                     }
                 }

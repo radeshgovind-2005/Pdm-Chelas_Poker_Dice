@@ -18,6 +18,9 @@ class HostApp: Application() {
         logger.i("Host App Created: Initializing Dependencies")
         container = AppContainer(this)
         val lifecycleMonitor = AppLifecycleMonitor(this, logger)
+        //Small probability of not launching the notification
+        //between the count and the notification being created
+        //correction is made by a schedule with a WorkManager
         ProcessLifecycleOwner.get().lifecycle.addObserver(lifecycleMonitor)
     }
 }

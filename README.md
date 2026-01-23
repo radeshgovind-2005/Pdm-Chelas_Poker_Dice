@@ -3,6 +3,8 @@
 
 ## Overview
 
+PROJECT MARKS: 20/20
+
 This repository contains the implementation of the Chelas Multi-Player Poker Dice application, developed as part of the Mobile Devices Programming course (Option C) at Instituto Superior de Engenharia de Lisboa (ISEL) for the Winter Semester 2025/2026.
 
 The application is a multi-player Poker Dice game where players use their own devices to join lobbies, configure matches, and compete in rounds based on dice combinations. It integrates with an HTTP API developed in the DAW course for real-time synchronization. The project follows a milestone-based development approach, with tags for each delivery (e.g., `chepd_c_1` for Milestone 1).

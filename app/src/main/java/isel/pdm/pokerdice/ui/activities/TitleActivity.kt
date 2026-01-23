@@ -9,11 +9,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import isel.pdm.pokerdice.app.AppLog
 import isel.pdm.pokerdice.ui.common.theme.PokerdiceTheme
 import isel.pdm.pokerdice.ui.screens.title.TitleScreen
 import isel.pdm.pokerdice.ui.viewmodels.title.TitleNavigation
 import isel.pdm.pokerdice.ui.viewmodels.title.TitleViewModel
+import kotlinx.coroutines.launch
 
 class TitleActivity : ComponentActivity() {
 
@@ -25,10 +29,10 @@ class TitleActivity : ComponentActivity() {
         logger.lifeCycle("onCreate")
         enableEdgeToEdge()
         requestNotificationPermission()
+        listenForEffects()
         setContent {
             PokerdiceTheme {
                 val state by viewmodel.state.collectAsState()
-                ListenForEffects()
                 TitleScreen(
                     state=state,
                     onClickAbout=viewmodel::onAboutClicked,
@@ -52,17 +56,19 @@ class TitleActivity : ComponentActivity() {
         super.onDestroy()
         logger.lifeCycle("onDestroy")
     }
-    @Composable
-    private fun ListenForEffects(){
-        logger.i("Listening for Effects")
-        LaunchedEffect(Unit) {
-            viewmodel.effects.collect { effect ->
-                logger.i("Effect collected -> ${effect::class.java.simpleName}")
-                when (effect) {
-                    TitleNavigation.ToAbout -> navigateTo(AboutActivity::class.java,false)
-                    TitleNavigation.ToLobbies -> navigateTo(BrowseActivity::class.java,false)
-                    TitleNavigation.ToProfile -> navigateTo(ProfileActivity::class.java,false)
 
+
+    private fun listenForEffects(){
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                logger.i("Listening for Effects")
+                viewmodel.effects.collect { effect ->
+                    logger.i("Effect collected -> ${effect::class.java.simpleName}")
+                    when (effect) {
+                        TitleNavigation.ToAbout -> navigateTo(AboutActivity::class.java, false)
+                        TitleNavigation.ToLobbies -> navigateTo(BrowseActivity::class.java, false)
+                        TitleNavigation.ToProfile -> navigateTo(ProfileActivity::class.java, false)
+                    }
                 }
             }
         }

@@ -10,12 +10,16 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import isel.pdm.pokerdice.app.HostApp
 import isel.pdm.pokerdice.app.AppLog
 import isel.pdm.pokerdice.ui.common.theme.PokerdiceTheme
 import isel.pdm.pokerdice.ui.screens.main.MainScreen
 import isel.pdm.pokerdice.ui.viewmodels.main.MainNavigation
 import isel.pdm.pokerdice.ui.viewmodels.main.MainViewModel
+import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
 
@@ -31,14 +35,12 @@ class MainActivity : ComponentActivity() {
         installSplashScreen()
         enableEdgeToEdge()
         requestNotificationPermission()
+        listenForEffects()
+        viewmodel.sessionCheck()
         setContent {
             PokerdiceTheme {
                 val state by viewmodel.state.collectAsState()
-                ListenForEffects()
                 MainScreen(state=state)
-                LaunchedEffect(Unit) {
-                    viewmodel.sessionCheck()
-                }
             }
         }
     }
@@ -58,20 +60,22 @@ class MainActivity : ComponentActivity() {
         logger.lifeCycle("onDestroy")
     }
 
-    @Composable
-    private fun ListenForEffects(){
-        logger.i("Listening for Effects")
-        LaunchedEffect(Unit) {
-            viewmodel.effects.collect { effect ->
-                logger.i("Effect collected -> ${effect::class.java.simpleName}")
-                when (effect) {
-                    MainNavigation.ToLogin -> navigateTo(LoginActivity::class.java)
-                    MainNavigation.ToTitle -> navigateTo(TitleActivity::class.java)
-                    is MainNavigation.ToLobby -> navigateTo(LobbyActivity::class.java){
-                        putExtra("LOBBY_ID", effect.lobbyId)
-                    }
-                    is MainNavigation.ToMatch -> navigateTo(MatchActivity::class.java){
-                        putExtra("MATCH_ID", effect.matchId)
+
+    private fun listenForEffects(){
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                logger.i("Listening for Effects")
+                viewmodel.effects.collect { effect ->
+                    logger.i("Effect collected -> ${effect::class.java.simpleName}")
+                    when (effect) {
+                        MainNavigation.ToLogin -> navigateTo(LoginActivity::class.java)
+                        MainNavigation.ToTitle -> navigateTo(TitleActivity::class.java)
+                        is MainNavigation.ToLobby -> navigateTo(LobbyActivity::class.java) {
+                            putExtra("LOBBY_ID", effect.lobbyId)
+                        }
+                        is MainNavigation.ToMatch -> navigateTo(MatchActivity::class.java) {
+                            putExtra("MATCH_ID", effect.matchId)
+                        }
                     }
                 }
             }
