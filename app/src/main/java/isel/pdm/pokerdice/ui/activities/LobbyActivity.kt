@@ -1,86 +1,37 @@
 package isel.pdm.pokerdice.ui.activities
 
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import isel.pdm.pokerdice.app.HostApp
-import isel.pdm.pokerdice.app.AppLog
-import isel.pdm.pokerdice.ui.common.theme.PokerdiceTheme
 import isel.pdm.pokerdice.ui.screens.lobby.LobbyScreen
 import isel.pdm.pokerdice.ui.viewmodels.lobby.LobbyNavigation
+import isel.pdm.pokerdice.ui.viewmodels.lobby.LobbyState
 import isel.pdm.pokerdice.ui.viewmodels.lobby.LobbyViewModel
-import kotlinx.coroutines.launch
-import kotlin.getValue
 
-class LobbyActivity: ComponentActivity() {
+class LobbyActivity: BaseActivity<LobbyState, LobbyNavigation, LobbyViewModel>() {
 
-    val logger by lazy{ AppLog(this::class.java.simpleName) }
-    val viewmodel: LobbyViewModel by viewModels {
+    override val viewModel: LobbyViewModel by viewModels {
         val app = application as HostApp
         LobbyViewModel.getFactory(app.container.lobbyUseCase)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        logger.lifeCycle("onCreate")
-        val lobbyId = intent.getStringExtra("LOBBY_ID")
-            ?: throw IllegalArgumentException("Lobby ID is required to start this Activity")
-        viewmodel.inititializeVM(lobbyId)
-        enableEdgeToEdge()
-        requestNotificationPermission()
-        listenForEffects()
-        setContent {
-            PokerdiceTheme {
-                val state by viewmodel.state.collectAsState()
-                LobbyScreen(
-                    state = state,
-                    onBackClick = viewmodel::onBackRequest,
-                    onJoinRequest = viewmodel::onJoinRequest,
-                    onStartMatch = viewmodel::onStartRequest
-                )
+    @Composable
+    override fun ScreenContent(state: LobbyState) {
+        LobbyScreen(
+            state = state,
+            onBackClick = viewModel::onBackRequest,
+            onJoinRequest = viewModel::onJoinRequest,
+            onStartMatch = viewModel::onStartRequest
+        )
+    }
+
+    override fun handleEffect(effect: LobbyNavigation) {
+        when (effect) {
+            LobbyNavigation.ToBrowse -> navigateTo(BrowseActivity::class.java)
+            is LobbyNavigation.ToMatch -> navigateTo(MatchActivity::class.java) {
+                putExtra("MATCH_ID", effect.matchId)
             }
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        logger.lifeCycle("onResume")
-    }
-
-    override fun onPause() {
-        super.onPause()
-        logger.lifeCycle("onPause")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        logger.lifeCycle("onDestroy")
-    }
-
-
-    private fun listenForEffects(){
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                logger.i("Listening for Effects")
-                viewmodel.effects.collect { effect ->
-                    logger.i("Effect collected -> ${effect::class.java.simpleName}")
-                    when (effect) {
-                        LobbyNavigation.ToBrowse -> navigateTo(BrowseActivity::class.java)
-                        is LobbyNavigation.ToMatch -> navigateTo(MatchActivity::class.java) {
-                            putExtra("MATCH_ID", effect.matchId)
-                        }
-                    }
-                }
-            }
-        }
-    }
 }

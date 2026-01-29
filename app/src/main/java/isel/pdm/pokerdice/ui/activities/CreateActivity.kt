@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.Lifecycle
@@ -13,15 +14,18 @@ import androidx.lifecycle.repeatOnLifecycle
 import isel.pdm.pokerdice.app.AppLog
 import isel.pdm.pokerdice.app.HostApp
 import isel.pdm.pokerdice.ui.common.theme.PokerdiceTheme
+import isel.pdm.pokerdice.ui.screens.about.AboutScreen
 import isel.pdm.pokerdice.ui.screens.create.CreateScreen
+import isel.pdm.pokerdice.ui.viewmodels.about.AboutNavigation
+import isel.pdm.pokerdice.ui.viewmodels.about.AboutState
 import isel.pdm.pokerdice.ui.viewmodels.create.CreateNavigation
+import isel.pdm.pokerdice.ui.viewmodels.create.CreateState
 import isel.pdm.pokerdice.ui.viewmodels.create.CreateViewModel
 import kotlinx.coroutines.launch
 
-class CreateActivity: ComponentActivity() {
+class CreateActivity: BaseActivity<CreateState, CreateNavigation, CreateViewModel>() {
 
-    val logger by lazy{ AppLog(this::class.java.simpleName) }
-    val viewmodel: CreateViewModel by viewModels {
+    override val viewModel: CreateViewModel by viewModels {
         val app = application as HostApp
         CreateViewModel.provideFactory(
             owner=this,
@@ -29,60 +33,29 @@ class CreateActivity: ComponentActivity() {
         )
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        logger.lifeCycle("onCreate")
-        enableEdgeToEdge()
-        requestNotificationPermission()
-        listenForEffects()
-        setContent {
-            PokerdiceTheme {
-                val state by viewmodel.state.collectAsState()
-                CreateScreen(
-                    state = state,
-                    onBackRequest = viewmodel::toBackRequest,
-                    onNameChange = viewmodel::onNameChange,
-                    onDescriptionChange = viewmodel::onDescriptionChange,
-                    onExpectedPlayersChange = viewmodel::onExpectedPlayersChange,
-                    onMaxRoundsChange = viewmodel::onMaxRoundsChange,
-                    onBalanceChange = viewmodel::onBalanceChange,
-                    onAnteChange = viewmodel::onAnteChange,
-                    onCreateRequest = viewmodel::onCreateLobby,
-                    onTryAgain = viewmodel::onTryAgain
-                )
+    @Composable
+    override fun ScreenContent(state: CreateState) {
+        CreateScreen(
+            state = state,
+            onBackRequest = viewModel::toBackRequest,
+            onNameChange = viewModel::onNameChange,
+            onDescriptionChange = viewModel::onDescriptionChange,
+            onExpectedPlayersChange = viewModel::onExpectedPlayersChange,
+            onMaxRoundsChange = viewModel::onMaxRoundsChange,
+            onBalanceChange = viewModel::onBalanceChange,
+            onAnteChange = viewModel::onAnteChange,
+            onCreateRequest = viewModel::onCreateLobby,
+            onTryAgain = viewModel::onTryAgain
+        )
+    }
+
+    override fun handleEffect(effect: CreateNavigation) {
+        when (effect) {
+            CreateNavigation.ToBrowse -> navigateTo(BrowseActivity::class.java)
+            is CreateNavigation.ToLobby -> navigateTo(LobbyActivity::class.java) {
+                putExtra("LOBBY_ID", effect.lobbyId)
             }
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        logger.lifeCycle("onResume")
-    }
-
-    override fun onPause() {
-        super.onPause()
-        logger.lifeCycle("onPause")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        logger.lifeCycle("onDestroy")
-    }
-
-    private fun listenForEffects(){
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                logger.i("Listening for Effects")
-                viewmodel.effects.collect { effect ->
-                    logger.i("Effect collected -> ${effect::class.java.simpleName}")
-                    when (effect) {
-                        CreateNavigation.ToBrowse -> navigateTo(BrowseActivity::class.java)
-                        is CreateNavigation.ToLobby -> navigateTo(LobbyActivity::class.java) {
-                            putExtra("LOBBY_ID", effect.lobbyId)
-                        }
-                    }
-                }
-            }
-        }
-    }
 }
