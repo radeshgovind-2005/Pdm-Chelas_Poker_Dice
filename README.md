@@ -1,29 +1,30 @@
-
 # Chelas Multi-Player Poker Dice
+
+> 🏆 **Academic Achievement:** Awarded 20/20 for architectural excellence and implementation in the Mobile Devices Programming course (ISEL).
 
 ## Overview
 
-PROJECT MARKS: 20/20
-
-This repository contains the implementation of the Chelas Multi-Player Poker Dice application, developed as part of the Mobile Devices Programming course (Option C) at Instituto Superior de Engenharia de Lisboa (ISEL) for the Winter Semester 2025/2026.
-
-The application is a multi-player Poker Dice game where players use their own devices to join lobbies, configure matches, and compete in rounds based on dice combinations. It integrates with an HTTP API developed in the DAW course for real-time synchronization. The project follows a milestone-based development approach, with tags for each delivery (e.g., `chepd_c_1` for Milestone 1).
-
-## Group 28 Members
-
-- [51618] : Francisco Duarte Tavares
-- [51619] : Martim Silva Seriz Monteiro
-- [51620] : Radesh Ilesh Gamanbhai Govind
+A real-time, multi-player Android application where users can join lobbies, configure match parameters, and compete in state-driven Poker Dice rounds. The application relies on a custom HTTP Restful API for real-time synchronization and leverages a modern Android development stack to ensure a fluid, crash-free user experience.
 
 ## Demo Video
 Watch the demonstration video showcasing the application's functionality, including starting a match, playing rounds, viewing results, and navigating all screens:  
 
-
-
 https://github.com/user-attachments/assets/c5fe14d6-ed2b-438b-a5a9-041a95dff5c6
 
+## 🏗 Architecture & Technologies
 
+The application was built emphasizing strict separation of concerns, utilizing a modern **MVVM Architecture** combined with **Unidirectional Data Flow (UDF)** to manage complex, real-time game states.
 
+**Core Stack:**
+* **UI:** Kotlin + Jetpack Compose
+* **Concurrency:** Kotlin Coroutines & Flows
+* **Networking:** Ktor HTTP Client
+
+**Key Engineering Concepts Implemented:**
+* **State Hoisting & UDF:** Ensuring UI consistency across multiple device screens during active gameplay.
+* **Smart Routing:** Handling complex navigation graphs and back-stack management.
+* **Debouncing:** Optimizing network calls and preventing race conditions on rapid user inputs.
+* **Manual Dependency Injection:** Decoupling network layers to allow seamless switching between mocked dependencies (for UI testing) and live production servers.
 
 ## Milestones and Tags
 
@@ -37,20 +38,10 @@ The project is divided into milestones:
 - **Milestone 6** (`chepd_c_6`): Player Profile screen with statistics.
 - **Final Milestone** (`chepd_c_f`): Complete app with demo video.
 
-## Technologies Used
-- Kotlin with Jetpack Compose for UI
-- Coroutines and Flows for asynchronous operations
--  Ktor for HTTP API calls
+## Group 28 Members
 
-## Theoric Notes
-- MVVM Architecture
-- Manual Injection Dependency
-- State Hoisting
-- Unidirectional Data Flow
-- Smart Routing
-- Debouncing
-
-## Contributing
-This is an academic project.
+- [51618] : Francisco Duarte Tavares
+- [51619] : Martim Silva Seriz Monteiro
+- [51620] : Radesh Ilesh Gamanbhai Govind
 
 
